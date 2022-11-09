@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import {firestore} from './firebase'
+import {firestore, } from './firebase'
 import { collection, getDocs } from "firebase/firestore"; 
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
 
@@ -14,6 +15,12 @@ function App() {
     setUsers(users)
   }
 
+
+
+
+
+
+
   const [users, setUsers] = useState([])
 
 
@@ -26,8 +33,11 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar></Navbar>
       {users.map((user,i) => <h1 className="text-3xl font-bold underline" key={user.id}> {user.username} </h1>)}
-      <h1> Hello </h1>
+      <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
     </div>
   );
 }
