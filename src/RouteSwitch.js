@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar'
-
+import Feed from "./components/Feed/Feed";
 const RouteSwitch = (props) => {
 
 
@@ -8,7 +8,7 @@ const RouteSwitch = (props) => {
     <BrowserRouter basename="/" >
       <Navbar></Navbar>
       <Routes>
-      <Route path="/" element={Navbar}/>
+        <Route path="feed" element={<Feed/>}> </Route>
       </Routes>
     </BrowserRouter>
   );
