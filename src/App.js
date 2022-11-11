@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import {firestore, } from './firebase'
 import { collection, getDocs } from "firebase/firestore"; 
-import Navbar from './components/Navbar/Navbar';
+import RouteSwitch from './RouteSwitch'
+import './index.css'
 
 function App() {
 
@@ -15,12 +16,6 @@ function App() {
     setUsers(users)
   }
 
-
-
-
-
-
-
   const [users, setUsers] = useState([])
 
 
@@ -33,11 +28,9 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar></Navbar>
-      {users.map((user,i) => <h1 className="text-3xl font-bold underline" key={user.id}> {user.username} </h1>)}
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+      <RouteSwitch></RouteSwitch>
+      {/* {users.map((user,i) => <h1 className="text-3xl font-bold underline" key={user.id}> {user.username} </h1>)} */}
+
     </div>
   );
 }
