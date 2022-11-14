@@ -2,14 +2,11 @@ import React from "react";
 import { Navigate } from "react-router";
 
 const ProtectedRoute = ({ user, children }) => {
+  if (!user) {
+    return <Navigate to="/sign-in" replace />;
+  }
 
-    if (!user) {
-      return (<Navigate to="/sign-in" replace />)
-    }
-  
-    return children;
-  };
+  return children;
+};
 
-  export default ProtectedRoute;
-
-   
+export default ProtectedRoute;
