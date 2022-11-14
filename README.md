@@ -42,3 +42,8 @@ ________________
 
 Features:
 Skeleton Loding
+
+How will people use the App?
+Users will be able to sign up, own their own user account where they can upload content in the form of photos and text,
+interact with other users content by liking and commenting, and choosing which users they want to see in their feed.
+

@@ -8,7 +8,7 @@ const RouteSwitch = (props) => {
     <BrowserRouter basename="/" >
       <Navbar></Navbar>
       <Routes>
-        <Route path="feed" element={<Feed/>}> </Route>
+     
       </Routes>
     </BrowserRouter>
   );
