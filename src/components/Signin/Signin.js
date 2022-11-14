@@ -1,16 +1,20 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import img from "../../assests/text-logo.png";
-import { useNavigate } from "react-router-dom";
+import { newContext } from "../../context/context";
+
 
 const Signin = () => {
+
+
+  const { state, setState} = useContext(newContext)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
   const [buttonState, setButtonState] = useState();
-  const navigate = useNavigate();
+
 
   useEffect(() => {
     if (password.length < 6) {
@@ -26,8 +30,8 @@ const Signin = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((cred) => {
-        console.log(cred, cred.user);
-        navigate("/feed");
+        setState(cred.user)
+        
       })
       .catch((err) => {
         setLoginError(true);
@@ -40,7 +44,7 @@ const Signin = () => {
   return (
     <div className="bg-slate-100  flex-grow ">
       <div className="flex mx-auto flex-col p-20 max-w-lg gap-5 mt-20  items-stretch bg-white border">
-        <img src={img} className="object-scale-down md:w-9/12 self-center" />
+        <img alt="instagram-logo" src={img} className="object-scale-down md:w-9/12 self-center" />
         <form className="flex flex-col gap-2 p-2" onSubmit={handleSubmit}>
           <input
             className="bg-slate-50 p-2 border-2 border-gray-100"

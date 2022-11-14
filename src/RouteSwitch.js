@@ -6,15 +6,12 @@ import Feed from "./components/Feed/Feed";
 import ProtectedRoute from "./components/ProtectedRoute/ProductedRoute";
 
 //Check AUTH is middleware to check if user is logged in or not, if logged will redriect to feed, else to sign in
-import { useState, useEffect } from "react";
-import { auth } from "./firebase";
+
 
 const RouteSwitch = (props) => {
-  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    auth.currentUser === null ? setUser(null) : setUser(auth.currentUser);
-  }, []);
+
+
 
   return (
     <BrowserRouter basename="/">
@@ -25,7 +22,7 @@ const RouteSwitch = (props) => {
         <Route
           path="feed"
           element={
-            <ProtectedRoute user={user}>
+            <ProtectedRoute>
               <Feed />
             </ProtectedRoute>
           }
