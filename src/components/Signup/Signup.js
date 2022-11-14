@@ -26,7 +26,7 @@ const Signup = () => {
 
         <form  className='flex mx-auto flex-col p-4 max-w-2xl gap-3' onSubmit={handleSubmit}>
         <input id='email' type="email" onChange={(e) => {setEmail(e.target.value)} } name="email"></input>
-        <input id='password' min="6" type="password" onChange={(e) => {setPassword(e.target.value)} } name="password"></input>
+        <input id='password' min="8" type="password" onChange={(e) => {setPassword(e.target.value)} } name="password"></input>
         <button type="submit"> Sign up </button>
         </form>
 
