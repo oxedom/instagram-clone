@@ -1,18 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext, useState, } from "react";
 
-export const newContext = createContext()
+ export const newContext = createContext(null)
 
 export const NewProvider = (props) => {
-
-    const [state, setState] = useState('')
-
-    const value = { 
-        state,
-        setState
-    }
+    const [userData, setUserData] = useState(false)
 
     return (
-        <newContext.Provider value={value}> 
+        <newContext.Provider value={{userData, setUserData}} > 
             {props.children}
     </newContext.Provider>
     )

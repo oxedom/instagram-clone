@@ -9,7 +9,7 @@ import { newContext } from "../../context/context";
 const Signin = () => {
 
 
-  const { state, setState} = useContext(newContext)
+  const userContext = useContext(newContext)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
@@ -30,10 +30,11 @@ const Signin = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((cred) => {
-        setState(cred.user)
-        
+       userContext.setUserData(cred.user.uid)
+  
       })
       .catch((err) => {
+        console.log(err);
         setLoginError(true);
       });
 
@@ -43,6 +44,7 @@ const Signin = () => {
 
   return (
     <div className="bg-slate-100  flex-grow ">
+      <h1> {userContext.userData} </h1>
       <div className="flex mx-auto flex-col p-20 max-w-lg gap-5 mt-20  items-stretch bg-white border">
         <img alt="instagram-logo" src={img} className="object-scale-down md:w-9/12 self-center" />
         <form className="flex flex-col gap-2 p-2" onSubmit={handleSubmit}>

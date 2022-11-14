@@ -1,19 +1,15 @@
 import React from "react";
 import { Navigate } from "react-router";
-import { useState, useEffect } from "react";
-import { auth } from "../../firebase"
-
+import { useContext } from "react";
+import { newContext } from "../../context/context";
 
 
 const ProtectedRoute = ({ children }) => {
 
-    const [user, setUser] = useState(null);
-    useEffect(() => {
+  const userContext = useContext(newContext)
+  console.log(userContext.userData);
 
-        auth.currentUser == null ? setUser(false) : setUser(true);
-      }, []);
-
-  if (!user) {
+  if (userContext.userData === false) {
     return <Navigate to="/sign-in" replace />;
   }
 
