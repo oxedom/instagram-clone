@@ -1,7 +1,14 @@
+import {useAuth} from '../../hooks/useAuth'
+
 const Feed = () => {
+
+  const { logout} = useAuth()
+  const handleLogout = () => {
+    logout()
+  }
   return (
     <div>
-      <h1> Hello from Feed</h1>
+      <h1 onClick={handleLogout}> Hello from Feed</h1>
     </div>
   );
 };

@@ -15,7 +15,7 @@ const Signin = () => {
   const [buttonState, setButtonState] = useState();
   const { state } = useLocation();
   const navigate  = useNavigate();
-  const { login} = useAuth()
+  const { login } = useAuth()
 
 
 
@@ -27,19 +27,29 @@ const Signin = () => {
     }
   }, [email, password]);
 
-  function handleSubmit(e) {
-
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then((cred) => { login().then( () => {
-        navigate("/feed")
-      })
+  async function handleSubmit (e) {
+    e.preventDefault()
+    
+    try {
+      const cred =  await signInWithEmailAndPassword(auth, email, password)
+      if(cred.user.uid.length > 10) {
+        console.log(cred.user.uid);
+        login().then(() => { 
+          console.log('navigating to feed or path' + state?.path);
+          navigate(state?.path || "/feed")})
+      }
+    }
+      catch(error) {
+        console.log('ERROR LOGGING IN');
+        console.log(error)
+        setLoginError(true);
+      }
+    
+        
  
   
-      })
-      .catch((err) => {
-        setLoginError(true);
-      });
+      
+
 
     setEmail("");
     setPassword("");

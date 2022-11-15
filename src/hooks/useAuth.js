@@ -1,14 +1,15 @@
-import * as React from "react";
+import { createContext, useContext, useState } from "react"; 
 
-const authContext = React.createContext();
+const authContext = createContext();
 
 export function useAuth() {
-  const [authed, setAuthed] = React.useState(false);
+  const [authed, setAuthed] = useState(false);
 
   return {
     authed,
     login() {
       return new Promise((res) => {
+        console.log('SETTING AUTH TO TRUE');
         setAuthed(true);
         res();
       });
@@ -29,5 +30,5 @@ export function AuthProvider({ children }) {
 }
 
 export default function AuthConsumer() {
-  return React.useContext(authContext);
+  return useContext(authContext);
 }
