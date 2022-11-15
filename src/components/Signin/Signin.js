@@ -1,19 +1,22 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import img from "../../assests/text-logo.png";
-import { newContext } from "../../context/context";
-
+import { useNavigate } from "react-router-dom";
+import {useAuth} from "../../hooks/useAuth"
+import { useLocation } from "react-router-dom";
 
 const Signin = () => {
 
-
-  const userContext = useContext(newContext)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
   const [buttonState, setButtonState] = useState();
+  const { state } = useLocation();
+  const navigate  = useNavigate();
+  const { login} = useAuth()
+
 
 
   useEffect(() => {
@@ -25,16 +28,16 @@ const Signin = () => {
   }, [email, password]);
 
   function handleSubmit(e) {
-    setLoginError(false);
-    e.preventDefault();
+
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((cred) => {
-       userContext.setUserData(cred.user.uid)
+      .then((cred) => { login().then( () => {
+        navigate("/feed")
+      })
+ 
   
       })
       .catch((err) => {
-        console.log(err);
         setLoginError(true);
       });
 
@@ -43,8 +46,8 @@ const Signin = () => {
   }
 
   return (
+
     <div className="bg-slate-100  flex-grow ">
-      <h1> {userContext.userData} </h1>
       <div className="flex mx-auto flex-col p-20 max-w-lg gap-5 mt-20  items-stretch bg-white border">
         <img alt="instagram-logo" src={img} className="object-scale-down md:w-9/12 self-center" />
         <form className="flex flex-col gap-2 p-2" onSubmit={handleSubmit}>
@@ -94,6 +97,7 @@ const Signin = () => {
       </div>
     </div>
   );
+
 };
 
 export default Signin;

@@ -3,8 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./components/Signup/Signup";
 import Signin from "./components/Signin/Signin";
 import Feed from "./components/Feed/Feed";
-import ProtectedRoute from "./components/ProtectedRoute/ProductedRoute";
-
+import RequireAuth from './components/ProtectedRoute/RequireAuth'
 //Check AUTH is middleware to check if user is logged in or not, if logged will redriect to feed, else to sign in
 
 
@@ -22,9 +21,9 @@ const RouteSwitch = (props) => {
         <Route
           path="feed"
           element={
-            <ProtectedRoute>
+            <RequireAuth>
               <Feed />
-            </ProtectedRoute>
+            </RequireAuth>
           }
         ></Route>
       </Routes>
