@@ -1,14 +1,16 @@
-import {useAuth} from '../../hooks/useAuth'
+import { useNavigate } from "react-router";
 
 const Feed = () => {
 
-  const { logout} = useAuth()
-  const handleLogout = () => {
-    logout()
+  const navigate = useNavigate()
+  
+  const handleClick = () => {
+    navigate('/home')
+
   }
   return (
     <div>
-      <h1 onClick={handleLogout}> Hello from Feed</h1>
+      <h1 onClick={handleClick}> Hello from Feed</h1>
     </div>
   );
 };

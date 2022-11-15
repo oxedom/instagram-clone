@@ -7,16 +7,16 @@ import { useNavigate } from "react-router-dom";
 import {useAuth} from "../../hooks/useAuth"
 import { useLocation } from "react-router-dom";
 
-const Signin = () => {
+const Signin = (props) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
   const [buttonState, setButtonState] = useState();
-  const { state } = useLocation();
-  const navigate  = useNavigate();
-  const { login } = useAuth()
 
+  const navigate  = useNavigate();
+
+  const { logIn} = props.props 
 
 
   useEffect(() => {
@@ -32,11 +32,11 @@ const Signin = () => {
     
     try {
       const cred =  await signInWithEmailAndPassword(auth, email, password)
-      if(cred.user.uid.length > 10) {
-        console.log(cred.user.uid);
-        login().then(() => { 
-          console.log('navigating to feed or path' + state?.path);
-          navigate(state?.path || "/feed")})
+      console.log(cred);
+      if(cred) {
+        alert('loggin')
+        logIn()
+        navigate('/feed')
       }
     }
       catch(error) {
