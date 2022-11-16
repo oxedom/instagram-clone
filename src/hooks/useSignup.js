@@ -23,12 +23,15 @@ const signup = async (email, password, username) => {
         //Set loading to false
         setIsLoading(false)
         
-        //Saving userobj and jwt in localstorage
-        localStorage.setItem('user', JSON.stringify(response.user))
+        //Obj decunstructing Saving userobj and jwt in localstorage
 
-        //get JWT
-        const jwt = await response.user.getIdTokenResult()
-        localStorage.setItem('jwt', JSON.stringify(jwt))
+        const {displayName, photoURL, user_email, accessToken, metadata, uid, } = response.user 
+        localStorage.setItem('userInfo', JSON.stringify({displayName, photoURL, user_email, accessToken, metadata, uid}))
+      
+        //get JWT2
+        const jwt = await response.user.getIdToken()
+        console.log(jwt);
+        localStorage.setItem('jwt', jwt)
 
         //Dispatching login event to update context
         dispatch({type: "LOGIN", payload: response.user})
