@@ -4,8 +4,7 @@ import { auth } from "../../firebase";
 import { useEffect, useState } from "react";
 import img from "../../assests/text-logo.png";
 import { useNavigate } from "react-router-dom";
-import {useAuth} from "../../hooks/useAuth"
-import { useLocation } from "react-router-dom";
+
 
 const Signin = (props) => {
 
@@ -16,7 +15,7 @@ const Signin = (props) => {
 
   const navigate  = useNavigate();
 
-  const { logIn} = props.props 
+
 
 
   useEffect(() => {
@@ -33,21 +32,15 @@ const Signin = (props) => {
     try {
       const cred =  await signInWithEmailAndPassword(auth, email, password)
       console.log(cred);
-      if(cred) {
-        alert('loggin')
-        logIn()
+  
         navigate('/feed')
       }
-    }
+    
       catch(error) {
-        console.log('ERROR LOGGING IN');
-        console.log(error)
+        console.error(error)
         setLoginError(true);
       }
     
-        
- 
-  
       
 
 

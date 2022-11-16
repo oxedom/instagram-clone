@@ -1,9 +1,11 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
+
 import { auth } from "../../firebase";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import img from "../../assests/text-logo.png";
 import { useNavigate } from "react-router-dom";
+
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,17 +22,22 @@ const Signup = () => {
     }
   }, [email, password]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((cred) => {
-        navigate("/feed");
-        console.log(cred, cred.user);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, password)
+       const updateUsernameRes = await updateProfile(auth.currentUser, {displayName: username})
+       console.log(updateUsernameRes);
+      navigate('/feed')
+    }
+    catch(error) {
+      console.error(error);
+    }
+
+
+    
+  
 
     setEmail("");
     setPassword("");
