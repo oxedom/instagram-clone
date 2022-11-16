@@ -2,7 +2,8 @@ import { Navigate } from "react-router";
 
 const Protected = ({children}) => {
 
-    if(!localStorage.getItem('userInfo')) { return <Navigate to='/sign-in' replace/>}
+    const localInfo = localStorage.getItem('userInfo')
+    if(!localInfo) { return <Navigate to='/sign-in' replace/>}
 
     return children
 }

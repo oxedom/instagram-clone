@@ -9,7 +9,7 @@ const Feed = () => {
 
   }
   return (
-    <div>
+    <div className="bg-slate-50  flex-grow flex justify-center">
       <h1 onClick={handleClick}> Hello from Feed</h1>
     </div>
   );
