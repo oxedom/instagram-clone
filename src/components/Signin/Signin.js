@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import img from "../../assests/text-logo.png";
+import img from "../../assests/sam-logo.png";
 import { useNavigate } from "react-router-dom";
 import { useSignIn } from "../../hooks/useSignin";
 

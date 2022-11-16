@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import img from "../../assests/text-logo.png";
+import img from "../../assests/sam-logo.png";
 import { useNavigate } from "react-router-dom";
 import { useSignup } from "../../hooks/useSignup";
 

@@ -23,7 +23,7 @@ const RouteSwitch = (props) => {
 
         <Route path="feed" element={ 
           <Protected>
-            <Navbar></Navbar>
+            <Navbar> </Navbar>
             <Feed></Feed>
           </Protected>
         }> </Route>
