@@ -26,9 +26,14 @@ const Signup = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await signup(email,password,username).then( navigate('/feed'))
-    .catch(err => { console.error(err);})
-
+    try {
+      await signup(email,password,username)
+      navigate('/feed')
+    }
+  
+    catch(err) {
+      console.error(err);
+    }
 
   
 
@@ -53,6 +58,7 @@ const Signup = () => {
             placeholder="Email"
             id="email"
             type="email"
+            max='50'
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -62,6 +68,8 @@ const Signup = () => {
             className="bg-slate-50 p-2 border-2 border-gray-100"
             placeholder="Username"
             id="username"
+            max='30'
+            min='10'
             type="text"
             onChange={(e) => {
               setUsername(e.target.value);
@@ -73,6 +81,7 @@ const Signup = () => {
             placeholder="Password"
             id="password"
             min="6"
+            max='100'
             type="password"
             onChange={(e) => {
               setPassword(e.target.value);
