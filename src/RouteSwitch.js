@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./components/Signup/Signup";
 import Signin from "./components/Signin/Signin";
 import Feed from "./components/Feed/Feed";
+import Protected from "./components/Protected/Protected";
 
 const RouteSwitch = (props) => {
 
@@ -15,10 +16,14 @@ const RouteSwitch = (props) => {
         <Route path="sign-in" element={<Signin />} />
 
 
+
         <Route
           path="feed"
           element={
+            <Protected>
               <Feed />
+            </Protected>
+        
           }
         ></Route>
           
