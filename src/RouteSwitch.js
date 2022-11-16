@@ -10,8 +10,10 @@ const RouteSwitch = (props) => {
   return (
     <BrowserRouter basename="/">
       <Routes>
+
         <Route path="sign-up" element={<Signup />} />
         <Route path="sign-in" element={<Signin />} />
+
 
         <Route
           path="feed"
@@ -19,6 +21,7 @@ const RouteSwitch = (props) => {
               <Feed />
           }
         ></Route>
+          
       </Routes>
     </BrowserRouter>
   );

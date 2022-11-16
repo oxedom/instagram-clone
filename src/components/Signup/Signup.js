@@ -1,10 +1,11 @@
-import { createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
 
-import { auth } from "../../firebase";
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import img from "../../assests/text-logo.png";
 import { useNavigate } from "react-router-dom";
+import { useSignup } from "../../hooks/useSignup";
+
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,7 @@ const Signup = () => {
   const [username, setUsername] = useState("");
   const [buttonState, setButtonState] = useState();
 
+  const {signup, error, isLoading} = useSignup()
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,19 +26,9 @@ const Signup = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    try {
-      const cred = await createUserWithEmailAndPassword(auth, email, password)
-       const updateUsernameRes = await updateProfile(auth.currentUser, {displayName: username})
-       console.log(updateUsernameRes);
-      navigate('/feed')
-    }
-    catch(error) {
-      console.error(error);
-    }
+    await signup(email,password,username)
 
 
-    
   
 
     setEmail("");
@@ -92,6 +84,8 @@ const Signup = () => {
             {" "}
             Sign up{" "}
           </button>
+
+          {true && <div> Error signing up</div>}
         </form>
 
       </div>
