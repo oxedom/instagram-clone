@@ -85,7 +85,7 @@ const Signup = () => {
             Sign up{" "}
           </button>
 
-          {true && <div> Error signing up</div>}
+          {error && <div className="text-center  text-red-700"> Error signing up</div>}
         </form>
 
       </div>

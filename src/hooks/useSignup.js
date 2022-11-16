@@ -25,7 +25,10 @@ const signup = async (email, password, username) => {
         
         //Saving userobj and jwt in localstorage
         localStorage.setItem('user', JSON.stringify(response.user))
-        localStorage.setItem('jwt', JSON.stringify(response.user.getIdToken))
+
+        //get JWT
+        const jwt = await response.user.getIdTokenResult()
+        localStorage.setItem('jwt', JSON.stringify(jwt))
 
         //Dispatching login event to update context
         dispatch({type: "LOGIN", payload: response.user})
