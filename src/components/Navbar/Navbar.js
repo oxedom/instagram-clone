@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import instaIcon from '../../assests/text-logo.png'
+import Userwidget from "../Userwidget/Userwidget";
 import { useAuthContext } from "../../hooks/useAuthContext"
 const Navbar = () => {
 
@@ -15,6 +16,7 @@ const Navbar = () => {
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
       <div className="max-w-10xl mx-auto px-4">
         <div className="flex justify-around">
+          <Userwidget></Userwidget>
           <Link to="/" className="flex">
             <img
               className="mr-3 h-6 sm:h-9"
