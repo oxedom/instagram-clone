@@ -25,15 +25,13 @@ const signIn = async (email, password) => {
         //Obj decunstructing Saving userobj and jwt in localstorage
 
         const {displayName, photoURL, user_email, accessToken, metadata, uid, } = response.user 
-        localStorage.setItem('userInfo', JSON.stringify({displayName, photoURL, user_email, accessToken, metadata, uid}))
-      
-        //get JWT2
         const jwt = await response.user.getIdToken()
-        console.log(jwt);
-        localStorage.setItem('jwt', jwt)
-
+        localStorage.setItem('userInfo', JSON.stringify({displayName, photoURL, user_email, accessToken, metadata, uid, jwt}))
+      
+      
+    
         //Dispatching login event to update context
-        dispatch({type: "LOGIN", payload: response.user})
+        dispatch({type: "LOGIN", payload: {...response.user, jwt}})
     }
         catch(error) {
             //catching error
