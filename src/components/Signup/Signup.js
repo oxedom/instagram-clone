@@ -26,7 +26,8 @@ const Signup = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await signup(email,password,username)
+    await signup(email,password,username).then( navigate('/feed'))
+    .catch(err => { console.error(err);})
 
 
   

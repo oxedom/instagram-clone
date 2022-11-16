@@ -1,9 +1,9 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+
 import { Link } from "react-router-dom";
-import { auth } from "../../firebase";
 import { useEffect, useState } from "react";
 import img from "../../assests/text-logo.png";
 import { useNavigate } from "react-router-dom";
+import { useSignIn } from "../../hooks/useSignin";
 
 
 const Signin = (props) => {
@@ -13,10 +13,12 @@ const Signin = (props) => {
   const [loginError, setLoginError] = useState(false);
   const [buttonState, setButtonState] = useState();
 
+  const {signIn, error, isLoading } = useSignIn()
   const navigate  = useNavigate();
 
 
 
+  //Changes btn-color based on password length, needs to do more things
 
   useEffect(() => {
     if (password.length < 6) {
@@ -28,20 +30,9 @@ const Signin = (props) => {
 
   async function handleSubmit (e) {
     e.preventDefault()
-    
-    try {
-      const cred =  await signInWithEmailAndPassword(auth, email, password)
-      console.log(cred);
-  
-        navigate('/feed')
-      }
-    
-      catch(error) {
-        console.error(error)
-        setLoginError(true);
-      }
-    
-      
+
+    await signIn(email,password).then( navigate('/feed'))
+    .catch(err => { console.error(err);})
 
 
     setEmail("");
