@@ -16,7 +16,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-
+auth.onAuthStateChanged(user => {
+  if(user) { console.log('onAuthState', user);}
+  if(!user) {  console.log('onAuthState Failed', user)}
+})
 const firestore = getFirestore(app);
 
 export { firestore, provider, auth };

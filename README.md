@@ -4,7 +4,7 @@
 
 Be able to Sign up with Google (Auto-Sign in Afterwards)
 (Username)
-Sign in
+Sign in Check
 Follow users
 Get Followed By users
 Upload Photos with descps

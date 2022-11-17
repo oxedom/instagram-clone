@@ -1,15 +1,17 @@
 
 import { useAuthContext } from "./useAuthContext";
-
+import { auth} from '../firebase'
 export const useLogout = () => {
 
 const { dispatch} = useAuthContext()
 
-const logout =  () => {
+const logout =  async () => {
 
         localStorage.setItem('userInfo', null)
         localStorage.clear()
         //Dispatching login event to update context
+        await auth.signOut()
+        console.log('logout auth');
         dispatch({type: "LOGOUT"})
  
 } 

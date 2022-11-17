@@ -7,7 +7,7 @@ const Feed = () => {
  
   return (
     <div className="bg-slate-50  flex-grow flex justify-center">
-      <h1 onClick={handleClick}> Hello from Feed</h1>
+      <h1 > Hello from Feed</h1>
     </div>
   );
 };
