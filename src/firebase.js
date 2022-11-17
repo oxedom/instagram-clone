@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -16,10 +16,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+
 auth.onAuthStateChanged(user => {
-  if(user) { console.log('onAuthState', user);}
-  if(!user) {  console.log('onAuthState Failed', user)}
+  if(user) {}
+  if(!user) {}
 })
 const firestore = getFirestore(app);
+
 
 export { firestore, provider, auth };
