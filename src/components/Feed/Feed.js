@@ -2,11 +2,12 @@
  import {useEffect, useState } from "react";
 import Post from "../Post/Post";
 import { useUser } from "../../services/useUser";
-
+import { usePost } from "../../services/usePost";
 
 const Feed = () => {
   //eslint-disable-next-line
   const userApi = useUser()
+  const postApi = usePost()
   const [posts, setPosts ] = useState([])
   const [users, setUsers] = useState([])
 
@@ -17,9 +18,14 @@ const Feed = () => {
     //Fetch their posts and set them as posts on the feed
     
     async function fetchData() {
-      const users = await userApi.getAllUsers()
-      setUsers(users)
-      console.log(users);
+      // const users = await userApi.getAllUsers()
+
+      // setUsers(users)
+      // console.log(users);
+      const posts = await postApi.getAllFollowingPosts("Rt3Ip4TI8XdkHNSfr3y99TznQMF3")
+      console.log(posts);
+
+      
     }
     fetchData()
   
