@@ -1,15 +1,26 @@
 
  import {useEffect, useState } from "react";
-import { getUserbyId } from '../../services/useUser'
 import Post from "../Post/Post";
+import { useUser } from "../../services/useUser";
 
 
 const Feed = () => {
   //eslint-disable-next-line
+  const userApi = useUser()
   const [posts, setPosts ] = useState([])
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
-    getUserbyId("rza8vM3Rz1MjesW8V216z7j8eLv2")
+    
+    async function fetchData() {
+      const users = await userApi.getAllUsers()
+      setUsers(users)
+      console.log(users);
+    }
+    fetchData()
+  
+
+    
 
   }, [])
   
