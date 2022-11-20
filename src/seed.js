@@ -53,7 +53,19 @@ comments: [
     }
 ] 
 
+},
+{
+    post_id: 'aosdlasd',
+    post_text: "Photos of me",
+    post_url: '',
+    likes: 0,
+    comments: [
+        {user_id: '55521',
+        text: 'cOOL phoots'
+        }
+    ]     
 }
+
 
 
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Post from "../Post/Post";
 import { useUser } from "../../services/useUser";
 import { usePost } from "../../services/usePost";
+import Addpost from "../Addpost/Addpost";
 
 const Feed = () => {
   //eslint-disable-next-line
@@ -17,22 +18,24 @@ const Feed = () => {
 
     async function fetchData() {
       // const users = await userApi.getAllUsers()
+      const uid = JSON.parse(localStorage.getItem('userInfo')).uid
 
       // setUsers(users)
       // console.log(users);
-      const posts = await postApi.getAllFollowingPosts(
-        "Rt3Ip4TI8XdkHNSfr3y99TznQMF3"
+      const posts = await postApi.getAllFollowingPosts(uid
+        
       );
       console.log(posts);
     }
-    fetchData();
+    // fetchData();
   }, []);
 
   return (
     <div className="bg-slate-50 flex-grow gap-3 flex justify-center flex-col items-center">
       {posts.map((p) => (
-        <Post props={p}> </Post>
+        <Post key={p.id} props={p}> </Post>
       ))}
+  <Addpost></Addpost>
     </div>
   );
 };
