@@ -26,7 +26,7 @@ const PostButtons = (props) => {
 
         <div className='p-2 flex flex-col gap-3 '>
 
-        <ul className="flex gap-4 object-contain w-20 mt-2">
+        <ul className="flex gap-4 object-contain w-14 mt-2">
             <li> <img onClick={handleLike} src={likedState} /> </li>
             <li> <img src={commment}/> </li>
         </ul>

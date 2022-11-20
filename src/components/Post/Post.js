@@ -8,13 +8,13 @@ const Post = (props) => {
     {
 
     } 
-    return ( <div className="flex flex-col shadow-md border-solid mt-3 ">
+    return ( <div className="flex flex-col  shadow-md border-solid m-5">
         
         <div className="bg-white p-4 rounded-lg"> 
  
-        <div className="flex">
+        <div className="flex items-center ">
    
-        <img className="rounded-full aspect-square w-20 h-20 " alt='profile picture of user' src={temp} />
+        <img className="rounded-full object-cover aspect-ratio: auto; w-12 h-12 " alt='profile picture of user' src={temp} />
         <p className="self-end"> {uid} </p> 
         </div>
     

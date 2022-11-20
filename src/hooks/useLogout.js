@@ -11,7 +11,6 @@ const logout =  async () => {
         localStorage.clear()
         //Dispatching login event to update context
         await auth.signOut()
-        console.log('logout auth');
         dispatch({type: "LOGOUT"})
  
 } 
