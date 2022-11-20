@@ -28,8 +28,6 @@ const signIn = async (email, password) => {
         localStorage.setItem('userInfo', JSON.stringify({displayName, photoURL, user_email, accessToken, metadata, uid, jwt}))
       
       
-    
-      
 
     }
         catch(error) {

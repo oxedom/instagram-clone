@@ -29,7 +29,7 @@ const signup = async (email, password, username) => {
 
         const jwt = await response.user.getIdToken()
 
-        const docRef =  await addDoc(collection(firestore, "users"), {
+        await addDoc(collection(firestore, "users"), {
             username,
             uid,
             bio: 'Default bio'
@@ -39,13 +39,10 @@ const signup = async (email, password, username) => {
 
         setIsLoading(false)
 
-      
-
-  
     }
         catch(error) {
             //catching error
-            console.log(error);
+    
             setError(error)
     }
 

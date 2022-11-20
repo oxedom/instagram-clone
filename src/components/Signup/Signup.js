@@ -12,7 +12,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [buttonState, setButtonState] = useState();
-
+  //eslint-disable-next-line
   const {signup, error, isLoading} = useSignup()
   const navigate = useNavigate();
 
@@ -47,7 +47,7 @@ const Signup = () => {
     <div className=" xl:bg-slate-100 flex-grow  justify-center">
       <div className="flex mx-auto flex-col p-5 max-w-lg gap-5 md:p-20 items-stretch mt-20 bg-white xl:border  ">
         <div className="flex justify-center flex-col gap-3 ">
-          <img src={img} className="object-scale-down md:w-9/12 self-center" />
+          <img src={img} alt ='Instagram logo' className="object-scale-down md:w-9/12 self-center" />
           <h2 className="text-center">
             {" "}
             Sign up to see photos and videos from your friends{" "}
