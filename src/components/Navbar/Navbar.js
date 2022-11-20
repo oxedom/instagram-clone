@@ -1,16 +1,16 @@
-import { useNavigate } from "react-router-dom";
+
 import instaIcon from '../../assests/sam-logo.png'
 
 import {useLogout} from '../../hooks/useLogout'
 
 const Navbar = () => {
 
-  const navigate = useNavigate()
+
   const {logout} = useLogout()
 
-  const handleLogout = () => { 
-    logout()
-    navigate('/sign-in')
+  const handleLogout = async () => { 
+    await logout()
+  
 
   }
 

@@ -32,7 +32,11 @@ const signup = async (email, password, username) => {
         await addDoc(collection(firestore, "users"), {
             username,
             uid,
-            bio: 'Default bio'
+            bio: 'Default bio',
+            followers: [],
+            following: [],
+    
+
         })
 
         localStorage.setItem('userInfo', JSON.stringify({displayName, photoURL, user_email, accessToken, metadata, uid, jwt}))

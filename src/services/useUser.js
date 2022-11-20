@@ -1,15 +1,20 @@
-import { collection, getDocs} from 'firebase/firestore';
+import { collection, getDocs, where, query} from 'firebase/firestore';
 import { firestore } from '../firebase'
 
 
-export async function getAllPosts() {
 
-    let posts = []
-    const postsRef = collection(firestore, "posts")
-    const querySnapshot = await getDocs(postsRef)
+//Returns Firestore Auth users not users from collections
+export async function getUserbyId(id) {
+
+    let user = {}
+    const q = query(collection(firestore, "users"), where("uid", "==", id));
+
+    const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
-      posts.push(doc.data())
+      user = doc.data()
     })
 
-    return posts
+    console.log(user);
+    return user
   }
+
