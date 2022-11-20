@@ -1,23 +1,26 @@
+import instaIcon from "../../assests/sam-logo.png";
 
-import instaIcon from '../../assests/sam-logo.png'
-
-import {useLogout} from '../../hooks/useLogout'
+import { useLogout } from "../../hooks/useLogout";
 
 const Navbar = () => {
+  const { logout } = useLogout();
 
-
-  const {logout} = useLogout()
-
-  const handleLogout = async () => { await logout() }
-
+  const handleLogout = async () => {
+    await logout();
+  };
 
   return (
     <nav className="">
-      
       <div className="flex justify-around items-center m-3">
-        <img className=" object-contain  h-10 w-30 md:block"src={instaIcon} />
-        <div className="rounded text-white  text-center font-bold btn p-2 bg-blue-500 hover:bg-blue-700`" onClick={handleLogout}> Logout  </div>
-      </div> 
+        <img className=" object-contain  h-10 w-30 md:block" src={instaIcon} />
+        <div
+          className="rounded text-white  text-center font-bold btn p-2 bg-blue-500 hover:bg-blue-700`"
+          onClick={handleLogout}
+        >
+          {" "}
+          Logout{" "}
+        </div>
+      </div>
     </nav>
   );
 };

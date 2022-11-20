@@ -1,26 +1,22 @@
-
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import img from "../../assests/sam-logo.png";
 import { useNavigate } from "react-router-dom";
 import { useSignIn } from "../../hooks/useSignin";
 
-
 const Signin = (props) => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
   const [buttonState, setButtonState] = useState();
 
-  const {signIn, error, isLoading } = useSignIn()
-  const navigate  = useNavigate();
-
+  const { signIn, error, isLoading } = useSignIn();
+  const navigate = useNavigate();
 
   const handleTestUser = () => {
-    setEmail("test_user@gmail.com")
-    setPassword("asdfg12345")
-  }
+    setEmail("test_user@gmail.com");
+    setPassword("asdfg12345");
+  };
   //Changes btn-color based on password length, needs to do more things
 
   useEffect(() => {
@@ -31,25 +27,27 @@ const Signin = (props) => {
     }
   }, [email, password]);
 
-  async function handleSubmit (e) {
-    e.preventDefault()
+  async function handleSubmit(e) {
+    e.preventDefault();
     try {
-      await signIn(email,password)
-      navigate('/feed')
+      await signIn(email, password);
+      navigate("/feed");
+    } catch (err) {
+      console.error(err);
     }
-
-    catch(err) { console.error(err);}
-
 
     setEmail("");
     setPassword("");
   }
 
   return (
-
     <div className="bg-slate-100  flex-grow ">
       <div className="flex mx-auto flex-col p-10 max-w-lg gap-5 mt-20  items-stretch bg-white border">
-        <img alt="instagram-logo" src={img} className="object-fit md:w-9/12 self-center" />
+        <img
+          alt="instagram-logo"
+          src={img}
+          className="object-fit md:w-9/12 self-center"
+        />
         <form className="flex flex-col gap-2 p-2" onSubmit={handleSubmit}>
           <input
             className="bg-slate-50 p-2 border-2 border-gray-100"
@@ -75,16 +73,19 @@ const Signin = (props) => {
             name="password"
           ></input>
           <button
-            className={`rounded text-white text-center font-bold btn p-2  ${buttonState}"`} type="submit"
+            className={`rounded text-white text-center font-bold btn p-2  ${buttonState}"`}
+            type="submit"
           >
             {" "}
             Sign in{" "}
           </button>
-          <div className={`rounded text-white  text-center font-bold btn p-2 bg-blue-500 hover:bg-blue-700`} onClick={handleTestUser}> 
+          <div
+            className={`rounded text-white  text-center font-bold btn p-2 bg-blue-500 hover:bg-blue-700`}
+            onClick={handleTestUser}
+          >
             {" "}
-            Login with test user {" "}
+            Login with test user{" "}
           </div>
-
         </form>
         {loginError && (
           <p className="text-center text-red-500">
@@ -104,7 +105,6 @@ const Signin = (props) => {
       </div>
     </div>
   );
-
 };
 
 export default Signin;
