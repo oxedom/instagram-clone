@@ -9,7 +9,10 @@ import Navbar from './components/Navbar/Navbar'
 
 const RouteSwitch = (props) => {
 
-  const user = localStorage.getItem('userInfo')
+
+  const user = JSON.parse(localStorage.getItem('userInfo'))
+
+
   return (
     <BrowserRouter basename="/">
   

@@ -7,8 +7,8 @@ const { dispatch} = useAuthContext()
 
 const logout =  async () => {
 
-        localStorage.setItem('userInfo', null)
-        localStorage.clear()
+         localStorage.setItem('userInfo', null)
+
         //Dispatching login event to update context
         await auth.signOut()
         dispatch({type: "LOGOUT"})

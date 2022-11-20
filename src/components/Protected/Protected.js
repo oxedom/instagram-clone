@@ -4,7 +4,7 @@ const Protected = ( {children}) => {
 
 
     const userObj = JSON.parse(localStorage.getItem('userInfo'))
-
+    
     if(userObj === null ) { 
    
         return <Navigate to='/sign-in' replace/>}
