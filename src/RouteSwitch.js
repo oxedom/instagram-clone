@@ -11,15 +11,15 @@ const RouteSwitch = (props) => {
 
 
   const user = JSON.parse(localStorage.getItem('userInfo'))
-
+  console.log(user);
 
   return (
     <BrowserRouter basename="/">
   
       <Routes>
    
-      <Route path="sign-in" element={user === null ? <Signin /> : <Navigate to={'/feed'}/> } />
-        <Route path="sign-up" element={user === null ? <Signup/> : <Navigate to={'/feed'}/> } />
+      <Route path="sign-in" element={<Signin></Signin>} />
+        <Route path="sign-up" element={<Signup></Signup>} />
 
         <Route path="feed" element={ 
           <Protected>

@@ -35,7 +35,14 @@ export const usePost = () => {
     
         return posts
       }
-      
+
+    const getAllFollowingPosts = async (id) => 
+    {
+        //ID of the user who follows people
+        
+
+    }  
+
 
     return {getAllPosts, getAllUserPosts}
 

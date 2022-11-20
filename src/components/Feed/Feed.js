@@ -12,6 +12,10 @@ const Feed = () => {
 
   useEffect(() => {
     
+    //Get the user id from localstorage
+    //Fetch his info and get all of his followers ids
+    //Fetch their posts and set them as posts on the feed
+    
     async function fetchData() {
       const users = await userApi.getAllUsers()
       setUsers(users)

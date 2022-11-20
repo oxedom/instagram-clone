@@ -8,11 +8,7 @@ const Navbar = () => {
 
   const {logout} = useLogout()
 
-  const handleLogout = async () => { 
-    await logout()
-  
-
-  }
+  const handleLogout = async () => { await logout() }
 
 
   return (
