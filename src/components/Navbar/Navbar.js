@@ -1,9 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import instaIcon from '../../assests/sam-logo.png'
-import Userwidget from "../Userwidget/Userwidget";
+
 import {useLogout} from '../../hooks/useLogout'
-import { useAuthContext } from "../../hooks/useAuthContext"
-import { useEffect, useState } from "react";
+
 const Navbar = () => {
 
   const navigate = useNavigate()
@@ -14,8 +13,6 @@ const Navbar = () => {
     navigate('/sign-in')
 
   }
-
-
 
 
   return (

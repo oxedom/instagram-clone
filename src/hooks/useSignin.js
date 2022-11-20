@@ -1,13 +1,12 @@
 
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
 import { signInWithEmailAndPassword} from "firebase/auth";
 import { auth } from "../firebase"
 
 export const useSignIn = () => {
 const [error, setError] = useState(null)
 const [isLoading, setIsLoading] = useState(null)
-const { dispatch} = useAuthContext()
+
 
 const signIn = async (email, password) => {
     setIsLoading(true)
@@ -30,8 +29,8 @@ const signIn = async (email, password) => {
       
       
     
-        //Dispatching login event to update context
-        dispatch({type: "LOGIN", payload: {...response.user, jwt}})
+      
+
     }
         catch(error) {
             //catching error
