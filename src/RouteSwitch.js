@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar/Navbar";
 
 const RouteSwitch = (props) => {
   const user = JSON.parse(localStorage.getItem("userInfo"));
-  console.log(user);
+
 
   return (
     <BrowserRouter basename="/">

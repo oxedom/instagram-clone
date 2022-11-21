@@ -19,7 +19,7 @@ const PostButtons = (props) => {
       setLikedState(liked);
     }
   }, []);
-  const { url, text, uid, likes } = props.props;
+  const { url, text, uid, likes, username } = props.props;
 
   return (
     <div className="bg-white ">
@@ -36,7 +36,7 @@ const PostButtons = (props) => {
         </ul>
         <p> {likes.length} likes </p>
         <div className="flex gap-2">
-          <p className="font-semibold "> {uid} </p> <span> {text} </span>
+          <p className="font-semibold "> {username} </p> <span> {text} </span>
         </div>
       </div>
     </div>

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import PostButtons from "../PostButtons/PostButtons";
 
 const Post = (props) => {
-  const { imgUrl, text, uid, likes } = props.props;
-
+  const { imgUrl, text, uid, likes, username, profileUrl } = props.props;
+  console.log(props.props);
 
   return (
     <div className="flex flex-col  shadow-md border-solid m-5">
@@ -13,13 +13,13 @@ const Post = (props) => {
           <img
             className="rounded-full object-cover aspect-ratio: auto; w-10 h-10 "
             alt="profile of user"
-            src={imgUrl}
+            src={profileUrl}
           />
-          <Link className="self-center font-medium "> {uid} </Link>
+          <Link className="self-center font-medium "> {username} </Link>
         </div>
       </div>
       <img className="object-fit w-96 md:w-96 " alt={text} src={imgUrl} />
-      <PostButtons props={{ likes, uid, text }}> </PostButtons>
+      <PostButtons props={{ likes, uid, text, username}}> </PostButtons>
     </div>
   );
 };

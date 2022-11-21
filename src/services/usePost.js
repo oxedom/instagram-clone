@@ -29,7 +29,7 @@ export const usePost = () => {
     querySnapshot.forEach((doc) => {
       posts.push({ ...doc.data(), id: doc.id });
     });
-
+    
     return posts;
   };
 
