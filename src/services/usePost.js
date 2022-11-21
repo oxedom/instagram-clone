@@ -39,8 +39,8 @@ export const usePost = () => {
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      console.log(doc);
-      posts.push(doc.data());
+
+      posts.push({ ...doc.data(), id: doc.id });
     });
 
     return posts;

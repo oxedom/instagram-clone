@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PostButtons from "../PostButtons/PostButtons";
 
 const Post = (props) => {
-  const { imgUrl, text, uid, likes, username, profileUrl } = props.props;
+  const { imgUrl, text, uid, likes, username, profileUrl, id } = props.props;
   console.log(props.props);
 
   return (
@@ -15,10 +15,13 @@ const Post = (props) => {
             alt="profile of user"
             src={profileUrl}
           />
-          <Link className="self-center font-medium "> {username} </Link>
+          <Link to={`/profile/${username}`} className="self-center font-medium "> {username} </Link>
         </div>
       </div>
+      <Link to={`/post/${id}`}>
       <img className="object-fit w-96 md:w-96 " alt={text} src={imgUrl} />
+
+         </Link>
       <PostButtons props={{ likes, uid, text, username}}> </PostButtons>
     </div>
   );

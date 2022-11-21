@@ -5,7 +5,8 @@ import Signin from "./components/Signin/Signin";
 import Feed from "./components/Feed/Feed";
 import Protected from "./components/Protected/Protected";
 import Navbar from "./components/Navbar/Navbar";
-
+import Profile from "./components/Profile/Profile";
+import PostPage from "./components/PostPage/PostPage";
 const RouteSwitch = (props) => {
   const user = JSON.parse(localStorage.getItem("userInfo"));
 
@@ -27,6 +28,32 @@ const RouteSwitch = (props) => {
         >
           {" "}
         </Route>
+
+        <Route
+          path="profile/:username"
+          element={
+            <Protected>
+              <Navbar> </Navbar>
+              <Profile></Profile>
+            </Protected>
+          }
+        >
+          {" "}
+        </Route>
+
+        <Route
+          path="post/:post_id"
+          element={
+            <Protected>
+              <Navbar> </Navbar>
+             <PostPage></PostPage>
+            </Protected>
+          }
+        >
+          {" "}
+        </Route>
+
+
       </Routes>
     </BrowserRouter>
   );

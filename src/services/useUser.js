@@ -15,7 +15,7 @@ export function useUser() {
       user = doc.data();
     });
 
-    console.log(user);
+
     return user;
   };
 

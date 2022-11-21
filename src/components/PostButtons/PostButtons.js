@@ -3,8 +3,10 @@ import liked from "../../assests/darkheart.png";
 import commment from "../../assests/comment.png";
 
 import { useEffect, useState } from "react";
+import { usePost } from "../../services/usePost";
 
 const PostButtons = (props) => {
+  const postApi = usePost()
   const [likedState, setLikedState] = useState(unlike);
 
   const handleLike = () => {
@@ -14,10 +16,10 @@ const PostButtons = (props) => {
       setLikedState(liked);
     }
   };
+  
   useEffect(() => {
-    if (true) {
-      setLikedState(liked);
-    }
+    //hard coded
+    if (true) {setLikedState(liked);}
   }, []);
   const { url, text, uid, likes, username } = props.props;
 
