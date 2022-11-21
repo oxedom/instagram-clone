@@ -34,7 +34,7 @@ const PostButtons = (props) => {
             <img src={commment} />{" "}
           </li>
         </ul>
-        <p> {likes} likes </p>
+        <p> {likes.length} likes </p>
         <div className="flex gap-2">
           <p className="font-semibold "> {uid} </p> <span> {text} </span>
         </div>

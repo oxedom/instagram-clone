@@ -1,10 +1,10 @@
 const users = [
   {
-    uid: 1232,
+    uid: 123456789,
     email: "lihi@gmail.com",
-    password: "12345678",
+    password: "123456789",
     bio: "Love the style",
-    username: "Bob",
+    username: "lihinasa",
     following: [],
     followers: [],
   },
@@ -12,9 +12,9 @@ const users = [
   {
     uid: 123442,
     email: "sam@gmail.com",
-    password: "12345678",
-    bio: " the pizza",
-    username: "joe",
+    password: "123456789",
+    bio: "I love film",
+    username: "oxedom",
     following: [],
     followers: [],
   },
@@ -22,36 +22,12 @@ const users = [
   {
     uid: 555521,
     email: "miko@gmail.com",
-    password: "12345678",
-    bio: " the pizza",
-    username: "miko",
+    password: "123456789",
+    bio: "I love climbing",
+    username: "Mikogolan",
     following: [],
     followers: [],
-  },
-  {
-    uid: 555521,
-    email: "karif@gmail.com",
-    password: "12345678",
-    bio: " the pizza",
-    username: "karif",
-    following: [],
-    followers: [],
-  },
+  }
+
 ];
 
-const posts = [
-  {
-    post_id: "aosdlasd",
-    post_text: "Photos of me",
-    post_url: "",
-    likes: 0,
-    comments: [{ user_id: "55521", text: "cOOL phoots" }],
-  },
-  {
-    post_id: "aosdlasd",
-    post_text: "Photos of me",
-    post_url: "",
-    likes: 0,
-    comments: [{ user_id: "55521", text: "cOOL phoots" }],
-  },
-];

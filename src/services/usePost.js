@@ -63,7 +63,10 @@ export const usePost = () => {
     const data = {
       text: text,
       imgUrl: imgUrl,
+      likes: [],
+      comments: [],
       uid: JSON.parse(localStorage.getItem("userInfo")).uid,
+      Date: Date.now()
     };
     const docRef = await addDoc(collection(firestore, "posts"), {
       ...data,
