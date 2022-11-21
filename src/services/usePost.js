@@ -1,4 +1,4 @@
-import { collection, getDocs, where, query } from "firebase/firestore";
+import { collection, getDocs, where, query , addDoc} from "firebase/firestore";
 import { firestore } from "../firebase";
 import { useUser } from "./useUser";
 
@@ -42,5 +42,18 @@ export const usePost = () => {
     return followersPosts;
   };
 
-  return { getAllPosts, getAllUserPosts, getAllFollowingPosts };
+  const postPost = async (text, imgUrl ) => 
+  {
+    const data = {    text: text,  imgUrl: imgUrl, uid: JSON.parse(localStorage.getItem('userInfo')).uid}
+    const docRef = await addDoc(collection(firestore, 'posts'), 
+    {
+        ...data
+    });
+    console.log("Document written with ID: ", docRef.id);
+    
+    
+    
+  }
+
+  return { getAllPosts, getAllUserPosts, getAllFollowingPosts, postPost };
 };

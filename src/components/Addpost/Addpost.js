@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { usePost } from "../../services/usePost";
 
 const Addpost = () => {
   const [imgUrl, setUrl] = useState("");
-  const [postBio, setBio] = useState("");
+  const [postText, setPostText] = useState("");
+  const postApi = usePost()
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert()
+    postApi.postPost(postText, postText)
+    setPostText('')
+    setUrl('')
   };
 
   return (
@@ -13,7 +17,7 @@ const Addpost = () => {
 
       <h1> Add a post </h1>
       <form onSubmit={handleSubmit} className="border p-1 bg-black flex gap-4 flex-col">
-      
+    
 
       <input
             className="bg-slate-50 p-2 border-2 border-gray-100"
@@ -30,10 +34,10 @@ const Addpost = () => {
       <input
             className="bg-slate-50 p-2 border-2 border-gray-100"
             placeholder="Bio"
-            value={postBio}
+            value={postText}
             type="text"
             onChange={(e) => {
-              setBio(e.target.value);
+              setPostText(e.target.value);
             }}
           ></input>
       <button className="btn bg-slate-50"  type="submit"> Click me </button>
