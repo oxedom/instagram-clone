@@ -1,4 +1,4 @@
-import { collection, getDocs, where, query , addDoc} from "firebase/firestore";
+import { collection, getDocs, where, query , addDoc, deleteDoc, doc} from "firebase/firestore";
 import { firestore } from "../firebase";
 import { useUser } from "./useUser";
 
@@ -12,7 +12,7 @@ export const usePost = () => {
     querySnapshot.forEach((doc) => {
       posts.push(doc.data());
     });
-
+    
     return posts;
   };
 
@@ -49,11 +49,15 @@ export const usePost = () => {
     {
         ...data
     });
-    console.log("Document written with ID: ", docRef.id);
-    
-    
-    
+    console.log("Document written with ID: ", docRef.id); 
   }
 
-  return { getAllPosts, getAllUserPosts, getAllFollowingPosts, postPost };
+  const deltePost = async (id) => 
+  {
+    const docRef = doc(firestore, 'posts', id);
+    await deleteDoc(docRef)
+    console.log('doc with ID' + id + 'Has been deleted');
+  }
+
+  return { getAllPosts, getAllUserPosts, getAllFollowingPosts, postPost, deltePost};
 };
