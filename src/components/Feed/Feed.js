@@ -22,12 +22,11 @@ const Feed = () => {
 
       // setUsers(users)
       // console.log(users);
-      const posts = await postApi.getAllFollowingPosts(uid
-        
-      );
+      const posts = await postApi.getAllPosts();
       console.log(posts);
+      setPosts(posts)
     }
-    // fetchData();
+    fetchData();
   }, []);
 
   return (

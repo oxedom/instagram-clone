@@ -10,7 +10,7 @@ export const usePost = () => {
     const postsRef = collection(firestore, "posts");
     const querySnapshot = await getDocs(postsRef);
     querySnapshot.forEach((doc) => {
-      posts.push(doc.data());
+      posts.push({...doc.data(), id: doc.id});
     });
     
     return posts;
@@ -42,9 +42,9 @@ export const usePost = () => {
     return followersPosts;
   };
 
-  const postPost = async (text, imgUrl ) => 
+  const postPost = async (text, imgUrl) => 
   {
-    const data = {    text: text,  imgUrl: imgUrl, uid: JSON.parse(localStorage.getItem('userInfo')).uid}
+    const data = {   text: text,  imgUrl: imgUrl, uid: JSON.parse(localStorage.getItem('userInfo')).uid}
     const docRef = await addDoc(collection(firestore, 'posts'), 
     {
         ...data

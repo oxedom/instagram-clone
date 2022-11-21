@@ -9,7 +9,8 @@ const Addpost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postApi.postPost(postText, postText)
+    console.log(imgUrl, postText);
+    postApi.postPost(postText, imgUrl)
     setPostText('')
     setUrl('')
   };
