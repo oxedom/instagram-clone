@@ -2,9 +2,11 @@ import { useState } from "react";
 import { usePost } from "../../services/usePost";
 
 const Addpost = () => {
+
   const [imgUrl, setUrl] = useState("");
   const [postText, setPostText] = useState("");
   const postApi = usePost()
+
   const handleSubmit = (e) => {
     e.preventDefault();
     postApi.postPost(postText, postText)
@@ -12,9 +14,11 @@ const Addpost = () => {
     setUrl('')
   };
 
+
+  
+
   return (
     <div>
-
       <h1> Add a post </h1>
       <form onSubmit={handleSubmit} className="border p-1 bg-black flex gap-4 flex-col">
     

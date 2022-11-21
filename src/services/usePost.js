@@ -50,13 +50,20 @@ export const usePost = () => {
         ...data
     });
     console.log("Document written with ID: ", docRef.id); 
+    return docRef.id
   }
 
   const deltePost = async (id) => 
   {
-    const docRef = doc(firestore, 'posts', id);
-    await deleteDoc(docRef)
-    console.log('doc with ID' + id + 'Has been deleted');
+    if(!id || typeof id !== 'string') { throw 'ID not valid or supplied when calling deletePostMethod'}
+    else 
+    {
+        const docRef = doc(firestore, 'posts', id);
+        await deleteDoc(docRef)
+        console.log('doc with ID' + id + 'Has been deleted');
+    }
+
+
   }
 
   return { getAllPosts, getAllUserPosts, getAllFollowingPosts, postPost, deltePost};
