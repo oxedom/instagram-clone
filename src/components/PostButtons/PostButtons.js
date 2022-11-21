@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { usePost } from "../../services/usePost";
 
 const PostButtons = (props) => {
-  const { text, likes, username, Date, id } = props.props;
+  const { text, likes, username, date, id } = props.props;
 
   const postApi = usePost();
   const [likedState, setLikedState] = useState(unlike);
@@ -16,6 +16,8 @@ const PostButtons = (props) => {
   const handleCommentSubmit = (e) => {
     e.preventDefault();
   };
+
+
 
   const handleLike = () => {
 
@@ -32,11 +34,19 @@ const PostButtons = (props) => {
 
   useEffect(() => {
     const userObj = JSON.parse(localStorage.getItem('userInfo'))
-  
+    
     if(likes.includes(userObj.uid)) { setLikedState(liked)}
 
 
   }, [likes]);
+
+  useEffect(() => {
+    
+    const d = new Date(date)
+    //NEED TO FIX SAM TO REPERSNET FU,LL YEAR
+    setFormated(d.getFullYear())
+    
+  }, [Date])
 
   return (
     <div className="bg-white flex flex-col  ">
@@ -57,7 +67,7 @@ const PostButtons = (props) => {
           <p> {text} </p>
         </div>
         <div>
-          <p> {Date} </p>
+          <p> {formatedDate} </p>
         </div>
       </div>
 

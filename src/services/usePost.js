@@ -142,17 +142,6 @@ export const usePost = () => {
 
   };
 
-  const checkIfUserLiked = async (postID) => 
-  {
-
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        alert('a')
-        const post = await getPostByID(postID)
-        alert('post')
-      }
-      else { return Error('NO USER') }
-  } )}
 
   return {
     getAllPosts,
@@ -162,6 +151,5 @@ export const usePost = () => {
     deltePost,
     getPostByID,
     tooglelikePost,
-    checkIfUserLiked
   };
 };
