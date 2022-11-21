@@ -4,7 +4,6 @@ import PostButtons from "../PostButtons/PostButtons";
 
 const Post = (props) => {
   const { imgUrl, text, uid, likes } = props.props;
-  
 
   return (
     <div className="flex flex-col  shadow-md border-solid m-5">

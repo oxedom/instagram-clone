@@ -18,13 +18,13 @@ const Feed = () => {
 
     async function fetchData() {
       // const users = await userApi.getAllUsers()
-      const uid = JSON.parse(localStorage.getItem('userInfo')).uid
+      const uid = JSON.parse(localStorage.getItem("userInfo")).uid;
 
       // setUsers(users)
       // console.log(users);
       const posts = await postApi.getAllPosts();
       console.log(posts);
-      setPosts(posts)
+      setPosts(posts);
     }
     fetchData();
   }, []);
@@ -32,9 +32,11 @@ const Feed = () => {
   return (
     <div className="bg-slate-50 flex-grow gap-3 flex justify-center flex-col items-center">
       {posts.map((p) => (
-        <Post key={p.id} props={p}> </Post>
+        <Post key={p.id} props={p}>
+          {" "}
+        </Post>
       ))}
-  <Addpost></Addpost>
+      <Addpost></Addpost>
     </div>
   );
 };
