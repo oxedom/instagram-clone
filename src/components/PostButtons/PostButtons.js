@@ -6,8 +6,13 @@ import { useEffect, useState } from "react";
 import { usePost } from "../../services/usePost";
 
 const PostButtons = (props) => {
+
+  const { url, text, uid, likes, username, Date } = props.props;
+
+
   const postApi = usePost()
   const [likedState, setLikedState] = useState(unlike);
+  const [formatedDate, setFormated] = useState('')
 
   const handleLike = () => {
     if (likedState === liked) {
@@ -20,13 +25,19 @@ const PostButtons = (props) => {
   useEffect(() => {
     //hard coded
     if (true) {setLikedState(liked);}
+
+
   }, []);
-  const { url, text, uid, likes, username } = props.props;
+
+
+
+
+
 
   return (
-    <div className="bg-white ">
-      <div className="p-2 flex flex-col gap-3 ">
-        <ul className="flex gap-4 object-contain w-14 mt-2">
+    <div className="bg-white flex flex-col  ">
+      <div className="p-2 flex flex-col ">
+        <ul className="flex gap-4 object-contain w-14 mt-2 ">
           <li>
             {" "}
             <img onClick={handleLike} src={likedState} />{" "}
@@ -37,10 +48,22 @@ const PostButtons = (props) => {
           </li>
         </ul>
         <p> {likes.length} likes </p>
-        <div className="flex gap-2">
-          <p className="font-semibold "> {username} </p> <span> {text} </span>
+        <div className="flex gap-1">
+        <p className="font-semibold flex gap-2"> {username} 
+          </p> <p> {text} </p>
+          </div>
+          <div>
+    
+        <p> {Date} </p>
+          
         </div>
       </div>
+
+      <hr></hr>
+      <div className="rounded">
+      <input className="p-3" type='text' placeholder="Add a comment"></input>
+      </div>
+
     </div>
   );
 };
