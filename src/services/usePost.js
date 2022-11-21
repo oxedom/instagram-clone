@@ -1,3 +1,4 @@
+import { onAuthStateChanged } from "firebase/auth";
 import {
   collection,
   getDocs,
@@ -7,8 +8,10 @@ import {
   getDoc,
   deleteDoc,
   doc,
+  updateDoc,
+  arrayUnion,
 } from "firebase/firestore";
-import { firestore } from "../firebase";
+import { auth, firestore} from "../firebase";
 import { useUser } from "./useUser";
 
 export const usePost = () => {
@@ -29,7 +32,7 @@ export const usePost = () => {
     querySnapshot.forEach((doc) => {
       posts.push({ ...doc.data(), id: doc.id });
     });
-    
+
     return posts;
   };
 
@@ -39,7 +42,6 @@ export const usePost = () => {
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-
       posts.push({ ...doc.data(), id: doc.id });
     });
 
@@ -66,7 +68,7 @@ export const usePost = () => {
       likes: [],
       comments: [],
       uid: JSON.parse(localStorage.getItem("userInfo")).uid,
-      Date: Date.now()
+      Date: Date.now(),
     };
     const docRef = await addDoc(collection(firestore, "posts"), {
       ...data,
@@ -85,7 +87,20 @@ export const usePost = () => {
     }
   };
 
-  const likePost = async (id) => {};
+  const likePost = async (postID) => 
+  {
+  auth.onAuthStateChanged(async (user) => 
+    {
+      if(user) {
+        const currentUID = user.uid
+        const docRef = doc(firestore, "posts", postID);
+        await updateDoc(docRef, { likes: arrayUnion(currentUID)})
+      }
+      if(!user) { return }
+    })
+ 
+  console.log(postID);
+  };
 
   return {
     getAllPosts,
@@ -94,5 +109,6 @@ export const usePost = () => {
     postPost,
     deltePost,
     getPostByID,
+    likePost
   };
 };

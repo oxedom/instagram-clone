@@ -10,7 +10,6 @@ import PostPage from "./components/PostPage/PostPage";
 const RouteSwitch = (props) => {
   const user = JSON.parse(localStorage.getItem("userInfo"));
 
-
   return (
     <BrowserRouter basename="/">
       <Routes>
@@ -46,14 +45,12 @@ const RouteSwitch = (props) => {
           element={
             <Protected>
               <Navbar> </Navbar>
-             <PostPage></PostPage>
+              <PostPage></PostPage>
             </Protected>
           }
         >
           {" "}
         </Route>
-
-
       </Routes>
     </BrowserRouter>
   );

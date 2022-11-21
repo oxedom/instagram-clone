@@ -15,7 +15,6 @@ export function useUser() {
       user = doc.data();
     });
 
-
     return user;
   };
 

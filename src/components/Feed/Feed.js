@@ -18,21 +18,23 @@ const Feed = () => {
 
     async function fetchData() {
       // const users = await userApi.getAllUsers()
- 
+
       const uid = JSON.parse(localStorage.getItem("userInfo")).uid;
-      const user = await userApi.getUserbyId(uid)
+      const user = await userApi.getUserbyId(uid);
 
-
-     user.following.forEach(async f => 
-      {
-        const followerInfo = await userApi.getUserbyId(f)
-        const {username, profileUrl} = followerInfo
-        const posts = await postApi.getAllUserPosts(f)
-        const updatedPosts = posts.map(obj => ({...obj, username, profileUrl}))
-        setPosts(prev => {return [...prev, ...updatedPosts] })
-        
-      })
-
+      user.following.forEach(async (f) => {
+        const followerInfo = await userApi.getUserbyId(f);
+        const { username, profileUrl } = followerInfo;
+        const posts = await postApi.getAllUserPosts(f);
+        const updatedPosts = posts.map((obj) => ({
+          ...obj,
+          username,
+          profileUrl,
+        }));
+        setPosts((prev) => {
+          return [...prev, ...updatedPosts];
+        });
+      });
     }
     fetchData();
   }, []);

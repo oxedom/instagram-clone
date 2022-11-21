@@ -27,7 +27,5 @@ const users = [
     username: "Mikogolan",
     following: [],
     followers: [],
-  }
-
+  },
 ];
-
