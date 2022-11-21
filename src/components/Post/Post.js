@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import PostButtons from "../PostButtons/PostButtons";
 
 const Post = (props) => {
-  const { imgUrl, text, uid, likes, username, profileUrl, id, Date } = props.props;
-
+  const { imgUrl, text, uid, likes, username, profileUrl, id, Date } =
+    props.props;
 
   return (
     <div className="flex flex-col shadow-md border-solid m-5 rounded">
@@ -27,7 +27,9 @@ const Post = (props) => {
       <Link to={`/post/${id}`}>
         <img className="object-fit w-96 md:w-96 " alt={text} src={imgUrl} />
       </Link>
-      <PostButtons props={{ likes, uid, text, username, Date, id }}> </PostButtons>
+      <PostButtons props={{ likes, uid, text, username, Date, id }}>
+        {" "}
+      </PostButtons>
     </div>
   );
 };

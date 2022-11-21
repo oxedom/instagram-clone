@@ -12,6 +12,7 @@ const Feed = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
+    setPosts([])
     //Get the user id from localstorage
     //Fetch his info and get all of his followers ids
     //Fetch their posts and set them as posts on the feed

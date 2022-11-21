@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import { onAuthStateChanged } from "firebase/auth";
 import {
   collection,
@@ -10,18 +11,35 @@ import {
   doc,
   updateDoc,
   arrayUnion,
+  arrayRemove,
 } from "firebase/firestore";
-import { auth, firestore} from "../firebase";
+import { auth, firestore } from "../firebase";
 import { useUser } from "./useUser";
 
 export const usePost = () => {
+
+
+
   const userAPI = useUser();
 
+  const checkAuth = async () => 
+  {
+    const answer = undefined
+    auth.onAuthStateChanged(async (user) => 
+    {
+      if(user) { answer = true}
+      else ( answer = false)
+    })
+    return answer
+  }
+
   const getPostByID = async (id) => {
+   
     let post = {};
-    const postRef = collection(firestore, "posts", id);
+    const postRef = doc(firestore, "posts", id);
     const docSnap = await getDoc(postRef);
-    post = { ...docSnap };
+
+    post = {...docSnap.data(), id}
     return post;
   };
 
@@ -62,19 +80,27 @@ export const usePost = () => {
   };
 
   const postPost = async (text, imgUrl) => {
-    const data = {
-      text: text,
-      imgUrl: imgUrl,
-      likes: [],
-      comments: [],
-      uid: JSON.parse(localStorage.getItem("userInfo")).uid,
-      Date: Date.now(),
-    };
-    const docRef = await addDoc(collection(firestore, "posts"), {
-      ...data,
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const currentUID = user.uid;
+        const data = {
+          text: text,
+          imgUrl: imgUrl,
+          likes: [],
+          comments: [],
+          uid: currentUID,
+          Date: Date.now(),
+        };
+        const docRef = await addDoc(collection(firestore, "posts"), {
+          ...data,
+        });
+
+        console.log("Document written with ID: ", docRef.id);
+        return docRef.id;
+      }
+      else { return }
+
     });
-    console.log("Document written with ID: ", docRef.id);
-    return docRef.id;
   };
 
   const deltePost = async (id) => {
@@ -87,20 +113,46 @@ export const usePost = () => {
     }
   };
 
-  const likePost = async (postID) => 
-  {
-  auth.onAuthStateChanged(async (user) => 
-    {
-      if(user) {
-        const currentUID = user.uid
+  const tooglelikePost = async (postID) => {
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const currentUID = user.uid;
+        const post = await getPostByID(postID)
+        console.log(post);
         const docRef = doc(firestore, "posts", postID);
-        await updateDoc(docRef, { likes: arrayUnion(currentUID)})
+        
+        if(!post.likes.includes(currentUID)) 
+        {
+          console.log('Adding doc');
+          await updateDoc(docRef, { likes: arrayUnion(currentUID) });
+        }
+        else 
+        {
+          console.log('Removing Doc');
+          await updateDoc(docRef, {likes: arrayRemove(currentUID)})
+        }
+        
+    
       }
-      if(!user) { return }
-    })
- 
-  console.log(postID);
+      if (!user) {
+        return;
+      }
+    });
+
+
   };
+
+  const checkIfUserLiked = async (postID) => 
+  {
+
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        alert('a')
+        const post = await getPostByID(postID)
+        alert('post')
+      }
+      else { return Error('NO USER') }
+  } )}
 
   return {
     getAllPosts,
@@ -109,6 +161,7 @@ export const usePost = () => {
     postPost,
     deltePost,
     getPostByID,
-    likePost
+    tooglelikePost,
+    checkIfUserLiked
   };
 };

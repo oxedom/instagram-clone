@@ -6,33 +6,37 @@ import { useEffect, useState } from "react";
 import { usePost } from "../../services/usePost";
 
 const PostButtons = (props) => {
-  const { url, text, uid, likes, username, Date, id} = props.props;
+  const { text, likes, username, Date, id } = props.props;
 
   const postApi = usePost();
   const [likedState, setLikedState] = useState(unlike);
   const [formatedDate, setFormated] = useState("");
-  const [comment, setComment] = useState("")
+  const [comment, setComment] = useState("");
 
-  const handleCommentSubmit = (e) => 
-  { 
-e.preventDefault()
-  }
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+  };
 
   const handleLike = () => {
-    postApi.likePost(id)
-    // if (likedState === liked) {
-    //   setLikedState(unlike);
-    // } else {
-    //   setLikedState(liked);
-    // }
+
+    postApi.tooglelikePost(id);
+    if (likedState === liked) {
+      likes.splice(likes.length-1, 1)
+      setLikedState(unlike);
+    } else {
+      likes.push('fakeLike')
+      setLikedState(liked);
+    }
+
   };
 
   useEffect(() => {
-    //hard coded
-    if (true) {
-      setLikedState(liked);
-    }
-  }, []);
+    const userObj = JSON.parse(localStorage.getItem('userInfo'))
+  
+    if(likes.includes(userObj.uid)) { setLikedState(liked)}
+
+
+  }, [likes]);
 
   return (
     <div className="bg-white flex flex-col  ">
@@ -58,9 +62,24 @@ e.preventDefault()
       </div>
 
       <hr></hr>
-      <form onSubmit={handleCommentSubmit}className="rounded flex">
-        <input className="p-3 flex-grow" value={comment} onChange={(e) => {setComment(e.target.value)} } type="text" placeholder="Add a comment"></input>
-        <button alt="submit" type='submit' className="btn rounded  text-white font-bold bg-blue-300 m-1 p-1"> Add </button>
+      <form onSubmit={handleCommentSubmit} className="rounded flex">
+        <input
+          className="p-3 flex-grow"
+          value={comment}
+          onChange={(e) => {
+            setComment(e.target.value);
+          }}
+          type="text"
+          placeholder="Add a comment"
+        ></input>
+        <button
+          alt="submit"
+          type="submit"
+          className="btn rounded  text-white font-bold bg-blue-300 m-1 p-1"
+        >
+          {" "}
+          Add{" "}
+        </button>
       </form>
     </div>
   );
