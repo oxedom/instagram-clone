@@ -1,11 +1,12 @@
 import { collection, getDocs, where, query } from "firebase/firestore";
-import { firestore,auth } from "../firebase";
+import { firestore,auth , updateProfile} from "../firebase";
 
 //Reasons to get a user by ID
 //Getting his data for a profile picture and name for comments for example
 
 //Returns Firestore Auth users not users from collections
 export function useUser() {
+
 
 
   const getUserbyId = async (id) => {
@@ -32,6 +33,18 @@ export function useUser() {
 
     return users;
   };
+
+
+  const updateProfileByID = async (id, updateObj) => 
+  {
+    //updateObj schema 
+    // {
+      // photoURL: 'WWW.newphoto.com.jpg'
+      
+    // }
+
+    updateProfile(auth.currentUser, )
+  }
 
 
     
