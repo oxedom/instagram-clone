@@ -22,16 +22,16 @@ export const usePost = () => {
 
   const userAPI = useUser();
 
-  const checkAuth = async () => 
-  {
-    const answer = undefined
-    auth.onAuthStateChanged(async (user) => 
-    {
-      if(user) { answer = true}
-      else ( answer = false)
-    })
-    return answer
-  }
+  // const checkAuth = async () => 
+  // {
+  //   const answer = undefined
+  //   auth.onAuthStateChanged(async (user) => 
+  //   {
+  //     if(user) { answer = true}
+  //     else ( answer = false)
+  //   })
+  //   return answer
+  // }
 
   const getPostByID = async (id) => {
    

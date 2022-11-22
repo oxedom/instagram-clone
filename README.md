@@ -2,52 +2,36 @@
 
 # Features:
 
-Be able to Sign up with Google (Auto-Sign in Afterwards)
-(Username)
-Sign in Check
-Follow users
-Get Followed By users
+
+Navbar:
+Add usericon with profile next to signout
+
+
+Userprofile: 
+
+Shows a profile pic follower count and followering count bio
+Shows a 3x3 grid of his photos
+Option to follow or unfollow
+
+    My profile 
+    Uses userprofile comp
+    On follow button a link to My PROFILE;
+
+Upload comp:
+Upload page;
 Upload Photos with descps
 Upload a profile pic
-Have a bio
-Edit profile
-Send a message to another user
 
-Photos can have descp, like count and comments
+Post comp: 
 
-View a personal feed of users that you follow
-Be able to like their photos
 Be able comment
 Be able
 
-Darkmode using that router that prop drills
+Darkmode
 
 Total Comps:
 Navbar with search and Instagram logo, Link to Homepage, Link to Messages, Link to Notifictons, Link to Profile
 
-Post card Container:
-Name
-Username
-... to Unfollow:
 
----
-
-Photo or 1X1 OR 4X5
-
----
-
-Like Button
-Link to Post Button
-Share button to get Link URL
-COmments
-
----
-
-Features:
 Skeleton Loding
 
-How will people use the App?
-Users will be able to sign up, own their own user account where they can upload content in the form of photos and text,
-interact with other users content by liking and commenting, and choosing which users they want to see in their feed.
-
-Database
