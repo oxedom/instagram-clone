@@ -6,8 +6,8 @@ const Post = (props) => {
   const { imgUrl, text, uid, likes, username, profileUrl, id, date } = props.props;
 
   return (
-    <div className="flex flex-col shadow-md border-solid m-5 rounded">
-      <div className="bg-white p-4 rounded-lg">
+    <div className="flex flex-col shadow-md border-solid m-3 rounded ">
+      <div className="bg-white p-4 rounded-lg ">
         <div className="flex items-center gap-2 align-center  ">
           <img
             className="rounded-full object-cover aspect-ratio: auto; w-10 h-10 "
