@@ -37,7 +37,7 @@ const Feed = () => {
         });
       });
     }
-    userApi.updateUser({})
+
     fetchData();
  
 
