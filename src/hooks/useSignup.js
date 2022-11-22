@@ -7,7 +7,7 @@ export const useSignup = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
 
-  const signup = async (email, password, username) => {
+  const signup = async (email, password, username, profileUrl) => {
     setIsLoading(true);
     setError(null);
 
@@ -19,7 +19,7 @@ export const useSignup = () => {
         password
       );
       //Updating Username
-      await updateProfile(auth.currentUser, { displayName: username });
+      await updateProfile(auth.currentUser, { displayName: username, photoURL: profileUrl });
       //SETTING Error if it exists
       setError(response.error);
       //Set loading to false
