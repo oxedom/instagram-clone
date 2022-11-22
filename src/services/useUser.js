@@ -1,5 +1,6 @@
-import { collection, getDocs, where, query } from "firebase/firestore";
-import { firestore,auth , updateProfile} from "../firebase";
+import { collection, getDocs, where, query, updateDoc, doc } from "firebase/firestore";
+import { updateProfile } from "firebase/auth"
+import { firestore,auth } from "../firebase";
 
 //Reasons to get a user by ID
 //Getting his data for a profile picture and name for comments for example
@@ -35,18 +36,29 @@ export function useUser() {
   };
 
 
-  const updateProfileByID = async (id, updateObj) => 
+  const updateUser = async (updatedObj) => 
   {
-    //updateObj schema 
-    // {
-      // photoURL: 'WWW.newphoto.com.jpg'
-      
-    // }
+    
+    //Update user function updates any key value that is inside the user DOC
+    //Be warry with making sure the right caps lock is on and not overriding existing 
+    //props by mistake, need to make sure to add SANTIZATOIN on this function.
+    
+    let id = undefined
+    const q = query(collection(firestore, 'users'), where('uid', "==" ,`${auth.currentUser.uid}` ))
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(doc => 
+      {
+        id = doc.id
+      })
+    const userRef = doc(firestore, 'users', id)
+     await updateDoc(userRef, updatedObj)
+    
 
-    updateProfile(auth.currentUser, )
+ 
+
   }
 
 
     
-  return { getUserbyId, getAllUsers };
+  return { getUserbyId, getAllUsers, updateUser};
 }

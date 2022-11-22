@@ -44,9 +44,9 @@ const PostButtons = (props) => {
     
     const d = new Date(date)
     //NEED TO FIX SAM TO REPERSNET FU,LL YEAR
-    console.log(d.getMonth());
+
     const formated = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()}`
-    console.log(formated);
+
     
     setFormated(formated)
 

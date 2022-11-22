@@ -17,8 +17,8 @@ const Feed = () => {
     //Fetch his info and get all of his followers ids
     //Fetch their posts and set them as posts on the feed
 
+
     async function fetchData() {
-      // const users = await userApi.getAllUsers()
 
       const uid = JSON.parse(localStorage.getItem("userInfo")).uid;
       const user = await userApi.getUserbyId(uid);
@@ -37,8 +37,13 @@ const Feed = () => {
         });
       });
     }
+    userApi.updateUser({})
     fetchData();
+ 
+
   }, []);
+
+
 
   return (
     <div className="bg-slate-50 flex-grow gap-3 flex justify-center flex-col items-center">
