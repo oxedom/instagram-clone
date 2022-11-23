@@ -27,10 +27,13 @@ Post comp:
 Be able comment
 Be able
 
-Darkmode
+Add date to like
 
-Total Comps:
-Navbar with search and Instagram logo, Link to Homepage, Link to Messages, Link to Notifictons, Link to Profile
+Add settings page to update displayName
+
+confrim email?
+
+Darkmode
 
 
 Skeleton Loding
