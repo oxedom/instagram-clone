@@ -116,20 +116,30 @@ export const usePost = () => {
   const tooglelikePost = async (postID) => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
-        const currentUID = user.uid;
+  
         const post = await getPostByID(postID)
-        console.log(post);
+        const today = new Date()
+
         const docRef = doc(firestore, "posts", postID);
-        
-        if(!post.likes.includes(currentUID)) 
+          console.log(post);
+
+        if(!post.likes.some(l => l.uid == user.uid)) 
         {
-          console.log('Adding doc');
-          await updateDoc(docRef, { likes: arrayUnion(currentUID) });
+
+          await updateDoc(docRef, { likes: arrayUnion({uid:user.uid, date: today.getTime()}) });
         }
         else 
         {
-          console.log('Removing Doc');
-          await updateDoc(docRef, {likes: arrayRemove(currentUID)})
+
+          //Removes the like object by searching for the UID in the posts likes array;
+    
+          const updatedLikesArray =  post.likes.filter(l => l.uid !== user.uid)
+          const res = await updateDoc(docRef, { likes: updatedLikesArray });
+        
+          console.log(res);
+          
+  
+          // await updateDoc(docRef, { likes: arrayUnion({uid:user.uid, date: today.getTime()}) });
         }
         
     

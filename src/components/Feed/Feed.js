@@ -24,6 +24,7 @@ const Feed = () => {
       const user = await userApi.getUserbyId(uid);
 
       user.following.forEach(async (f) => {
+
         const followerInfo = await userApi.getUserbyId(f);
         const { username, profileUrl } = followerInfo;
         const posts = await postApi.getAllUserPosts(f);
@@ -32,6 +33,7 @@ const Feed = () => {
           username,
           profileUrl,
         }));
+        console.log(posts);
         setPosts((prev) => {
           return [...prev, ...updatedPosts];
         });

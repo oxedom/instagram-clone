@@ -35,7 +35,7 @@ const PostButtons = (props) => {
   useEffect(() => {
     const userObj = JSON.parse(localStorage.getItem('userInfo'))
     
-    if(likes.includes(userObj.uid)) { setLikedState(liked)}
+    if(likes.some(l => l.uid == userObj.uid)) { setLikedState(liked)}
 
 
   }, [likes]);
