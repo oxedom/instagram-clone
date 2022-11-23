@@ -24,7 +24,7 @@ export const useSignup = () => {
       setError(response.error);
       //Set loading to false
       //Obj decunstructing Saving userobj and jwt in localstorage
-      const { displayName, photoURL, user_email, accessToken, metadata, uid } =
+      const { displayName, accessToken, metadata, uid } =
         response.user;
 
       const jwt = await response.user.getIdToken();
@@ -41,12 +41,8 @@ export const useSignup = () => {
         "userInfo",
         JSON.stringify({
           displayName,
-          photoURL,
-          user_email,
-          accessToken,
-          metadata,
           uid,
-          jwt,
+    
         })
       );
 

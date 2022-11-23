@@ -12,6 +12,7 @@ const PostButtons = (props) => {
   const [likedState, setLikedState] = useState(unlike);
   const [formatedDate, setFormated] = useState("");
   const [comment, setComment] = useState("");
+  const userObj = JSON.parse(localStorage.getItem('userInfo'))
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -33,17 +34,15 @@ const PostButtons = (props) => {
   };
 
   useEffect(() => {
-    const userObj = JSON.parse(localStorage.getItem('userInfo'))
     
-    if(likes.some(l => l.uid == userObj.uid)) { setLikedState(liked)}
-
-
-  }, [likes]);
+ 
+    if(likes.some(l => l.uid === userObj.uid)) { setLikedState(liked)}
+  }, [likes, userObj.uid]);
 
   useEffect(() => {
     
     const d = new Date(date)
-    //NEED TO FIX SAM TO REPERSNET FU,LL YEAR
+ 
 
     const formated = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()}`
 
@@ -51,7 +50,7 @@ const PostButtons = (props) => {
     setFormated(formated)
 
     
-  }, [Date])
+  }, [date])
 
   return (
     <div className="bg-white flex flex-col  ">
@@ -59,11 +58,11 @@ const PostButtons = (props) => {
         <ul className="flex gap-4 object-contain w-14 mt-2 ">
           <li>
             {" "}
-            <img onClick={handleLike} src={likedState} />{" "}
+            <img onClick={handleLike} alt="like" src={likedState} />{" "}
           </li>
           <li>
             {" "}
-            <img src={commment} />{" "}
+            <img alt='comment' src={commment} />{" "}
           </li>
         </ul>
         <p> {likes.length} likes </p>

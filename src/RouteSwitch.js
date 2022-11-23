@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import PostPage from "./components/PostPage/PostPage";
 const RouteSwitch = (props) => {
-  const user = JSON.parse(localStorage.getItem("userInfo"));
+
 
   return (
     <BrowserRouter basename="/">
