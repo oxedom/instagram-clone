@@ -74,7 +74,7 @@ const Signup = () => {
             }}
             name="username"
           ></input>
-                    <input
+          <input
             className="bg-slate-50 p-2 border-2 border-gray-100"
             placeholder="URL to img of profile picture"
             id="profileimg"
@@ -84,7 +84,6 @@ const Signup = () => {
             }}
             name="profile"
           ></input>
-
 
           <input
             className="bg-slate-50 p-2"

@@ -12,45 +12,36 @@ const PostButtons = (props) => {
   const [likedState, setLikedState] = useState(unlike);
   const [formatedDate, setFormated] = useState("");
   const [comment, setComment] = useState("");
-  const userObj = JSON.parse(localStorage.getItem('userInfo'))
+  const userObj = JSON.parse(localStorage.getItem("userInfo"));
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
   };
 
-
-
   const handleLike = () => {
-
     postApi.tooglelikePost(id);
     if (likedState === liked) {
-      likes.splice(likes.length-1, 1)
+      likes.splice(likes.length - 1, 1);
       setLikedState(unlike);
     } else {
-      likes.push('fakeLike')
+      likes.push("fakeLike");
       setLikedState(liked);
     }
-
   };
 
   useEffect(() => {
-    
- 
-    if(likes.some(l => l.uid === userObj.uid)) { setLikedState(liked)}
+    if (likes.some((l) => l.uid === userObj.uid)) {
+      setLikedState(liked);
+    }
   }, [likes, userObj.uid]);
 
   useEffect(() => {
-    
-    const d = new Date(date)
- 
+    const d = new Date(date);
 
-    const formated = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()}`
+    const formated = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()}`;
 
-    
-    setFormated(formated)
-
-    
-  }, [date])
+    setFormated(formated);
+  }, [date]);
 
   return (
     <div className="bg-white flex flex-col  ">
@@ -62,7 +53,7 @@ const PostButtons = (props) => {
           </li>
           <li>
             {" "}
-            <img alt='comment' src={commment} />{" "}
+            <img alt="comment" src={commment} />{" "}
           </li>
         </ul>
         <p> {likes.length} likes </p>

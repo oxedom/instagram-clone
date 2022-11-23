@@ -19,13 +19,15 @@ export const useSignup = () => {
         password
       );
       //Updating Username
-      await updateProfile(auth.currentUser, { displayName: username, photoURL: profileUrl });
+      await updateProfile(auth.currentUser, {
+        displayName: username,
+        photoURL: profileUrl,
+      });
       //SETTING Error if it exists
       setError(response.error);
       //Set loading to false
       //Obj decunstructing Saving userobj and jwt in localstorage
-      const { displayName, accessToken, metadata, uid } =
-        response.user;
+      const { displayName, accessToken, metadata, uid } = response.user;
 
       const jwt = await response.user.getIdToken();
 
@@ -42,7 +44,6 @@ export const useSignup = () => {
         JSON.stringify({
           displayName,
           uid,
-    
         })
       );
 

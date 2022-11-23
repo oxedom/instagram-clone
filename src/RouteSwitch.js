@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Signup from "./components/Signup/Signup";
 import Signin from "./components/Signin/Signin";
@@ -7,9 +7,7 @@ import Protected from "./components/Protected/Protected";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import PostPage from "./components/PostPage/PostPage";
-const RouteSwitch = (props) => {
-
-
+const RouteSwitch = () => {
   return (
     <BrowserRouter basename="/">
       <Routes>

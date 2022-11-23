@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import PostButtons from "../PostButtons/PostButtons";
 
-
 const Post = (props) => {
-  const { imgUrl, text, uid, likes, username, profileUrl, id, date } = props.props;
+  const { imgUrl, text, uid, likes, username, profileUrl, id, date } =
+    props.props;
 
   return (
     <div className="flex flex-col shadow-md border-solid m-3 rounded ">

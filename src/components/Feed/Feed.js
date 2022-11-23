@@ -9,22 +9,20 @@ const Feed = () => {
 
   const [posts, setPosts] = useState([]);
 
-  //Functions from useEffect that allow the client to interact with the database through BL; 
-  const {getUserbyId} = useUser();
+  //Functions from useEffect that allow the client to interact with the database through BL;
+  const { getUserbyId } = useUser();
   //################################
   //Need to update this method to sort by posts and fetch post more efficently;
-  const {getAllUserPosts} = usePost();
-
+  const { getAllUserPosts } = usePost();
 
   useEffect(() => {
     //Resets Posts array so no stale data or rerenders duplicate the amount of posts
-    setPosts([])
+    setPosts([]);
 
     async function fetchData() {
-
-          //Get the user id from localstorage
+      //Get the user id from localstorage
       const uid = JSON.parse(localStorage.getItem("userInfo")).uid;
-          //Fetch his info and get all of his followers ids
+      //Fetch his info and get all of his followers ids
       const user = await getUserbyId(uid);
       //Fetch their posts and set them as posts on the feed
       user.following.forEach(async (f) => {
@@ -47,11 +45,7 @@ const Feed = () => {
     }
     //Init for fetch data function;
     fetchData();
- 
-
   }, []);
-
-
 
   return (
     <div className="bg-slate-50 flex-grow gap-3 flex justify-center flex-col items-center">

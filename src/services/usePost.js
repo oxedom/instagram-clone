@@ -17,15 +17,12 @@ import { auth, firestore } from "../firebase";
 import { useUser } from "./useUser";
 
 export const usePost = () => {
-
-
-
   const userAPI = useUser();
 
-  // const checkAuth = async () => 
+  // const checkAuth = async () =>
   // {
   //   const answer = undefined
-  //   auth.onAuthStateChanged(async (user) => 
+  //   auth.onAuthStateChanged(async (user) =>
   //   {
   //     if(user) { answer = true}
   //     else ( answer = false)
@@ -34,12 +31,11 @@ export const usePost = () => {
   // }
 
   const getPostByID = async (id) => {
-   
     let post = {};
     const postRef = doc(firestore, "posts", id);
     const docSnap = await getDoc(postRef);
 
-    post = {...docSnap.data(), id}
+    post = { ...docSnap.data(), id };
     return post;
   };
 
@@ -97,9 +93,9 @@ export const usePost = () => {
 
         console.log("Document written with ID: ", docRef.id);
         return docRef.id;
+      } else {
+        return;
       }
-      else { return }
-
     });
   };
 
@@ -116,42 +112,34 @@ export const usePost = () => {
   const tooglelikePost = async (postID) => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
-  
-        const post = await getPostByID(postID)
-        const today = new Date()
+        const post = await getPostByID(postID);
+        const today = new Date();
 
         const docRef = doc(firestore, "posts", postID);
-          console.log(post);
+        console.log(post);
 
-        if(!post.likes.some(l => l.uid == user.uid)) 
-        {
-
-          await updateDoc(docRef, { likes: arrayUnion({uid:user.uid, date: today.getTime()}) });
-        }
-        else 
-        {
-
+        if (!post.likes.some((l) => l.uid == user.uid)) {
+          await updateDoc(docRef, {
+            likes: arrayUnion({ uid: user.uid, date: today.getTime() }),
+          });
+        } else {
           //Removes the like object by searching for the UID in the posts likes array;
-    
-          const updatedLikesArray =  post.likes.filter(l => l.uid !== user.uid)
+
+          const updatedLikesArray = post.likes.filter(
+            (l) => l.uid !== user.uid
+          );
           const res = await updateDoc(docRef, { likes: updatedLikesArray });
-        
+
           console.log(res);
-          
-  
+
           // await updateDoc(docRef, { likes: arrayUnion({uid:user.uid, date: today.getTime()}) });
         }
-        
-    
       }
       if (!user) {
         return;
       }
     });
-
-
   };
-
 
   return {
     getAllPosts,

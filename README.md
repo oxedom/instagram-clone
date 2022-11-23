@@ -2,18 +2,16 @@
 
 # Features:
 
-
 Navbar:
 Add usericon with profile next to signout
 
-
-Userprofile: 
+Userprofile:
 
 Shows a profile pic follower count and followering count bio
 Shows a 3x3 grid of his photos
 Option to follow or unfollow
 
-    My profile 
+    My profile
     Uses userprofile comp
     On follow button a link to My PROFILE;
 
@@ -22,7 +20,7 @@ Upload page;
 Upload Photos with descps
 Upload a profile pic
 
-Post comp: 
+Post comp:
 
 Be able comment
 Be able
@@ -35,6 +33,4 @@ confrim email?
 
 Darkmode
 
-
 Skeleton Loding
-

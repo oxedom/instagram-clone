@@ -21,14 +21,13 @@ export const useSignIn = () => {
 
       //Obj decunstructing Saving userobj and jwt in localstorage
 
-      const { displayName, accessToken, metadata, uid } =
-        response.user;
+      const { displayName, accessToken, metadata, uid } = response.user;
 
       localStorage.setItem(
         "userInfo",
         JSON.stringify({
           displayName,
-          
+
           // user_email,
           // accessToken,
           uid,
