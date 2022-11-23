@@ -25,7 +25,6 @@ Post comp:
 Be able comment
 Be able
 
-Add date to like
 
 Add settings page to update displayName
 
