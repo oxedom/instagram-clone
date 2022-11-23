@@ -15,10 +15,11 @@ export const useSignIn = () => {
       const response = await signInWithEmailAndPassword(auth, email, password);
       //Updating Username
       //SETTING Error if it exists
+      console.log(response);
       setError(response.error);
       //Set loading to false
       setIsLoading(false);
-      console.log(response);
+
       //Obj decunstructing Saving userobj and jwt in localstorage
 
       const { displayName,uid } = response.user;
