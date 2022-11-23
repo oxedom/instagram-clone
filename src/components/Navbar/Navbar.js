@@ -9,11 +9,11 @@ const Navbar = () => {
 
   const [userData, setUserData] = useState("");
 
-  const handleLogout = async () => {
-    await logout();
-  };
+  //Handle logout, uses logout hook to log user out server and client
+  const handleLogout = async () => { await logout(); };
 
   useEffect(() => {
+    //Fetch userInfo from localstroage for displayName and photoUrl
     setUserData(JSON.parse(localStorage.getItem("userInfo")));
   }, []);
 
@@ -35,7 +35,7 @@ const Navbar = () => {
             {" "}
             Logout{" "}
           </div>
-          {/* Likes Emoji route */}
+
           <div>
             <Link to="/likes">
               <img
@@ -50,6 +50,7 @@ const Navbar = () => {
               <img
                 className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
                 alt="profile"
+                //Need to update photoURL
                 src={userData.photoURL}
               />
             </Link>

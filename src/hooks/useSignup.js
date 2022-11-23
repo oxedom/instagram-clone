@@ -27,9 +27,9 @@ export const useSignup = () => {
       setError(response.error);
       //Set loading to false
       //Obj decunstructing Saving userobj and jwt in localstorage
-      const { displayName, accessToken, metadata, uid } = response.user;
+      const { displayName, uid } = response.user;
 
-      const jwt = await response.user.getIdToken();
+
 
       await addDoc(collection(firestore, "users"), {
         username,

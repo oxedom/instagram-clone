@@ -18,10 +18,10 @@ export const useSignIn = () => {
       setError(response.error);
       //Set loading to false
       setIsLoading(false);
-
+      console.log(response);
       //Obj decunstructing Saving userobj and jwt in localstorage
 
-      const { displayName, accessToken, metadata, uid } = response.user;
+      const { displayName,uid } = response.user;
 
       localStorage.setItem(
         "userInfo",
