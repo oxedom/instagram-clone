@@ -3,6 +3,7 @@ import { auth } from "../../firebase";
 import { useUser } from "../../services/useUser";
 import {usePost} from "../../services/usePost";
 import PhotoGrid from "../PhotoGrid/PhotoGrid";
+import ProfileInfo from "../ProfileInfo/ProfileInfo";
 const Profile = () => {
 
   const {getUserbyId} = useUser()
@@ -18,9 +19,12 @@ const Profile = () => {
     const fetchData = async () => 
     {
       //Fetchs userinfo and posts and sets the state to that ata
-      // const uid = JSON.parse(localStorage.getItem(userInfo)).uid
-      const postData = await getAllUserPosts(auth.currentUser.uid)
-      const userData = await getUserbyId(auth.currentUser.uid)
+      
+      let uid = auth.currentUser.uid
+
+
+      const postData = await getAllUserPosts(uid)
+      const userData = await getUserbyId(uid)
       setUserPosts(postData)
       setUserInfo(userData)
 
@@ -31,8 +35,8 @@ const Profile = () => {
 
   return (
     <div>
-      <h1> Hello from Profile</h1>
-      <div className="m-12 flex items-center justify-center">
+      <div className="flex flex-col">
+      <ProfileInfo posts={userPosts} props={userInfo} ></ProfileInfo>
       <PhotoGrid posts={userPosts}> </PhotoGrid>
       </div>
 

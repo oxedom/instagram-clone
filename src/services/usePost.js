@@ -99,6 +99,7 @@ export const usePost = () => {
     });
   };
 
+  //Deletes post
   const deltePost = async (id) => {
     if (!id || typeof id !== "string") {
       throw "ID not valid or supplied when calling deletePostMethod";
@@ -109,30 +110,32 @@ export const usePost = () => {
     }
   };
 
+  //Toogles like posts
   const tooglelikePost = async (postID) => {
+    //Checks if the user is authed;
     auth.onAuthStateChanged(async (user) => {
+      //If user
       if (user) {
+        //Query post data
         const post = await getPostByID(postID);
+        //date obj 
         const today = new Date();
-
+        //Reference to the post doc
         const docRef = doc(firestore, "posts", postID);
-        console.log(post);
 
+          //Functions simllar to an include method but works on objects, (INCLUDE WORKS ONLY ON ARRAYS)
         if (!post.likes.some((l) => l.uid == user.uid)) {
-          await updateDoc(docRef, {
-            likes: arrayUnion({ uid: user.uid, date: today.getTime() }),
-          });
-        } else {
+          //UpdateDoc is a firebase method, arrayUnion is simllar to push in Javascript, pushing the USERID and date of LIKE
+          await updateDoc(docRef, { likes: arrayUnion({ uid: user.uid, date: today.getTime() }), });}
+           else {
+          //Runs if the include method was false
           //Removes the like object by searching for the UID in the posts likes array;
-
           const updatedLikesArray = post.likes.filter(
             (l) => l.uid !== user.uid
           );
+          //Updates Doc with new filtered array;
           const res = await updateDoc(docRef, { likes: updatedLikesArray });
 
-          console.log(res);
-
-          // await updateDoc(docRef, { likes: arrayUnion({uid:user.uid, date: today.getTime()}) });
         }
       }
       if (!user) {
