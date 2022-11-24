@@ -1,3 +1,4 @@
+import { getAuth } from "firebase/auth";
 import {
   collection,
   getDocs,
@@ -5,6 +6,7 @@ import {
   query,
   updateDoc,
   doc,
+  arrayUnion,
 } from "firebase/firestore";
 import { firestore, auth } from "../firebase";
 
@@ -19,7 +21,7 @@ export function useUser() {
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      user = doc.data();
+      user = {...doc.data(), id: doc.id};
     });
 
     return user;
@@ -69,7 +71,33 @@ export function useUser() {
     return user;
   }
 
+  const toogleFollow = async (userToFollowID) => 
+  {
+
+    const currentUserLoggedIn = getAuth()
+    const currentUserData = await getUserbyId(currentUserLoggedIn.currentUser.uid)
+    const docID = currentUserData.id
+
+    const docRef = doc(firestore, "users", docID);
+
+    if(currentUserData.following.includes(userToFollowID)) 
+    {
+      const updatedFollowingArray = currentUserData.following.filter(f => f !== userToFollowID)
+
+      const res = await updateDoc(docRef, { following: updatedFollowingArray });
+      console.log(res);
+    }
+    else
+    {
+      await updateDoc(docRef, { following: arrayUnion(userToFollowID)})
+
+   
+    }}
+
+  
 
 
-  return { getUserbyId, getAllUsers, updateUser , getUserByUsername};
+
+  return { getUserbyId, getAllUsers, updateUser , getUserByUsername, toogleFollow};
 }
+

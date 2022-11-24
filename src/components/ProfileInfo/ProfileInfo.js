@@ -1,12 +1,22 @@
 
+
 import { Link } from 'react-router-dom'
 import threeDots from '../../assests/dots.png'
 
+import { useUser } from '../../services/useUser'
+
 const ProfileInfo = (props) => {
     const { posts } = props
-    const { photoURL, username, bio, following, followers} = props.props
+    const { photoURL, username, bio, following, followers, uid} = props.props
+    const userAPI = useUser()
 
 
+
+    const handleFollow = async () => {
+
+        //Sending the current UID of the users profile
+        userAPI.toogleFollow(uid)
+    }
 
 
     return ( <div className="bg-slate-100 flex flex-col">
@@ -37,7 +47,8 @@ const ProfileInfo = (props) => {
   
 
         <div className="button border flex justify-center p-0.5 text-white bg-blue-500  text-center hover:cursor-pointer"> 
-        <span className="font-medium">  Follow </span>
+        <span onClick={handleFollow}className="font-medium">  Follow </span>
+        
         </div>
         </div>
 
