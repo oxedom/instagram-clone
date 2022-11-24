@@ -1,7 +1,7 @@
 import instaIcon from "../../assests/sam-logo.png";
 import { Link } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogout";
-import heart from "../../assests/heart.png";
+
 import { useCallback, useEffect, useState } from "react";
 import { useUser } from "../../services/useUser";
 const Navbar = () => {
@@ -18,8 +18,9 @@ const Navbar = () => {
     const userData = await getUserByUsername(JSON.parse(localStorage.getItem("userInfo")).displayName)
     setUserData(userData)
   }, [])
+  
   useEffect(() => {
-    //Fetch userInfo from localstroage for displayName and photoUrl
+
 
    fetchData()
   }, []);
@@ -43,15 +44,7 @@ const Navbar = () => {
             Logout{" "}
           </div>
 
-          <div>
-            <Link to="/likes">
-              <img
-                className="object-contain w-10 h-10"
-                alt="Like page feed"
-                src={heart}
-              />
-            </Link>
-          </div>
+
           <div>
             <Link to={`/profile/${userData.username}`}>
               <img

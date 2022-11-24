@@ -15,18 +15,19 @@ Option to follow or unfollow
     On follow button a link to My PROFILE;
 
 Upload comp:
-Upload page;
+
 Upload Photos with descps
-Upload a profile pic
+
 
 Post comp:
 
 Be able comment
-Be able
 
 
-Add settings page to update displayName
 
+Add settings page to update
+ displayName or profile picture;
+ 
 confrim email?
 
 Darkmode

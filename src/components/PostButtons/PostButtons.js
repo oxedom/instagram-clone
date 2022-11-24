@@ -7,29 +7,39 @@ import { usePost } from "../../services/usePost";
 
 const PostButtons = (props) => {
   const { text, likes, username, date, id } = props.props;
+  console.log(props);
 
   const postApi = usePost();
   const [likedState, setLikedState] = useState(unlike);
   const [formatedDate, setFormated] = useState("");
   const [comment, setComment] = useState("");
   const userObj = JSON.parse(localStorage.getItem("userInfo"));
+  const [amountOfLikes, setAmountOfLikes] = useState([])
+
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
   };
 
   const handleLike = () => {
+    
+    
+
     postApi.tooglelikePost(id);
     if (likedState === liked) {
-      likes.splice(likes.length - 1, 1);
+      setAmountOfLikes(prev => { return (prev-1)})
       setLikedState(unlike);
     } else {
-      likes.push("fakeLike");
+
+      setAmountOfLikes(prev => (prev+1))
+      
       setLikedState(liked);
     }
   };
 
   useEffect(() => {
+    setAmountOfLikes(likes.length)
+
     if (likes.some((l) => l.uid === userObj.uid)) {
       setLikedState(liked);
     }
@@ -44,6 +54,7 @@ const PostButtons = (props) => {
   }, [date]);
 
   return (
+
     <div className="bg-white flex flex-col  ">
       <div className="p-2 flex flex-col ">
         <ul className="flex gap-4 object-contain w-14 mt-2 ">
@@ -56,7 +67,10 @@ const PostButtons = (props) => {
             <img alt="comment" src={commment} />{" "}
           </li>
         </ul>
-        <p> {likes.length} likes </p>
+        {(!amountOfLikes == 0) && 
+            <p> {amountOfLikes} likes </p>
+        }
+    
         <div className="flex gap-1">
           <p className="font-semibold flex gap-2"> {username}</p>{" "}
           <p> {text} </p>

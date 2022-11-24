@@ -6,15 +6,27 @@ import threeDots from '../../assests/dots.png'
 import { useUser } from '../../services/useUser'
 
 const ProfileInfo = (props) => {
+
+    const {isFollowing, setIsFollowing, myAccount} = props
+    
     const { posts } = props
     const { photoURL, username, bio, following, followers, uid} = props.props
+
     const userAPI = useUser()
 
 
 
     const handleFollow = async () => {
-
+        if(isFollowing) { 
+            setIsFollowing(false)
+    
+        }
+        else {
+   
+            setIsFollowing(true)}
         //Sending the current UID of the users profile
+    
+        
         userAPI.toogleFollow(uid)
     }
 
@@ -34,22 +46,52 @@ const ProfileInfo = (props) => {
         <div className="flex gap-5">
         <h1 className="font-meduim text-4xl"> {username} </h1>
 
-        <div className="flex items-center" >
-        <Link to='/settings'>
-        <img className=" text-white  text-center hover:cursor-pointer" src={threeDots} alt='settings' />
-        </Link>
-      
-        </div>
-
-   
-   
-        </div>
+        {myAccount &&
+              <div className="flex items-center" >
+              <Link to='/settings'>
+              <img className=" text-white  text-center hover:cursor-pointer" src={threeDots} alt='settings' />
+              </Link>
+            
+              </div>
+        
+        }
   
 
-        <div className="button border flex justify-center p-0.5 text-white bg-blue-500  text-center hover:cursor-pointer"> 
-        <span onClick={handleFollow}className="font-medium">  Follow </span>
+
+        </div>
+  
+        {(!myAccount && isFollowing) &&
+         <div onClick={handleFollow} className="button flex justify-center p-0.5 border-2 border-slate-300 hover:cursor-pointer"> 
+         <span className="font-medium">  Following </span>
+         
+         </div>
+        
+        }
+
+
+
+        {(!myAccount &&  !isFollowing) &&
+               <div onClick={handleFollow} className="button border flex justify-center p-0.5 text-white bg-blue-500  text-center hover:cursor-pointer"> 
+               <span className="font-medium">  Follow </span>
+               
+               </div>
+        }
+
+
+
+
+        {myAccount && 
+        
+        <Link to='/settings'>
+          <div className="button flex justify-center p-0.5 border-2 border-slate-300 rounded border-solid text-black bg-grey  text-center hover:cursor-pointer"> 
+        <span className="font-size">  Edit profile </span>
         
         </div>
+        </Link>
+      
+        
+        }
+ 
         </div>
 
 
