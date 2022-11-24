@@ -1,5 +1,4 @@
 
-import { useEffect, useState } from 'react';
 import threeDots from '../../assests/dots.png'
 const ProfileInfo = (props) => {
     const { posts } = props
@@ -52,12 +51,12 @@ const ProfileInfo = (props) => {
         </div>
 
         <div className="flex flex-col justify-center items-center" >
-        <span className="text-sm font-semibold"> {} </span>
+        <span className="text-sm font-semibold"> {followers.length} </span>
         <span className="text-sm"> followers </span>
         </div>
 
         <div className="flex flex-col justify-center items-center" >
-        <span className="text-sm font-semibold"> {} </span>
+        <span className="text-sm font-semibold"> {following.length} </span>
         <span className="text-sm"> following </span>
         </div>
 

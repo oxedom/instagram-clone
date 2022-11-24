@@ -2,19 +2,26 @@ import instaIcon from "../../assests/sam-logo.png";
 import { Link } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogout";
 import heart from "../../assests/heart.png";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useUser } from "../../services/useUser";
 const Navbar = () => {
   //Fetching logout function
   const { logout } = useLogout();
 
   const [userData, setUserData] = useState("");
-
+  const {getUserByUsername} = useUser()
   //Handle logout, uses logout hook to log user out server and client
   const handleLogout = async () => { await logout(); };
 
+  const fetchData = useCallback(async ()=> {
+    
+    const userData = await getUserByUsername(JSON.parse(localStorage.getItem("userInfo")).displayName)
+    setUserData(userData)
+  }, [])
   useEffect(() => {
     //Fetch userInfo from localstroage for displayName and photoUrl
-    setUserData(JSON.parse(localStorage.getItem("userInfo")));
+
+   fetchData()
   }, []);
 
   return (

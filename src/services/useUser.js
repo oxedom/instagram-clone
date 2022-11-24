@@ -57,5 +57,18 @@ export function useUser() {
     await updateDoc(userRef, updatedObj);
   };
 
-  return { getUserbyId, getAllUsers, updateUser };
+  const getUserByUsername = async (username) => 
+  {
+    let user = []
+    const q = query(collection(firestore, "users"), where("username", "==", username));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      user.push({ ...doc.data(), id: doc.id });
+    });
+    user = user[0];
+    return user;
+  }
+
+  return { getUserbyId, getAllUsers, updateUser , getUserByUsername};
 }

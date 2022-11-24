@@ -1,45 +1,58 @@
-import { useEffect, useState } from "react";
-import { auth } from "../../firebase";
+import { useCallback, useEffect, useState } from "react";
 import { useUser } from "../../services/useUser";
 import {usePost} from "../../services/usePost";
 import PhotoGrid from "../PhotoGrid/PhotoGrid";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
+import { useParams } from "react-router";
+
 const Profile = () => {
 
-  const {getUserbyId} = useUser()
+  const {getUserbyId, getUserByUsername} = useUser()
   const { getAllUserPosts} = usePost()
-
+  const {username } = useParams()
   const [userPosts, setUserPosts] = useState([]);
-  const [userInfo, setUserInfo] = useState([]);
-
-  useEffect(() => 
-  {
-    setUserPosts([])
-
-    const fetchData = async () => 
-    {
-      //Fetchs userinfo and posts and sets the state to that ata
-      
-      let uid = auth.currentUser.uid
+  const [userInfo, setUserInfo] = useState({followers: [], following:[]});
+  const [loading , setLoading] = useState(false)
+  const [myAccount, setMyAccount] = useState(false)
 
 
-      const postData = await getAllUserPosts(uid)
-      const userData = await getUserbyId(uid)
-      setUserPosts(postData)
+
+  const fetchData =  useCallback(async () => 
+   {
+    const user = await getUserByUsername(username)
+
+      const userData = await getUserbyId(user.uid)
+      const postData = await getAllUserPosts(user.uid)
       setUserInfo(userData)
+      setUserPosts(postData)
+      if(user.uid === JSON.parse(localStorage.getItem('userInfo')).uid) 
+      {
+        setMyAccount(true)
+      }
 
-      console.log(postData);
-    } 
+      setLoading(false)
+      // 
+   }, [])
+
+  
+   useEffect(() => 
+   { 
     fetchData()
-  }, [])
+   }, [fetchData])
+
+
+
+      
+
 
   return (
     <div>
+      {!loading &&
       <div className="flex flex-col">
-      <ProfileInfo posts={userPosts} props={userInfo} ></ProfileInfo>
+      <ProfileInfo myAccount={myAccount} posts={userPosts} props={userInfo} ></ProfileInfo>
       <PhotoGrid posts={userPosts}> </PhotoGrid>
       </div>
-
+}
     </div>
   );
 };

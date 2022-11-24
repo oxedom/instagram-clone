@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Post from "../Post/Post";
 import { useUser } from "../../services/useUser";
 import { usePost } from "../../services/usePost";
@@ -15,11 +15,8 @@ const Feed = () => {
   //Need to update this method to sort by posts and fetch post more efficently;
   const { getAllUserPosts } = usePost();
 
-  useEffect(() => {
-    //Resets Posts array so no stale data or rerenders duplicate the amount of posts
-    setPosts([]);
-
-    async function fetchData() {
+  const fetchData = useCallback(async () => 
+  {
       //Get the user id from localstorage
       const uid = JSON.parse(localStorage.getItem("userInfo")).uid;
       //Fetch his info and get all of his followers ids
@@ -42,7 +39,17 @@ const Feed = () => {
           return [...prev, ...updatedPosts];
         });
       });
-    }
+
+
+  },[])
+
+
+  useEffect(() => {
+    //Resets Posts array so no stale data or rerenders duplicate the amount of posts
+    setPosts([]);
+
+
+
     //Init for fetch data function;
     fetchData();
   }, []);
