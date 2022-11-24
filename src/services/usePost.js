@@ -1,5 +1,4 @@
-import { async } from "@firebase/util";
-import { onAuthStateChanged } from "firebase/auth";
+
 import {
   collection,
   getDocs,
@@ -11,7 +10,7 @@ import {
   doc,
   updateDoc,
   arrayUnion,
-  arrayRemove,
+
 } from "firebase/firestore";
 import { auth, firestore } from "../firebase";
 import { useUser } from "./useUser";
@@ -19,16 +18,7 @@ import { useUser } from "./useUser";
 export const usePost = () => {
   const userAPI = useUser();
 
-  // const checkAuth = async () =>
-  // {
-  //   const answer = undefined
-  //   auth.onAuthStateChanged(async (user) =>
-  //   {
-  //     if(user) { answer = true}
-  //     else ( answer = false)
-  //   })
-  //   return answer
-  // }
+
 
   const getPostByID = async (id) => {
     let post = {};
@@ -68,6 +58,7 @@ export const usePost = () => {
 
     user.following.forEach(async (follower) => {
       const followerPosts = await getAllUserPosts(follower);
+
       followerPosts.push(...followerPosts);
     });
     //ID of the user who follows people
@@ -85,7 +76,7 @@ export const usePost = () => {
           likes: [],
           comments: [],
           uid: currentUID,
-          Date: Date.now(),
+          date: Date.now(),
         };
         const docRef = await addDoc(collection(firestore, "posts"), {
           ...data,
@@ -102,7 +93,7 @@ export const usePost = () => {
   //Deletes post
   const deltePost = async (id) => {
     if (!id || typeof id !== "string") {
-      throw "ID not valid or supplied when calling deletePostMethod";
+      throw new Error('ID not valid or supplied when calling deletePostMethod')
     } else {
       const docRef = doc(firestore, "posts", id);
       await deleteDoc(docRef);
@@ -124,7 +115,7 @@ export const usePost = () => {
         const docRef = doc(firestore, "posts", postID);
 
           //Functions simllar to an include method but works on objects, (INCLUDE WORKS ONLY ON ARRAYS)
-        if (!post.likes.some((l) => l.uid == user.uid)) {
+        if (!post.likes.some((l) => l.uid === user.uid)) {
           //UpdateDoc is a firebase method, arrayUnion is simllar to push in Javascript, pushing the USERID and date of LIKE
           await updateDoc(docRef, { likes: arrayUnion({ uid: user.uid, date: today.getTime() }), });}
            else {
@@ -135,7 +126,7 @@ export const usePost = () => {
           );
           //Updates Doc with new filtered array;
           const res = await updateDoc(docRef, { likes: updatedLikesArray });
-
+            return res;
         }
       }
       if (!user) {

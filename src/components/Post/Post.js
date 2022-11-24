@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import PostButtons from "../PostButtons/PostButtons";
 
 const Post = (props) => {
+  console.log(props);
   const { imgUrl, text, uid, likes, username, id, date, photoURL} =
     props.props;
 

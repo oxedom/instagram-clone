@@ -31,8 +31,8 @@ const Profile = () => {
       }
 
       setLoading(false)
-      // 
-   }, [])
+      //  eslint-disable-next-line
+   }, [username])
 
   
    useEffect(() => 

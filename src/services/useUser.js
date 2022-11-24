@@ -6,7 +6,6 @@ import {
   updateDoc,
   doc,
 } from "firebase/firestore";
-import { updateProfile } from "firebase/auth";
 import { firestore, auth } from "../firebase";
 
 //Reasons to get a user by ID
@@ -69,6 +68,8 @@ export function useUser() {
     user = user[0];
     return user;
   }
+
+
 
   return { getUserbyId, getAllUsers, updateUser , getUserByUsername};
 }

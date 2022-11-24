@@ -3,12 +3,11 @@
 # Features:
 
 Navbar:
-Add usericon with profile next to signout
+
 
 Userprofile:
 
-Shows a profile pic follower count and followering count bio
-Shows a 3x3 grid of his photos
+
 Option to follow or unfollow
 
     My profile

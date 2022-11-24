@@ -1,5 +1,7 @@
 
+import { Link } from 'react-router-dom'
 import threeDots from '../../assests/dots.png'
+
 const ProfileInfo = (props) => {
     const { posts } = props
     const { photoURL, username, bio, following, followers} = props.props
@@ -23,7 +25,10 @@ const ProfileInfo = (props) => {
         <h1 className="font-meduim text-4xl"> {username} </h1>
 
         <div className="flex items-center" >
-        <img src={threeDots} alt='settings' />
+        <Link to='/settings'>
+        <img className=" text-white  text-center hover:cursor-pointer" src={threeDots} alt='settings' />
+        </Link>
+      
         </div>
 
    
@@ -31,7 +36,7 @@ const ProfileInfo = (props) => {
         </div>
   
 
-        <div className="button border flex justify-center p-0.5  text-center"> 
+        <div className="button border flex justify-center p-0.5 text-white bg-blue-500  text-center hover:cursor-pointer"> 
         <span className="font-medium">  Follow </span>
         </div>
         </div>
