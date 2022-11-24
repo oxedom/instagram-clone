@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import PostButtons from "../PostButtons/PostButtons";
 
 const Post = (props) => {
-  const { imgUrl, text, uid, likes, username, profileUrl, id, date } =
+  const { imgUrl, text, uid, likes, username, id, date, photoURL} =
     props.props;
 
   return (
@@ -12,7 +12,7 @@ const Post = (props) => {
           <img
             className="rounded-full object-cover aspect-ratio: auto; w-10 h-10 "
             alt="profile of user"
-            src={profileUrl}
+            src={photoURL}
           />
           <Link
             to={`/profile/${username}`}

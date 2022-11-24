@@ -25,7 +25,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="">
+    <nav className="bg-white border shadow-lg">
       <div className="flex justify-around items-center m-3">
         <Link to="/feed">
           <img
@@ -53,7 +53,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div>
-            <Link to={`/profile/${userData.displayName}`}>
+            <Link to={`/profile/${userData.username}`}>
               <img
                 className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
                 alt="profile"

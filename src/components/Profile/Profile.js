@@ -46,7 +46,7 @@ const Profile = () => {
 
 
   return (
-    <div>
+    <div className="">
       {!loading &&
       <div className="flex flex-col">
       <ProfileInfo myAccount={myAccount} posts={userPosts} props={userInfo} ></ProfileInfo>
