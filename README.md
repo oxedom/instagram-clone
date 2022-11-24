@@ -13,3 +13,4 @@ Settings comp with backend function to update user profile (displayname and prof
 Darkmode
 Skeleton Loding
 cleancode and add comments
+Add search bar for searching users make search bar active on keyup
