@@ -135,6 +135,25 @@ export const usePost = () => {
     });
   };
 
+  const addComment = async (postID, text) => 
+  {
+    auth.onAuthStateChanged(async (user) => 
+    {
+      if(user) 
+      {
+
+        const today = new Date();
+        //Reference to the post doc
+        const docRef = doc(firestore, "posts", postID);
+  
+        await updateDoc(docRef, {
+          comments: arrayUnion({ uid: user.uid, date: today.getTime(), text: text, username: user.displayName }),
+        });
+      }
+    })
+  }
+
+
   return {
     getAllPosts,
     getAllUserPosts,
@@ -143,5 +162,6 @@ export const usePost = () => {
     deltePost,
     getPostByID,
     tooglelikePost,
+    addComment
   };
 };

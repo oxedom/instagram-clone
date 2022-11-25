@@ -1,24 +1,31 @@
 import unlike from "../../assests/heart.png";
 import liked from "../../assests/darkheart.png";
-import commment from "../../assests/comment.png";
-
+import commmentIcon from "../../assests/comment.png";
+import Comment from "../Comment/Comment";
 import { useEffect, useState } from "react";
 import { usePost } from "../../services/usePost";
+import uniqid from 'uniqid'
 
 const PostButtons = (props) => {
-  const { text, likes, username, date, id } = props.props;
-  console.log(props);
+  const { text, likes, username, date, id, comments } = props.props;
 
+
+  const [localComments, setLocalComments] = useState([])
   const postApi = usePost();
   const [likedState, setLikedState] = useState(unlike);
   const [formatedDate, setFormated] = useState("");
-  const [comment, setComment] = useState("");
+  const [commentText, setComment] = useState("");
   const userObj = JSON.parse(localStorage.getItem("userInfo"));
   const [amountOfLikes, setAmountOfLikes] = useState([])
 
+  const [textColor, setTextColor] = useState('text-blue-200')
 
   const handleCommentSubmit = (e) => {
+    postApi.addComment(id, commentText)
+    const d = new Date()
+    setLocalComments((prev) => { return [...prev, {username: userObj.displayName, text: commentText, date: d.getTime()  }]})
     e.preventDefault();
+    setComment('')
   };
 
   const handleLike = () => {
@@ -38,6 +45,18 @@ const PostButtons = (props) => {
   };
 
   useEffect(() => {
+    if(commentText.length > 1) 
+    {
+      setTextColor('text-blue-400')
+    } 
+    else 
+    {
+      setTextColor('text-blue-200')
+    }
+  }, [commentText])
+
+  useEffect(() => {
+    setLocalComments(comments)
     setAmountOfLikes(likes.length)
 
     if (likes.some((l) => l.uid === userObj.uid)) {
@@ -64,7 +83,7 @@ const PostButtons = (props) => {
           </li>
           <li>
             {" "}
-            <img alt="comment" src={commment} />{" "}
+            <img alt="comment" src={commmentIcon} />{" "}
           </li>
         </ul>
         {(!amountOfLikes == 0) && 
@@ -77,14 +96,23 @@ const PostButtons = (props) => {
         </div>
         <div>
           <p> {formatedDate} </p>
+
+          
         </div>
+
+        
       </div>
+      <div className="mb-2">
+      {localComments.map((c) => { return <Comment key={c.date} props={c}> </Comment>})}
+      </div>
+   
+
 
       <hr></hr>
       <form onSubmit={handleCommentSubmit} className="rounded flex">
-        <input
+        <input maxLength={80}
           className="p-3 flex-grow"
-          value={comment}
+          value={commentText}
           onChange={(e) => {
             setComment(e.target.value);
           }}
@@ -94,10 +122,11 @@ const PostButtons = (props) => {
         <button
           alt="submit"
           type="submit"
-          className="btn rounded  text-white font-bold bg-blue-300 m-1 p-1"
+          className={"btn rounded font-bold bg-white m-1 p-1 " + textColor}
         >
           {" "}
-          Add{" "}
+          
+          Post{" "}
         </button>
       </form>
     </div>

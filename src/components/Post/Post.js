@@ -3,7 +3,7 @@ import PostButtons from "../PostButtons/PostButtons";
 
 const Post = (props) => {
   console.log(props);
-  const { imgUrl, text, uid, likes, username, id, date, photoURL} =
+  const { imgUrl, text, uid, likes, username, id, date, photoURL, comments} =
     props.props;
 
   return (
@@ -27,7 +27,7 @@ const Post = (props) => {
       <Link to={`/post/${id}`}>
         <img className="object-fit w-96 md:w-96 " alt={text} src={imgUrl} />
       </Link>
-      <PostButtons props={{ likes, uid, text, username, date, id }}>
+      <PostButtons props={{ likes, uid, text, username, date, id , comments}}>
         {" "}
       </PostButtons>
     </div>
