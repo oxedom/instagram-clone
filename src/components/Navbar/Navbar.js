@@ -26,8 +26,8 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-white border shadow-lg">
-      <div className="flex justify-around items-center m-3">
+    <nav className="bg-white border shadow-lg ">
+      <div className="flex justify-around items-center m-3 ">
         <Link to="/feed">
           <img
             alt="Instagram"

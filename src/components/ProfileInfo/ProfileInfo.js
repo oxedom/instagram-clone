@@ -8,7 +8,7 @@ import { useUser } from '../../services/useUser'
 const ProfileInfo = (props) => {
 
     const {isFollowing, setIsFollowing, myAccount} = props
-    
+
     const { posts } = props
     const { photoURL, username, bio, following, followers, uid} = props.props
 
@@ -31,13 +31,13 @@ const ProfileInfo = (props) => {
     }
 
 
-    return ( <div className="bg-slate-100 flex flex-col">
+    return ( <div className="mt-5 flex flex-col">
 
         
         <div className="m-4 flex justify-around ">
         
         {/* profile Pictutre */}
-        <img className="rounded-full object-cover aspect-ratio: auto; w-20 h-20" src={photoURL} alt="profile"/>
+        <img className="rounded-full object-cover aspect-ratio: auto; w-20 h-20 md:w-32 md:h-32" src={photoURL} alt="profile"/>
 
 
         {/* Username and follow button */}

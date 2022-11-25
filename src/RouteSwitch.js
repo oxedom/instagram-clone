@@ -7,6 +7,7 @@ import Protected from "./components/Protected/Protected";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import PostPage from "./components/PostPage/PostPage";
+
 const RouteSwitch = () => {
   return (
     <BrowserRouter basename="/">
@@ -42,8 +43,11 @@ const RouteSwitch = () => {
           path="post/:post_id"
           element={
             <Protected>
-              <Navbar> </Navbar>
-              <PostPage></PostPage>
+              <Navbar>
+                
+                 </Navbar>
+                 <PostPage></PostPage>
+  
             </Protected>
           }
         >

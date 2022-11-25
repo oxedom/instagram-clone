@@ -13,7 +13,9 @@ const Profile = () => {
   const { getAllUserPosts} = usePost()
   const {username } = useParams()
   const [userPosts, setUserPosts] = useState([]);
+
   const [userInfo, setUserInfo] = useState({followers: [], following:[]});
+
   const [loading , setLoading] = useState(false)
   const [myAccount, setMyAccount] = useState(false)
   const [isFollowing, setIsFollowing] = useState(false)
@@ -45,6 +47,8 @@ const Profile = () => {
       //  eslint-disable-next-line
    }, [username])
 
+   
+
   
    useEffect(() => 
    { 
@@ -57,7 +61,7 @@ const Profile = () => {
 
 
   return (
-    <div className="">
+    <div className="lg:ml-28 lg:mr-28 xl:ml-48 xl:mr-48 2xl:mr-96 2xl:ml-96">
       {!loading &&
       <div className="flex flex-col">
       <ProfileInfo setIsFollowing={setIsFollowing} isFollowing={isFollowing} myAccount={myAccount} posts={userPosts} props={userInfo} ></ProfileInfo>
