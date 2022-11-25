@@ -21,7 +21,7 @@ const Feed = () => {
       //Fetch his info and get all of his followers ids
       const user = await getUserbyId(uid);
       //Fetch their posts and set them as posts on the feed
-      user.following.forEach(async (f) => {
+      const fetchPosts = await user.following.forEach(async (f) => {
   
         //Query the person he is followings data to get his username and profile picture;
         const followerData = await getUserbyId(f);
@@ -43,8 +43,11 @@ const Feed = () => {
         setPosts((prev) => {
           return [...prev, ...updatedPosts];
         });
+
       });
 
+      //Sort posts
+      setPosts((prev) => {return prev.sort(function(x,y){ return x.date - y.date})})
 
   },[])
 
