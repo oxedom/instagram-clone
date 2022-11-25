@@ -4,7 +4,7 @@ import commmentIcon from "../../assests/comment.png";
 import Comment from "../Comment/Comment";
 import { useEffect, useState } from "react";
 import { usePost } from "../../services/usePost";
-import uniqid from 'uniqid'
+
 
 const PostButtons = (props) => {
   const { text, likes, username, date, id, comments } = props.props;
@@ -22,8 +22,7 @@ const PostButtons = (props) => {
 
   const handleCommentSubmit = (e) => {
     postApi.addComment(id, commentText)
-    const d = new Date()
-    setLocalComments((prev) => { return [...prev, {username: userObj.displayName, text: commentText, date: d.getTime()  }]})
+
     e.preventDefault();
     setComment('')
   };
@@ -31,7 +30,7 @@ const PostButtons = (props) => {
   const handleLike = () => {
     
     
-
+// eslint-disable-next-line
     postApi.tooglelikePost(id);
     if (likedState === liked) {
       setAmountOfLikes(prev => { return (prev-1)})
@@ -55,14 +54,16 @@ const PostButtons = (props) => {
     }
   }, [commentText])
 
+  // eslint-disable-next-line
   useEffect(() => {
     setLocalComments(comments)
-    setAmountOfLikes(likes.length)
+    setAmountOfLikes(likes.length = 0 )
 
     if (likes.some((l) => l.uid === userObj.uid)) {
       setLikedState(liked);
     }
   }, [likes, userObj.uid]);
+
 
   useEffect(() => {
     const d = new Date(date);

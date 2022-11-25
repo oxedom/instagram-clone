@@ -23,18 +23,23 @@ const Feed = () => {
       const user = await getUserbyId(uid);
       //Fetch their posts and set them as posts on the feed
       user.following.forEach(async (f) => {
+  
         //Query the person he is followings data to get his username and profile picture;
         const followerData = await getUserbyId(f);
         const { username, photoURL} = followerData;
         console.log(followerData);
-        //Get each following users posts
+        
         const posts = await getAllUserPosts(f);
+        
         //Update all of the users posts with his username and profile img URL
+
         const updatedPosts = posts.map((obj) => ({
           ...obj,
           username,
           photoURL,
         }));
+
+        console.log(updatedPosts);
         //Setting the posts state to the newly fetched posts whilst keeping the previous kept posts
         setPosts((prev) => {
           return [...prev, ...updatedPosts];

@@ -74,23 +74,43 @@ export function useUser() {
   const toogleFollow = async (userToFollowID) => 
   {
 
+    //Gets Data of current user logged in 
     const currentUserLoggedIn = getAuth()
-    const currentUserData = await getUserbyId(currentUserLoggedIn.currentUser.uid)
-    const docID = currentUserData.id
 
-    const docRef = doc(firestore, "users", docID);
+    //Get USER DATA for following array
+    const currentUserData = await getUserbyId(currentUserLoggedIn.currentUser.uid)
+
+    //GET USER DATA FOR Followers Array
+    const currentFollowingData = await getUserbyId(userToFollowID)
+    console.log(currentFollowingData);
+
+    //Doc ID for doc Refs
+    const userFollowing_ID = currentUserData.id
+    const usertoFollow_ID = currentFollowingData.id
+
+
+    //DOC refs
+    const userFollowing_DocRef = doc(firestore, "users", userFollowing_ID);
+    const userFollowers_DocRef = doc(firestore, "users", usertoFollow_ID)
 
     if(currentUserData.following.includes(userToFollowID)) 
     {
+      //Updates the array of following for the user that wants to follow;
       const updatedFollowingArray = currentUserData.following.filter(f => f !== userToFollowID)
+      const updatedFollowersArray = currentFollowingData.followers.filter(f => f !== currentUserLoggedIn.currentUser.uid)
+      
+       await updateDoc(userFollowing_DocRef, { following: updatedFollowingArray });
+       await updateDoc(userFollowers_DocRef, { followers: updatedFollowersArray });
+      
 
-      const res = await updateDoc(docRef, { following: updatedFollowingArray });
-      console.log(res);
+
     }
     else
     {
-      await updateDoc(docRef, { following: arrayUnion(userToFollowID)})
-
+      await updateDoc(userFollowing_DocRef, { following: arrayUnion(userToFollowID)})
+      await updateDoc(userFollowers_DocRef, { followers: arrayUnion(currentUserLoggedIn.currentUser.uid)})
+      console.log('YES');
+      console.log(usertoFollow_ID, userFollowing_ID);
    
     }}
 
