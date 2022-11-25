@@ -16,13 +16,13 @@ const PostButtons = (props) => {
   const [formatedDate, setFormated] = useState("");
   const [commentText, setComment] = useState("");
   const userObj = JSON.parse(localStorage.getItem("userInfo"));
-  const [amountOfLikes, setAmountOfLikes] = useState([])
+
 
   const [textColor, setTextColor] = useState('text-blue-200')
 
   const handleCommentSubmit = (e) => {
     postApi.addComment(id, commentText)
-
+    setLocalComments((prev) => [...prev, {text: commentText, username: userObj.displayName}])  
     e.preventDefault();
     setComment('')
   };
@@ -33,11 +33,12 @@ const PostButtons = (props) => {
 // eslint-disable-next-line
     postApi.tooglelikePost(id);
     if (likedState === liked) {
-      setAmountOfLikes(prev => { return (prev-1)})
+      likes.pop('FAKELIKE')
+
       setLikedState(unlike);
     } else {
 
-      setAmountOfLikes(prev => (prev+1))
+      likes.push('FAKELIKE')
       
       setLikedState(liked);
     }
@@ -57,7 +58,7 @@ const PostButtons = (props) => {
   // eslint-disable-next-line
   useEffect(() => {
     setLocalComments(comments)
-    setAmountOfLikes(likes.length = 0 )
+   
 
     if (likes.some((l) => l.uid === userObj.uid)) {
       setLikedState(liked);
@@ -87,8 +88,8 @@ const PostButtons = (props) => {
             <img alt="comment" src={commmentIcon} />{" "}
           </li>
         </ul>
-        {(!amountOfLikes == 0) && 
-            <p> {amountOfLikes} likes </p>
+        {
+            <p> {likes.length} likes </p>
         }
     
         <div className="flex gap-1">
