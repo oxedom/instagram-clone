@@ -7,7 +7,7 @@ const Post = (props) => {
     props.props;
 
   return (
-    <div className="flex flex-col shadow-md border-solid m-3 rounded ">
+    <div className="flex flex-col shadow-md border-solid m-3 rounded  ">
       <div className="bg-white p-4 rounded-lg ">
         <div className="flex items-center gap-2 align-center  ">
           <img
@@ -25,7 +25,7 @@ const Post = (props) => {
         </div>
       </div>
       <Link to={`/post/${id}`}>
-        <img className="object-fit w-96 md:w-96 " alt={text} src={imgUrl} />
+        <img className="object-cover w-96  md:max-w-screen-md  " alt={text} src={imgUrl} />
       </Link>
       <PostButtons props={{ likes, uid, text, username, date, id , comments}}>
         {" "}

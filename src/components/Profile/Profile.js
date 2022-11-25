@@ -37,7 +37,8 @@ const Profile = () => {
 
       const currentUserLoggedIn = getAuth()
       //Sets following button to following or Follow
-      if(userData.following.includes(currentUserLoggedIn.currentUser.uid)) 
+
+      if(userData.followers.includes(currentUserLoggedIn.currentUser.uid)) 
       {
         setIsFollowing(true)
       }

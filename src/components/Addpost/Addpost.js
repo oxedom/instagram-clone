@@ -15,11 +15,11 @@ const Addpost = () => {
   };
 
   return (
-    <div>
-      <h1> Add a post </h1>
+    <div className="bg-slate-50 flex-grow gap-3 flex justify-center flex-col items-center ">
+
       <form
         onSubmit={handleSubmit}
-        className="border p-1 bg-black flex gap-4 flex-col"
+        className="border p-1 bg-slate-200 p-10 flex gap-4 flex-col"
       >
         <input
           className="bg-slate-50 p-2 border-2 border-gray-100"

@@ -1,4 +1,7 @@
 import instaIcon from "../../assests/sam-logo.png";
+import uploadIcon from "../../assests/upload.png";
+
+
 import { Link } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogout";
 
@@ -31,17 +34,26 @@ const Navbar = () => {
         <Link to="/feed">
           <img
             alt="Instagram"
-            className=" object-contain h-10 w-30 md:block"
+            className=" object-contain h-8 w-18 sm:h-10 sm:w-30 "
             src={instaIcon}
           />
         </Link>
+
+
         <div className="flex items-center gap-3">
           <div
-            className="rounded text-white  text-center font-bold btn p-2 bg-blue-500 hover:bg-blue-700`"
+            className="rounded text-white    text-center font-bold btn p-1 bg-blue-500 hover:bg-blue-700`"
             onClick={handleLogout}
           >
             {" "}
             Logout{" "}
+          </div>
+
+          <div>
+            <Link to={'/upload'}>
+            <img className='bject-cover aspect-ratio: auto; w-8 h-8 sm:w-10 sm:h-10' src={uploadIcon}/>
+            </Link>
+           
           </div>
 
 

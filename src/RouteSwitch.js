@@ -7,6 +7,7 @@ import Protected from "./components/Protected/Protected";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import PostPage from "./components/PostPage/PostPage";
+import Addpost from "./components/Addpost/Addpost";
 
 const RouteSwitch = () => {
   return (
@@ -53,6 +54,14 @@ const RouteSwitch = () => {
         >
           {" "}
         </Route>
+
+        <Route
+        path="upload"
+        element={<Protected>
+          <Navbar></Navbar>
+          <Addpost></Addpost>
+        </Protected>}
+        ></Route>
       </Routes>
     </BrowserRouter>
   );

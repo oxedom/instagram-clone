@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import Post from "../Post/Post";
 import { useUser } from "../../services/useUser";
 import { usePost } from "../../services/usePost";
-import Addpost from "../Addpost/Addpost";
 
 const Feed = () => {
   //eslint-disable-next-line
@@ -67,7 +66,7 @@ const Feed = () => {
           {" "}
         </Post>
       ))}
-      <Addpost></Addpost>
+
     </div>
   );
 };

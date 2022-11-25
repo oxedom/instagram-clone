@@ -4,7 +4,7 @@ import commmentIcon from "../../assests/comment.png";
 import Comment from "../Comment/Comment";
 import { useEffect, useState } from "react";
 import { usePost } from "../../services/usePost";
-
+import { Link } from "react-router-dom";
 
 const PostButtons = (props) => {
   const { text, likes, username, date, id, comments } = props.props;
@@ -93,7 +93,10 @@ const PostButtons = (props) => {
         }
     
         <div className="flex gap-1">
+          <Link to={`/profile/${username}`}>
           <p className="font-semibold flex gap-2"> {username}</p>{" "}
+          </Link>
+
           <p> {text} </p>
         </div>
         <div>

@@ -19,10 +19,11 @@ const ProfileInfo = (props) => {
     const handleFollow = async () => {
         if(isFollowing) { 
             setIsFollowing(false)
+            followers.pop()
     
         }
         else {
-   
+            followers.push("fakeFollower")
             setIsFollowing(true)}
         //Sending the current UID of the users profile
     
