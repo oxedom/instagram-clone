@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import img from "../../assests/sam-logo.png";
 import { useNavigate } from "react-router-dom";
 import { useSignup } from "../../hooks/useSignup";
+import { updateCurrentUser } from "firebase/auth";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -25,8 +26,9 @@ const Signup = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await signup(email, password, username, profileUrl);
-      navigate("/feed");
+      await signup(email, password, username, profileUrl).then(() => {       navigate("/feed");})
+      
+
     } catch (err) {
       console.error(err);
     }

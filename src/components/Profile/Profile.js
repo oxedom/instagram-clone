@@ -37,11 +37,12 @@ const Profile = () => {
 
         if(u.uid === user.uid) 
         {
+
+          setUserInfo({...userData, ...u})
           setMyAccount(true)
         }
 
-
-        if(userData.followers.includes(u.currentUser.uid)) 
+        if(userData.followers.includes(u.uid)) 
         {
           setIsFollowing(true)
         }

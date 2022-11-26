@@ -26,7 +26,8 @@ const Navbar = () => {
         if(user) 
         {
           const userData = await getUserByUsername(user.displayName)
-          setUserData(userData)
+
+          setUserData({...userData, ...user})
         }
       })
 
