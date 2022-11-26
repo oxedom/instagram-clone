@@ -29,7 +29,16 @@ const Profile = () => {
       const postData = await getAllUserPosts(user.uid)
       setUserInfo(userData)
       setUserPosts(postData)
-      if(user.uid === JSON.parse(localStorage.getItem('userInfo')).uid) 
+      
+
+      const uidPromise = new Promise((resolve, reject) => {
+         resolve(getAuth().currentUser.uid)
+      })
+  
+      const uid = await uidPromise
+
+
+      if(user.uid === uid) 
       {
         setMyAccount(true)
       }
@@ -53,6 +62,10 @@ const Profile = () => {
   
    useEffect(() => 
    { 
+
+
+
+
     fetchData()
    }, [fetchData])
 

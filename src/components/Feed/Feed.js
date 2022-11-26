@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import Post from "../Post/Post";
 import { useUser } from "../../services/useUser";
 import { usePost } from "../../services/usePost";
+import { getAuth } from "firebase/auth";
 
 const Feed = () => {
   //eslint-disable-next-line
@@ -16,8 +17,16 @@ const Feed = () => {
 
   const fetchData = useCallback(async () => 
   {
-      //Get the user id from localstorage
-      const uid = JSON.parse(localStorage.getItem("userInfo")).uid;
+      //Get the user id from getAuth Promise
+
+      const uidPromise = new Promise((resolve, reject) => {
+        const user = getAuth().currentUser
+        if(user) { resolve(user.uid)}
+     
+      })
+  
+      const uid = await uidPromise
+  
       //Fetch his info and get all of his followers ids
       const user = await getUserbyId(uid);
       //Fetch their posts and set them as posts on the feed

@@ -1,4 +1,4 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
 import {
   collection,
   getDocs,
@@ -8,6 +8,7 @@ import {
   doc,
   arrayUnion,
 } from "firebase/firestore";
+import { useNavigate } from "react-router";
 import { firestore, auth } from "../firebase";
 
 //Reasons to get a user by ID
@@ -15,6 +16,8 @@ import { firestore, auth } from "../firebase";
 
 //Returns Firestore Auth users not users from collections
 export function useUser() {
+
+  const nav = useNavigate()
   const getUserbyId = async (id) => {
     let user = {};
     const q = query(collection(firestore, "users"), where("uid", "==", id));
@@ -26,6 +29,25 @@ export function useUser() {
 
     return user;
   };
+
+
+  // const getCurrentUser = async () => 
+  // {
+  //   let currentUser = {}
+  //   onAuthStateChanged(auth, async (user) => 
+  //   {
+  //     if(user) 
+  //     {
+  //       currentUser = user 
+  //     }
+  //     else 
+  //     {
+  //       currentUser = new Error('ERROR FINDING USER')
+  //     }
+  //   })
+  //   return currentUser
+  // }
+
 
   const getAllUsers = async () => {
     let users = [];
@@ -44,6 +66,7 @@ export function useUser() {
     //Update user function updates any key value that is inside the user DOC
     //Be warry with making sure the right caps lock is on and not overriding existing
     //props by mistake, need to make sure to add SANTIZATOIN on this function.
+    console.log(updatedObj);
 
     let id = undefined;
     const q = query(
@@ -55,7 +78,18 @@ export function useUser() {
       id = doc.id;
     });
     const userRef = doc(firestore, "users", id);
-    await updateDoc(userRef, updatedObj);
+    await updateDoc(userRef, {...updatedObj});
+
+    //Updates the auth.current username Object
+    await updateProfile(auth.currentUser, 
+      {
+        displayName: updatedObj.username
+      });
+
+      //Force Refreshs page to rerender navbar comp
+      nav('')
+
+
   };
 
   const getUserByUsername = async (username) => 
@@ -109,8 +143,7 @@ export function useUser() {
     {
       await updateDoc(userFollowing_DocRef, { following: arrayUnion(userToFollowID)})
       await updateDoc(userFollowers_DocRef, { followers: arrayUnion(currentUserLoggedIn.currentUser.uid)})
-      console.log('YES');
-      console.log(usertoFollow_ID, userFollowing_ID);
+
    
     }}
 

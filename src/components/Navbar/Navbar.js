@@ -7,6 +7,8 @@ import { useLogout } from "../../hooks/useLogout";
 
 import { useCallback, useEffect, useState } from "react";
 import { useUser } from "../../services/useUser";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
 const Navbar = () => {
   //Fetching logout function
   const { logout } = useLogout();
@@ -17,9 +19,22 @@ const Navbar = () => {
   const handleLogout = async () => { await logout(); };
 
   const fetchData = useCallback(async ()=> {
-    
-    const userData = await getUserByUsername(JSON.parse(localStorage.getItem("userInfo")).displayName)
-    setUserData(userData)
+
+
+      onAuthStateChanged(auth, async (user) => 
+      {
+        if(user) 
+        {
+          const userData = await getUserByUsername(user.displayName)
+          setUserData(userData)
+        }
+      })
+
+
+
+
+
+
   }, [])
   
   useEffect(() => {

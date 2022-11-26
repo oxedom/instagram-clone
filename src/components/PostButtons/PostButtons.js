@@ -15,6 +15,11 @@ const PostButtons = (props) => {
   const [likedState, setLikedState] = useState(unlike);
   const [formatedDate, setFormated] = useState("");
   const [commentText, setComment] = useState("");
+  
+
+
+
+ 
   const userObj = JSON.parse(localStorage.getItem("userInfo"));
 
 
