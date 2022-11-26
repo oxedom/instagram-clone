@@ -1,6 +1,6 @@
 node_modules/
 .env
-.firebaserc
+firebaserc
 # dependencies
 /node_modules
 /.pnp
