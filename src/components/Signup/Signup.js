@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import img from "../../assests/sam-logo.png";
 import { useNavigate } from "react-router-dom";
 import { useSignup } from "../../hooks/useSignup";
-import { updateCurrentUser } from "firebase/auth";
+
 
 const Signup = () => {
   const [email, setEmail] = useState("");

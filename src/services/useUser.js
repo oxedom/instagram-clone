@@ -1,4 +1,4 @@
-import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
+import { getAuth,updateProfile } from "firebase/auth";
 import {
   collection,
   getDocs,
@@ -8,7 +8,7 @@ import {
   doc,
   arrayUnion,
 } from "firebase/firestore";
-import { useNavigate } from "react-router";
+
 import { firestore, auth } from "../firebase";
 
 //Reasons to get a user by ID
@@ -16,6 +16,11 @@ import { firestore, auth } from "../firebase";
 
 //Returns Firestore Auth users not users from collections
 export function useUser() {
+
+
+  function isImgUrl(url) {
+    return /\.(jpg|jpeg|png|webp|avif|gif)$/.test(url)
+  }
 
 
   const getUserbyId = async (id) => {
@@ -31,22 +36,7 @@ export function useUser() {
   };
 
 
-  // const getCurrentUser = async () => 
-  // {
-  //   let currentUser = {}
-  //   onAuthStateChanged(auth, async (user) => 
-  //   {
-  //     if(user) 
-  //     {
-  //       currentUser = user 
-  //     }
-  //     else 
-  //     {
-  //       currentUser = new Error('ERROR FINDING USER')
-  //     }
-  //   })
-  //   return currentUser
-  // }
+
 
 
   const getAllUsers = async () => {
@@ -66,7 +56,8 @@ export function useUser() {
     //Update user function updates any key value that is inside the user DOC
     //Be warry with making sure the right caps lock is on and not overriding existing
     //props by mistake, need to make sure to add SANTIZATOIN on this function.
-    console.log(updatedObj);
+
+    if(!isImgUrl(updatedObj.photoURL) ) { return}
 
     let id = undefined;
     const q = query(

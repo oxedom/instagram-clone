@@ -12,11 +12,16 @@ const Settings = () => {
 
     const handleSubmit = (e) => {
         
+      if(username.length < 5 || profileUrl.length < 10) 
+      {
+      return
+      }
 
         e.preventDefault()
         updateUser({username: username , photoURL: profileUrl}).then(() => 
         {
           setUsername('')
+          setProfileUrl('')
           navigate(0)
         })
       
@@ -34,6 +39,7 @@ const Settings = () => {
           className="bg-slate-50 p-2 border-2 border-gray-100"
           placeholder="New Profile Image URL"
           maxLength={250}
+          minLength={10}
           value={profileUrl}
           type="text"
           onChange={(e) => {
@@ -44,6 +50,7 @@ const Settings = () => {
         <input
           className="bg-slate-50 p-2 border-2 border-gray-100"
           maxLength={25}
+          minLength={5}
           placeholder="Username"
           value={username}
           type="text"

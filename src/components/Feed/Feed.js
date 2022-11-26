@@ -4,6 +4,8 @@ import { useUser } from "../../services/useUser";
 import { usePost } from "../../services/usePost";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
+import Suggestions from "../Suggestions/Suggestions";
+
 
 const Feed = () => {
   //eslint-disable-next-line
@@ -69,7 +71,10 @@ const Feed = () => {
   }, []);
 
   return (
-    <div className="bg-slate-50 flex-grow gap-3 flex justify-center flex-col items-center">
+    <div>
+
+      <div className="bg-slate-50 flex-grow gap-3 flex justify-center flex-col items-center">
+      <Suggestions></Suggestions>
       {posts.map((p) => (
         <Post key={p.id} props={p}>
           {" "}
@@ -77,6 +82,8 @@ const Feed = () => {
       ))}
 
     </div>
+    </div>
+
   );
 };
 
