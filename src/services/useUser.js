@@ -81,9 +81,14 @@ export function useUser() {
     await updateDoc(userRef, {...updatedObj});
 
     //Updates the auth.current username Object
+    
+
     await updateProfile(auth.currentUser, 
       {
-        displayName: updatedObj.username
+        // photoURL: updatedObj.
+        displayName: updatedObj.username,
+        photoURL: updatedObj.photoURL
+
       });
 
       //Force Refreshs page to rerender navbar comp

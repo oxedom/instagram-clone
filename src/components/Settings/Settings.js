@@ -14,7 +14,7 @@ const Settings = () => {
         
 
         e.preventDefault()
-        updateUser({username: username }).then(() => 
+        updateUser({username: username , photoURL: profileUrl}).then(() => 
         {
           setUsername('')
           navigate(0)

@@ -37,7 +37,7 @@ const Profile = () => {
 
         if(u.uid === user.uid) 
         {
-
+     
           setUserInfo({...userData, ...u})
           setMyAccount(true)
         }
