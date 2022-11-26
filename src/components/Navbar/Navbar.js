@@ -7,7 +7,7 @@ import { useLogout } from "../../hooks/useLogout";
 
 import { useCallback, useEffect, useState } from "react";
 import { useUser } from "../../services/useUser";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 const Navbar = () => {
   //Fetching logout function

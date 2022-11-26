@@ -4,8 +4,9 @@ import {usePost} from "../../services/usePost";
 import PhotoGrid from "../PhotoGrid/PhotoGrid";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import { useParams } from "react-router";
-import { getAuth } from "firebase/auth";
-
+import {onAuthStateChanged } from "firebase/auth";
+import {auth} from '../../firebase'
+import { async } from "@firebase/util";
 
 const Profile = () => {
 
@@ -31,26 +32,29 @@ const Profile = () => {
       setUserPosts(postData)
       
 
-      const uidPromise = new Promise((resolve, reject) => {
-         resolve(getAuth().currentUser.uid)
+      onAuthStateChanged(auth, async (u) => 
+      {
+
+        if(u.uid === user.uid) 
+        {
+          setMyAccount(true)
+        }
+
+
+        if(userData.followers.includes(u.currentUser.uid)) 
+        {
+          setIsFollowing(true)
+        }
       })
-  
-      const uid = await uidPromise
 
 
-      if(user.uid === uid) 
-      {
-        setMyAccount(true)
-      }
 
 
-      const currentUserLoggedIn = getAuth()
-      //Sets following button to following or Follow
 
-      if(userData.followers.includes(currentUserLoggedIn.currentUser.uid)) 
-      {
-        setIsFollowing(true)
-      }
+
+
+
+
   
 
       setLoading(false)

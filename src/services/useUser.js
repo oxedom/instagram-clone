@@ -17,7 +17,7 @@ import { firestore, auth } from "../firebase";
 //Returns Firestore Auth users not users from collections
 export function useUser() {
 
-  const nav = useNavigate()
+
   const getUserbyId = async (id) => {
     let user = {};
     const q = query(collection(firestore, "users"), where("uid", "==", id));
@@ -87,7 +87,7 @@ export function useUser() {
       });
 
       //Force Refreshs page to rerender navbar comp
-      nav('')
+
 
 
   };

@@ -2,7 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import Post from "../Post/Post";
 import { useUser } from "../../services/useUser";
 import { usePost } from "../../services/usePost";
-import { getAuth } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
 
 const Feed = () => {
   //eslint-disable-next-line
@@ -15,22 +16,18 @@ const Feed = () => {
   //Need to update this method to sort by posts and fetch post more efficently;
   const { getAllUserPosts } = usePost();
 
+
+
   const fetchData = useCallback(async () => 
   {
-      //Get the user id from getAuth Promise
 
-      const uidPromise = new Promise((resolve, reject) => {
-        const user = getAuth().currentUser
-        if(user) { resolve(user.uid)}
-     
-      })
-  
-      const uid = await uidPromise
-  
-      //Fetch his info and get all of his followers ids
-      const user = await getUserbyId(uid);
-      //Fetch their posts and set them as posts on the feed
-      const fetchPosts = await user.following.forEach(async (f) => {
+      onAuthStateChanged(auth, async (userData) => 
+      {
+        if(userData) 
+        {
+          const user = await getUserbyId(userData.uid);
+                //Fetch their posts and set them as posts on the feed
+         const fetchPosts = await user.following.forEach(async (f) => {
   
         //Query the person he is followings data to get his username and profile picture;
         const followerData = await getUserbyId(f);
@@ -47,7 +44,6 @@ const Feed = () => {
           photoURL,
         }));
 
-        console.log(updatedPosts);
         //Setting the posts state to the newly fetched posts whilst keeping the previous kept posts
         setPosts((prev) => {
           return [...prev, ...updatedPosts];
@@ -55,8 +51,9 @@ const Feed = () => {
 
       });
 
-      //Sort posts
-      setPosts((prev) => {return prev.sort(function(x,y){ return x.date - y.date})})
+        }
+      })
+
 
   },[])
 

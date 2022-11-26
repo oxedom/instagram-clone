@@ -1,19 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useUser } from "../../services/useUser";
-
+import { useNavigate } from "react-router";
 
 const Settings = () => {
 
+    const navigate = useNavigate()
     const [username,setUsername] = useState('')
     const [profileUrl, setProfileUrl] = useState('')
+
     const { updateUser} = useUser()
 
     const handleSubmit = (e) => {
         
 
         e.preventDefault()
-        updateUser({username: username })
-        
+        updateUser({username: username }).then(() => 
+        {
+          setUsername('')
+          navigate(0)
+        })
+      
 
     }
 
