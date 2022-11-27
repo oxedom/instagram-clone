@@ -93,7 +93,7 @@ const Navbar = ({children}) => {
 
     {children}
     {/* BOTTOM NAV */}
-    <nav className="block p-4 fixed inset-x-0 bottom-0 z-10 border shadow-lg bg-white   md:hidden ">
+    <nav className="block p-2 fixed inset-x-0 bottom-0 z-10 border shadow-lg bg-white   md:hidden ">
     <div className="flex justify-around items-center ">
 
 
