@@ -7,11 +7,11 @@ const Post = (props) => {
     props.props;
 
   return (
-    <div className="flex flex-col shadow-md border-solid m-3 rounded  ">
+    <div className="flex flex-col shadow-md border-solid m-3 rounded max-w-[450px]   ">
       <div className="bg-white p-4 rounded-lg ">
         <div className="flex items-center gap-2 align-center  ">
           <img
-            className="rounded-full object-cover aspect-ratio: auto; w-10 h-10 "
+            className="rounded-full object-cover  aspect-ratio: auto; w-10 h-10 "
             alt="profile of user"
             src={photoURL}
           />
@@ -24,8 +24,9 @@ const Post = (props) => {
           </Link>
         </div>
       </div>
+
       <Link to={`/post/${id}`}>
-        <img className="object-cover w-96  md:max-w-screen-md  " alt={text} src={imgUrl} />
+        <img className="" alt={text} src={imgUrl} />
       </Link>
       <PostButtons props={{ likes, uid, text, username, date, id , comments}}>
         {" "}

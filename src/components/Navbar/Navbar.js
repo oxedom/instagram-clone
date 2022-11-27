@@ -46,7 +46,7 @@ const Navbar = ({children}) => {
 
   return (
     
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
 
 
         <nav className="bg-white border shadow-lg hidden md:block ">
