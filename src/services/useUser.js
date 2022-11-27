@@ -1,4 +1,4 @@
-import { getAuth, updateProfile } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import {
   collection,
   getDocs,
@@ -9,91 +9,105 @@ import {
   arrayUnion,
 } from "firebase/firestore";
 
-import { firestore, auth } from "../firebase";
+import { firestore } from "../firebase";
 
-//Reasons to get a user by ID
-//Getting his data for a profile picture and name for comments for example
 
-//Returns Firestore Auth users not users from collections
 export function useUser() {
-  function isImgUrl(url) {
-    return /\.(jpg|jpeg|png|webp|avif|gif)$/.test(url);
-  }
+
 
   const getUserbyId = async (id) => {
-    let user = {};
-    const q = query(collection(firestore, "users"), where("uid", "==", id));
+    try {
+      let user = {};
+      const q = query(collection(firestore, "users"), where("uid", "==", id));
+  
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        user = { ...doc.data(), id: doc.id };
+      });
+  
+      return user;
+    } catch (error) {
+      console.error(error)
+    }
 
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      user = { ...doc.data(), id: doc.id };
-    });
-
-    return user;
   };
 
   const getAllUsers = async () => {
-    let users = [];
+    try {
+      let users = [];
 
-    const usersRef = collection(firestore, "users");
-
-    const querySnapshot = await getDocs(usersRef);
-    querySnapshot.forEach((doc) => {
-      users.push(doc.data());
-    });
-
-    return users;
-  };
-
-  const updateUser = async (updatedObj) => {
-    //Update user function updates any key value that is inside the user DOC
-    //Be warry with making sure the right caps lock is on and not overriding existing
-    //props by mistake, need to make sure to add SANTIZATOIN on this function.
-
-    if (!isImgUrl(updatedObj.photoURL)) {
-      return;
+      const usersRef = collection(firestore, "users");
+  
+      const querySnapshot = await getDocs(usersRef);
+      querySnapshot.forEach((doc) => {
+        users.push(doc.data());
+      });
+  
+      return users;
+      
+    } catch (error) {
+      console.error(error)
     }
 
-    let id = undefined;
-    const q = query(
-      collection(firestore, "users"),
-      where("uid", "==", `${auth.currentUser.uid}`)
-    );
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      id = doc.id;
-    });
-    const userRef = doc(firestore, "users", id);
-    await updateDoc(userRef, { ...updatedObj });
-
-    //Updates the auth.current username Object
-
-    await updateProfile(auth.currentUser, {
-      // photoURL: updatedObj.
-      displayName: updatedObj.username,
-      photoURL: updatedObj.photoURL,
-    });
-
-    //Force Refreshs page to rerender navbar comp
   };
 
-  const getUserByUsername = async (username) => {
-    let user = [];
-    const q = query(
-      collection(firestore, "users"),
-      where("username", "==", username)
-    );
+  // const updateUser = async (updatedObj) => {
+  //   //Update user function updates any key value that is inside the user DOC
+  //   //Be warry with making sure the right caps lock is on and not overriding existing
+  //   //props by mistake, need to make sure to add SANTIZATOIN on this function.
 
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      user.push({ ...doc.data(), id: doc.id });
-    });
-    user = user[0];
-    return user;
+  //   if (!isImgUrl(updatedObj.photoURL)) {
+  //     return;
+  //   }
+
+    
+
+  //   let id = undefined;
+  //   const q = query(
+  //     collection(firestore, "users"),
+  //     where("uid", "==", `${auth.currentUser.uid}`)
+  //   );
+  //   const querySnapshot = await getDocs(q);
+  //   querySnapshot.forEach((doc) => {
+  //     id = doc.id;
+  //   });
+  //   const userRef = doc(firestore, "users", id);
+  //   await updateDoc(userRef, { ...updatedObj });
+
+  //   //Updates the auth.current username Object
+
+  //   await updateProfile(auth.currentUser, {
+  //     // photoURL: updatedObj.
+  //     displayName: updatedObj.username,
+  //     photoURL: updatedObj.photoURL,
+  //   });
+
+  //   //Force Refreshs page to rerender navbar comp
+  // };
+
+  const getUserByUsername = async (username) => {
+    try {
+      let user = [];
+      const q = query(
+        collection(firestore, "users"),
+        where("username", "==", username)
+      );
+  
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        user.push({ ...doc.data(), id: doc.id });
+      });
+      user = user[0];
+      return user;
+    } catch (error) {
+      console.error(error)
+    }
+
   };
 
   const toogleFollow = async (userToFollowID) => {
-    //Gets Data of current user logged in
+    try {
+        //Gets Data of current user logged in
     const currentUserLoggedIn = getAuth();
 
     //Get USER DATA for following array
@@ -136,12 +150,16 @@ export function useUser() {
         followers: arrayUnion(currentUserLoggedIn.currentUser.uid),
       });
     }
+      
+    } catch (error) {
+      console.error(error)
+    }
+  
   };
 
   return {
     getUserbyId,
     getAllUsers,
-    updateUser,
     getUserByUsername,
     toogleFollow,
   };
