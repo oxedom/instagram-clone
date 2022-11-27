@@ -21,8 +21,10 @@ const RouteSwitch = () => {
           path="feed"
           element={
             <Protected>
-              <Navbar> </Navbar>
+              <Navbar>
               <Feed></Feed>
+                 </Navbar>
+     
             </Protected>
           }
         >
@@ -33,8 +35,10 @@ const RouteSwitch = () => {
           path="profile/:username"
           element={
             <Protected>
-              <Navbar> </Navbar>
+              <Navbar>
               <Profile></Profile>
+                 </Navbar>
+ 
             </Protected>
           }
         >
@@ -46,9 +50,9 @@ const RouteSwitch = () => {
           element={
             <Protected>
               <Navbar>
-                
+              <PostPage></PostPage>
                  </Navbar>
-                 <PostPage></PostPage>
+      
   
             </Protected>
           }
@@ -59,8 +63,10 @@ const RouteSwitch = () => {
         <Route
         path="upload"
         element={<Protected>
-          <Navbar></Navbar>
+          <Navbar>
           <Addpost></Addpost>
+          </Navbar>
+
         </Protected>}
         ></Route>
 
