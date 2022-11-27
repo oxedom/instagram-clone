@@ -2,7 +2,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { auth } from "../../firebase";
-import { Link } from "react-router-dom";
+
 
 const NotFound = () => {
   const navigate = useNavigate();

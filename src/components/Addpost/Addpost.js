@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { usePost } from "../../services/usePost";
+import { PostService } from "../../services/PostService";
 
 const Addpost = () => {
   const [imgUrl, setUrl] = useState("");
   const [postText, setPostText] = useState("");
-  const postApi = usePost();
+  const postApi = PostService();
 
   function isImgUrl(url) {
     return /\.(jpg|jpeg|png|webp|avif|gif)$/.test(url);

@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, firestore } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 
-export const useSignup = () => {
+export const SignupService = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
 
@@ -27,7 +27,7 @@ export const useSignup = () => {
       setError(response.error);
       //Set loading to false
 
-      const { displayName, uid } = response.user;
+      const { uid } = response.user;
 
       await addDoc(collection(firestore, "users"), {
         username,

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { useUser } from "../../services/useUser";
-import { usePost } from "../../services/usePost";
+import { UserService } from "../../services/UserService";
+import { PostService } from "../../services/PostService";
 import PhotoGrid from "../PhotoGrid/PhotoGrid";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import { useNavigate, useParams } from "react-router";
@@ -8,8 +8,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 
 const Profile = () => {
-  const { getUserbyId, getUserByUsername } = useUser();
-  const { getAllUserPosts } = usePost();
+  const { getUserbyId, getUserByUsername } = UserService();
+  const { getAllUserPosts } = PostService();
   const { username } = useParams();
   const [userPosts, setUserPosts] = useState([]);
   const navigate = useNavigate()

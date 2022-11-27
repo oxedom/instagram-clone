@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import threeDots from "../../assests/dots.png";
 
-import { useUser } from "../../services/useUser";
+import { UserService } from "../../services/UserService";
 
 const ProfileInfo = (props) => {
   const { isFollowing, setIsFollowing, myAccount, posts } = props;
@@ -9,7 +9,7 @@ const ProfileInfo = (props) => {
   const { photoURL, username, bio, following, followers, uid } =
     props.profileData;
 
-  const userAPI = useUser();
+  const userAPI = UserService();
 
   const handleFollow = async () => {
     if (isFollowing) {

@@ -11,10 +11,10 @@ import {
   arrayUnion,
 } from "firebase/firestore";
 import { auth, firestore } from "../firebase";
-import { useUser } from "./useUser";
+import { UserService } from "./UserService";
 
-export const usePost = () => {
-  const userAPI = useUser();
+export const PostService = () => {
+  const userAPI = UserService();
 
   const getPostByID = async (id) => {
     try {

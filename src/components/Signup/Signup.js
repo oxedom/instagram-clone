@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import img from "../../assests/sam-logo.png";
 import { useNavigate } from "react-router-dom";
-import { useSignup } from "../../hooks/useSignup";
+import { SignupService } from "../../services/SignupService";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +11,7 @@ const Signup = () => {
   const [profileUrl, setProfileUrl] = useState("");
   const [buttonState, setButtonState] = useState();
   //eslint-disable-next-line
-  const { signup, error, isLoading } = useSignup();
+  const { signup, error, isLoading } = SignupService();
   const navigate = useNavigate();
 
   useEffect(() => {

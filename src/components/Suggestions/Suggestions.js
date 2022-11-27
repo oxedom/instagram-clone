@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useUser } from "../../services/useUser";
+import { UserService } from "../../services/UserService";
 
 const Suggestions = () => {
-  const userAPI = useUser();
+  const userAPI = UserService();
   const [users, setUsers] = useState([]);
 
   const fetchData = useCallback(async () => {
@@ -32,6 +32,7 @@ const Suggestions = () => {
               <Link to={`/profile/${u.username}`}>
                 <div className="flex gap-1 flex-col items-center ">
                   <img
+                    alt="suggested profile"
                     className="m-1 rounded-full object-cover aspect-ratio: auto; w-10 h-10"
                     src={u.photoURL}
                   />

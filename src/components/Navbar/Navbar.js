@@ -3,19 +3,19 @@ import uploadIcon from "../../assests/upload.png";
 import homepageIcon from "../../assests/homepage.png";
 
 import { Link } from "react-router-dom";
-import { useLogout } from "../../hooks/useLogout";
+import { LogoutService } from "../../services/LogoutService";
 
 import { useCallback, useEffect, useState } from "react";
-import { useUser } from "../../services/useUser";
+import { UserService } from "../../services/UserService";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 const Navbar = ({ children }) => {
   //Fetching logout function
-  const { logout } = useLogout();
+  const { logout } = LogoutService();
 
   const [userData, setUserData] = useState("");
-  const { getUserByUsername } = useUser();
-  //Handle logout, uses logout hook to log user out server and client
+  const { getUserByUsername } = UserService();
+
   const handleLogout = async () => {
     await logout();
   };

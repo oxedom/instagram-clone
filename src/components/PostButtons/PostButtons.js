@@ -3,43 +3,43 @@ import liked from "../../assests/darkheart.png";
 import commmentIcon from "../../assests/comment.png";
 import Comment from "../Comment/Comment";
 import { useEffect, useState } from "react";
-import { usePost } from "../../services/usePost";
+import { PostService } from "../../services/PostService";
 import { Link } from "react-router-dom";
 import { formatDistance } from "date-fns";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
 
 const PostButtons = (props) => {
   const { text, likes, username, date, id, comments } = props.postData;
-
+  const [amountOfLikes, setAmountOfLikes] = useState(1)
   const [localComments, setLocalComments] = useState([]);
-  const postApi = usePost();
-  const [likedState, setLikedState] = useState(unlike);
+  const postApi = PostService();
+  const [likedState, setLikedState] = useState(false);
+  const [textColor, setTextColor] = useState("text-blue-200");
+
   const [formatedDate, setFormated] = useState("");
   const [commentText, setComment] = useState("");
 
-  const [textColor, setTextColor] = useState("text-blue-200");
 
   const handleCommentSubmit = (e) => {
-    postApi.addComment(id, commentText);
-    setLocalComments((prev) => [
-      ...prev,
-      { text: commentText, username: "Null" },
-    ]);
     e.preventDefault();
+    onAuthStateChanged(auth, (user) => {
+      postApi.addComment(id, commentText);
+      setLocalComments((prev) => [
+        ...prev,
+        { text: commentText, username: user.displayName},
+      ]);
+    })
     setComment("");
   };
 
+
+
   const handleLike = () => {
-    // eslint-disable-next-line
+  
     postApi.tooglelikePost(id);
-    if (likedState === liked) {
-      likes.pop("FAKELIKE");
-
-      setLikedState(unlike);
-    } else {
-      likes.push("FAKELIKE");
-
-      setLikedState(liked);
-    }
+    if(likedState) { setLikedState(false)}
+    else { setLikedState(true)}
   };
 
   useEffect(() => {
@@ -50,13 +50,17 @@ const PostButtons = (props) => {
     }
   }, [commentText]);
 
-  // eslint-disable-next-line
-  useEffect(() => {
-    setLocalComments(comments);
 
-    if (likes.some((l) => l.uid === "NULL")) {
-      setLikedState(liked);
-    }
+
+
+  useEffect(() => {
+    setAmountOfLikes(likes.length)
+    setLocalComments(comments);
+    onAuthStateChanged(auth, (user) => 
+    {
+      if (likes.some((l) => l.uid === user.uid)) {setLikedState(true);}
+    })
+  
   }, [likes]);
 
   useEffect(() => {
@@ -76,7 +80,7 @@ const PostButtons = (props) => {
               onClick={handleLike}
               alt="like"
               className="hover:cursor-pointer"
-              src={likedState}
+              src={likedState ? liked : unlike}
             />{" "}
           </li>
           <li>
@@ -88,7 +92,7 @@ const PostButtons = (props) => {
             />{" "}
           </li>
         </ul>
-        {<p> {likes.length} likes </p>}
+        {<p> TOo many likes </p>}
 
         <div className="flex gap-1">
           <Link to={`/profile/${username}`}>

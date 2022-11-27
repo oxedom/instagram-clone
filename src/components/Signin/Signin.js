@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import img from "../../assests/sam-logo.png";
 import { useNavigate } from "react-router-dom";
-import { useSignIn } from "../../hooks/useSignin";
+import { SignInService } from "../../services/SignInService";
 
 const Signin = (props) => {
   const [email, setEmail] = useState("");
@@ -10,7 +10,7 @@ const Signin = (props) => {
   const [loginError, setLoginError] = useState(false);
   const [buttonState, setButtonState] = useState();
 
-  const { signIn, error, isLoading } = useSignIn();
+  const { signIn, error, isLoading } = SignInService();
   const navigate = useNavigate();
 
   const handleTestUser = () => {

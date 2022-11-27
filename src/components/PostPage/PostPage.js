@@ -1,14 +1,14 @@
 import Post from "../Post/Post";
 import { useParams } from "react-router";
-import { usePost } from "../../services/usePost";
+import { PostService } from "../../services/PostService";
 import { useCallback, useEffect, useState } from "react";
-import { useUser } from "../../services/useUser";
+import { UserService } from "../../services/UserService";
 
 const PostPage = () => {
   const params = useParams();
   const [post, setPost] = useState(false);
-  const { getPostByID } = usePost();
-  const { getUserbyId } = useUser();
+  const { getPostByID } = PostService();
+  const { getUserbyId } = UserService();
 
   const fetchPostData = useCallback(async () => {
     const postData = await getPostByID(params.post_id);

@@ -12,7 +12,7 @@ import {
 import { firestore } from "../firebase";
 
 
-export function useUser() {
+export function UserService() {
 
 
   const getUserbyId = async (id) => {

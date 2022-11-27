@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import Post from "../Post/Post";
-import { useUser } from "../../services/useUser";
-import { usePost } from "../../services/usePost";
+import { UserService } from "../../services/UserService";
+import { PostService } from "../../services/PostService";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import Suggestions from "../Suggestions/Suggestions";
+import PostSkeleton from "../../Skeletons/PostSkeleton";
+import SuggestionsSkeleton from "../../Skeletons/SuggestionsSkeleton";
 
 const Feed = () => {
   //eslint-disable-next-line
@@ -12,10 +14,10 @@ const Feed = () => {
   const [posts, setPosts] = useState([]);
 
   //Functions from useEffect that allow the client to interact with the database through BL;
-  const { getUserbyId } = useUser();
+  const { getUserbyId } = UserService();
   //################################
   //Need to update this method to sort by posts and fetch post more efficently;
-  const { getAllUserPosts } = usePost();
+  const { getAllUserPosts } = PostService();
 
   const fetchData = useCallback(async () => {
     //Resets Posts array so no stale data or rerenders duplicate the amount of posts
@@ -25,7 +27,7 @@ const Feed = () => {
         if (userData) {
           const user = await getUserbyId(userData.uid);
           //Fetch their posts and set them as posts on the feed
-          const fetchPosts = await user.following.forEach(async (f) => {
+            await user.following.forEach(async (f) => {
             //Query the person he is followings data to get his username and profile picture;
             const followerData = await getUserbyId(f);
             const { username, photoURL } = followerData;
@@ -61,7 +63,15 @@ const Feed = () => {
   return (
     <div>
       <div className="bg-slate-50 flex-grow gap-3 flex justify-center flex-col items-center">
-        <Suggestions></Suggestions>
+        {/* <Suggestions></Suggestions> */}
+          {(posts.length === 0) ?
+          <>
+            <PostSkeleton></PostSkeleton>  
+           <PostSkeleton></PostSkeleton>  
+           <PostSkeleton></PostSkeleton>  
+          </>
+           : <></>}
+
         {posts.map((p) => (
           <Post key={p.id} postData={p}>
             {" "}
