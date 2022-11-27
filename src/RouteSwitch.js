@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import PostPage from "./components/PostPage/PostPage";
 import Addpost from "./components/Addpost/Addpost";
-import Settings from "./components/Settings/Settings";
+import NotFound from "./components/NotFound/NotFound";
 
 const RouteSwitch = () => {
   return (
@@ -70,14 +70,8 @@ const RouteSwitch = () => {
         </Protected>}
         ></Route>
 
+        <Route path="*" element={<NotFound> </NotFound>}></Route>
 
-<Route
-        path="settings"
-        element={<Protected>
-          <Navbar></Navbar>
-          <Settings></Settings>
-        </Protected>}
-        ></Route>
       </Routes>
     </BrowserRouter>
   );
