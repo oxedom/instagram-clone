@@ -22,7 +22,8 @@ const Feed = () => {
 
   const fetchData = useCallback(async () => 
   {
-
+    //Resets Posts array so no stale data or rerenders duplicate the amount of posts
+    setPosts([]);
       onAuthStateChanged(auth, async (userData) => 
       {
         if(userData) 
@@ -61,8 +62,7 @@ const Feed = () => {
 
 
   useEffect(() => {
-    //Resets Posts array so no stale data or rerenders duplicate the amount of posts
-    setPosts([]);
+
 
 
 
@@ -76,7 +76,7 @@ const Feed = () => {
       <div className="bg-slate-50 flex-grow gap-3 flex justify-center flex-col items-center">
       <Suggestions></Suggestions>
       {posts.map((p) => (
-        <Post key={p.id} props={p}>
+        <Post key={p.id} postData={p} >
           {" "}
         </Post>
       ))}

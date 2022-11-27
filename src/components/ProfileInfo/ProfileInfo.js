@@ -7,10 +7,9 @@ import { useUser } from '../../services/useUser'
 
 const ProfileInfo = (props) => {
 
-    const {isFollowing, setIsFollowing, myAccount} = props
+    const {isFollowing, setIsFollowing, myAccount, posts} = props
 
-    const { posts } = props
-    const { photoURL, username, bio, following, followers, uid} = props.props
+    const { photoURL, username, bio, following, followers, uid} = props.profileData
 
     const userAPI = useUser()
 

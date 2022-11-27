@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 const Comment = (props) => {
 
-    const {text, username, date} = props.props
+    const {text, username, date} = props.commentData
 
     const [overFlow, setOverflow] = useState('ml-2 gap-1')
     useEffect(() => {

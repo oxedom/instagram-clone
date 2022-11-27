@@ -6,7 +6,7 @@ import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import { useParams } from "react-router";
 import {onAuthStateChanged } from "firebase/auth";
 import {auth} from '../../firebase'
-import { async } from "@firebase/util";
+
 
 const Profile = () => {
 
@@ -62,28 +62,19 @@ const Profile = () => {
       //  eslint-disable-next-line
    }, [username])
 
-   
-
+  
   
    useEffect(() => 
    { 
-
-
-
-
     fetchData()
    }, [fetchData])
-
-
-
-      
 
 
   return (
     <div className="lg:ml-28 lg:mr-28 xl:ml-48 xl:mr-48 2xl:mr-96 2xl:ml-96">
       {!loading &&
       <div className="flex flex-col">
-      <ProfileInfo setIsFollowing={setIsFollowing} isFollowing={isFollowing} myAccount={myAccount} posts={userPosts} props={userInfo} ></ProfileInfo>
+      <ProfileInfo setIsFollowing={setIsFollowing} isFollowing={isFollowing} myAccount={myAccount} posts={userPosts} profileData={userInfo} ></ProfileInfo>
       <PhotoGrid posts={userPosts}> </PhotoGrid>
       </div>
 }

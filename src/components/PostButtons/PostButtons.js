@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { formatDistance } from 'date-fns'
 
 const PostButtons = (props) => {
-  const { text, likes, username, date, id, comments } = props.props;
+  const { text, likes, username, date, id, comments } = props.postData;
 
 
   const [localComments, setLocalComments] = useState([])
@@ -18,7 +18,7 @@ const PostButtons = (props) => {
   const [commentText, setComment] = useState("");
   
 
-
+  
 
  
  
@@ -114,7 +114,7 @@ const PostButtons = (props) => {
         
       </div>
       <div className="mb-2">
-      {localComments.map((c) => { return <Comment key={c.date} props={c}> </Comment>})}
+      {localComments.map((c) => { return <Comment key={c.date} commentData={c}> </Comment>})}
       </div>
    
 

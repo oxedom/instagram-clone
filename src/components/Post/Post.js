@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import PostButtons from "../PostButtons/PostButtons";
 
 const Post = (props) => {
-  console.log(props);
-  const { imgUrl, text, uid, likes, username, id, date, photoURL, comments} =
-    props.props;
+
+  const { imgUrl, text, uid, likes, username, id, date, photoURL, comments} = props.postData 
+
 
   return (
     <div className="flex flex-col shadow-md border-solid m-3 rounded max-w-[450px]   ">
@@ -28,7 +28,7 @@ const Post = (props) => {
       <Link to={`/post/${id}`}>
         <img className="" alt={text} src={imgUrl} />
       </Link>
-      <PostButtons props={{ likes, uid, text, username, date, id , comments}}>
+      <PostButtons postData={{ likes, uid, text, username, date, id , comments}}>
         {" "}
       </PostButtons>
     </div>
