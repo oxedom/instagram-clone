@@ -99,10 +99,10 @@ const PostButtons = (props) => {
     
         <div className="flex gap-1">
           <Link to={`/profile/${username}`}>
-          <p className="font-semibold flex gap-2"> {username}</p>{" "}
+          <p className="font-semibold flex gap-2 "> {username}</p>{" "}
           </Link>
 
-          <p> {text} </p>
+          <p className="" > {text} </p>
         </div>
         <div>
           <p> {formatedDate} </p>
