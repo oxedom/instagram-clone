@@ -17,17 +17,17 @@ const PostButtons = (props) => {
   const [commentText, setComment] = useState("");
   
 
-
+    
 
  
-  const userObj = JSON.parse(localStorage.getItem("userInfo"));
+ 
 
 
   const [textColor, setTextColor] = useState('text-blue-200')
 
   const handleCommentSubmit = (e) => {
     postApi.addComment(id, commentText)
-    setLocalComments((prev) => [...prev, {text: commentText, username: userObj.displayName}])  
+    setLocalComments((prev) => [...prev, {text: commentText, username: 'Null'}])  
     e.preventDefault();
     setComment('')
   };
@@ -65,10 +65,10 @@ const PostButtons = (props) => {
     setLocalComments(comments)
    
 
-    if (likes.some((l) => l.uid === userObj.uid)) {
+    if (likes.some((l) => l.uid === 'NULL')) {
       setLikedState(liked);
     }
-  }, [likes, userObj.uid]);
+  }, [likes,]);
 
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const PostButtons = (props) => {
 
   return (
 
-    <div className="bg-white flex flex-col  ">
+    <div className="bg-white flex flex-col overflow-hidden  ">
       <div className="p-2 flex flex-col ">
         <ul className="flex gap-4 object-contain w-14 mt-2 ">
           <li>

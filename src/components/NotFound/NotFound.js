@@ -15,6 +15,10 @@ const NotFound = () => {
         {
             navigate('/feed')
         }
+        if(!user) 
+        {
+            navigate('/sign-in')
+        }
     })
 
     },[])

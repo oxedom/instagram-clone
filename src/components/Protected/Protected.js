@@ -1,14 +1,26 @@
-import { Navigate } from "react-router";
 
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
+import {  useNavigate } from "react-router";
+import { auth } from "../../firebase";
 const Protected = ({ children }) => {
 
-  const userObj = JSON.parse(localStorage.getItem("userInfo"));
-  //If there is no user Object currenty stored in localstorage, log the user out
-  if (userObj === null) {
-    return <Navigate to="/sign-in" replace />;
-  }
+  const navigate = useNavigate()
+
+
+
+    useEffect(() => {
+
+    onAuthStateChanged(auth, (user) => 
+    {
+      if(!user) { navigate('/sign-in')}
+    })
+  }, [])
+ 
+
+
 
   return children;
-};
+}
 
 export default Protected;

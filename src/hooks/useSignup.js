@@ -27,7 +27,7 @@ export const useSignup = () => {
       //SETTING Error if it exists
       setError(response.error);
       //Set loading to false
-      //Obj decunstructing Saving userobj and jwt in localstorage
+    
       const { displayName, uid } = response.user;
 
 
@@ -40,13 +40,7 @@ export const useSignup = () => {
         following: [],
       });
 
-      localStorage.setItem(
-        "userInfo",
-        JSON.stringify({
-          displayName,
-          uid,
-        })
-      );
+
 
       setIsLoading(false);
     } catch (error) {

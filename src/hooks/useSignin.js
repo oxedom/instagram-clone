@@ -20,21 +20,10 @@ export const useSignIn = () => {
       //Set loading to false
       setIsLoading(false);
 
-      //Obj decunstructing Saving userobj and jwt in localstorage
+ 
 
       const { displayName,uid } = response.user;
 
-      localStorage.setItem(
-        "userInfo",
-        JSON.stringify({
-          displayName,
-
-          // user_email,
-          // accessToken,
-          uid,
-          // jwt,
-        })
-      );
     } catch (error) {
       //catching error
       setError(error);
