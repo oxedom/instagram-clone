@@ -5,6 +5,7 @@ import Comment from "../Comment/Comment";
 import { useEffect, useState } from "react";
 import { usePost } from "../../services/usePost";
 import { Link } from "react-router-dom";
+import { formatDistance } from 'date-fns'
 
 const PostButtons = (props) => {
   const { text, likes, username, date, id, comments } = props.props;
@@ -17,7 +18,7 @@ const PostButtons = (props) => {
   const [commentText, setComment] = useState("");
   
 
-    
+
 
  
  
@@ -72,11 +73,11 @@ const PostButtons = (props) => {
 
 
   useEffect(() => {
-    const d = new Date(date);
 
-    const formated = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()}`;
-
-    setFormated(formated);
+    const today = new Date()
+    const dateInWords = formatDistance(date, today.getTime(),)
+    
+    setFormated(dateInWords);
   }, [date]);
 
   return (
@@ -105,7 +106,7 @@ const PostButtons = (props) => {
           <p className="" > {text} </p>
         </div>
         <div>
-          <p> {formatedDate} </p>
+          <p className="text-sm text-slate-400 p-0.5"> {formatedDate} ago </p>
 
           
         </div>
