@@ -3,7 +3,7 @@ import { useUser } from "../../services/useUser";
 import { usePost } from "../../services/usePost";
 import PhotoGrid from "../PhotoGrid/PhotoGrid";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 
@@ -12,7 +12,7 @@ const Profile = () => {
   const { getAllUserPosts } = usePost();
   const { username } = useParams();
   const [userPosts, setUserPosts] = useState([]);
-
+  const navigate = useNavigate()
   const [userInfo, setUserInfo] = useState({ followers: [], following: [] });
 
   const [loading, setLoading] = useState(false);
@@ -21,7 +21,8 @@ const Profile = () => {
 
   const fetchData = useCallback(async () => {
     const user = await getUserByUsername(username);
-
+    //If not user renavigate to to /
+    if(user === undefined) { navigate('/')}
     const userData = await getUserbyId(user.uid);
     const postData = await getAllUserPosts(user.uid);
     setUserInfo(userData);
@@ -43,7 +44,7 @@ const Profile = () => {
   }, [username]);
 
   useEffect(() => {
-    fetchData();
+    fetchData()
   }, [fetchData]);
 
   return (

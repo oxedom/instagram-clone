@@ -114,7 +114,7 @@ const PostButtons = (props) => {
       <hr></hr>
       <form onSubmit={handleCommentSubmit} className="rounded flex">
         <input
-          maxLength={80}
+          maxLength={250}
           className="p-3 flex-grow"
           value={commentText}
           onChange={(e) => {

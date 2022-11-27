@@ -156,6 +156,7 @@ export const usePost = () => {
   };
 
   const addComment = async (postID, text) => {
+    if(text.length > 250) { return new Error('Too much text')}
     try {
       auth.onAuthStateChanged(async (user) => {
         if (user) {
