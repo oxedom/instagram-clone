@@ -25,8 +25,6 @@ const ProfileInfo = (props) => {
             followers.push("fakeFollower")
             setIsFollowing(true)}
         //Sending the current UID of the users profile
-    
-        
         userAPI.toogleFollow(uid)
     }
 
@@ -56,7 +54,6 @@ const ProfileInfo = (props) => {
         
         }
   
-
 
         </div>
   

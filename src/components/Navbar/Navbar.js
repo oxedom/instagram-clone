@@ -18,23 +18,22 @@ const Navbar = ({children}) => {
   //Handle logout, uses logout hook to log user out server and client
   const handleLogout = async () => { await logout(); };
 
-  const fetchData = useCallback(async ()=> {
-
+  const fetchData = useCallback( ()=> {
 
       onAuthStateChanged(auth, async (user) => 
       {
-        if(user) 
+        try 
         {
-          const userData = await getUserByUsername(user.displayName)
-
-          setUserData({...userData, ...user})
+          if(user) 
+          {
+            const userData = await getUserByUsername(user.displayName)
+  
+            setUserData({...userData, ...user})
+          }
         }
+        catch(err) { console.error(err);}
+
       })
-
-
-
-
-
 
   }, [])
   
@@ -62,7 +61,7 @@ const Navbar = ({children}) => {
 
         <div className="flex items-center gap-3">
           <div
-            className="rounded text-white    text-center font-bold btn p-1 bg-blue-500 hover:bg-blue-700`"
+            className="rounded text-white  hover:cursor-pointer  text-center font-bold btn p-1 bg-blue-500 hover:bg-blue-700`"
             onClick={handleLogout}
           >
             {" "}
@@ -71,7 +70,7 @@ const Navbar = ({children}) => {
 
           <div>
             <Link to={'/upload'}>
-            <img className='bject-cover aspect-ratio: auto; w-8 h-8 sm:w-10 sm:h-10' src={uploadIcon}/>
+            <img alt='upload' className='bject-cover aspect-ratio: auto; w-8 h-8 sm:w-10 sm:h-10' src={uploadIcon}/>
             </Link>
            
           </div>
@@ -113,7 +112,7 @@ const Navbar = ({children}) => {
  
           <div>
             <Link to={'/upload'}>
-            <img className='bject-cover aspect-ratio: auto; w-8 h-8 sm:w-10 sm:h-10' src={uploadIcon}/>
+            <img alt='upload' className='bject-cover aspect-ratio: auto; w-8 h-8 sm:w-10 sm:h-10' src={uploadIcon}/>
             </Link>
            
           </div>

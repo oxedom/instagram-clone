@@ -87,11 +87,11 @@ const PostButtons = (props) => {
         <ul className="flex gap-4 object-contain w-14 mt-2 ">
           <li>
             {" "}
-            <img onClick={handleLike} alt="like" src={likedState} />{" "}
+            <img onClick={handleLike} alt="like" className='hover:cursor-pointer' src={likedState} />{" "}
           </li>
           <li>
             {" "}
-            <img alt="comment" src={commmentIcon} />{" "}
+            <img alt="comment" className="hover:cursor-pointer" src={commmentIcon} />{" "}
           </li>
         </ul>
         {

@@ -26,35 +26,45 @@ const Feed = () => {
     setPosts([]);
       onAuthStateChanged(auth, async (userData) => 
       {
-        if(userData) 
-        {
-          const user = await getUserbyId(userData.uid);
-                //Fetch their posts and set them as posts on the feed
-         const fetchPosts = await user.following.forEach(async (f) => {
+        try {
+
+          if(userData) 
+          {
+            const user = await getUserbyId(userData.uid);
+                  //Fetch their posts and set them as posts on the feed
+           const fetchPosts = await user.following.forEach(async (f) => {
+    
+          //Query the person he is followings data to get his username and profile picture;
+          const followerData = await getUserbyId(f);
+          const { username, photoURL} = followerData;
+          console.log(followerData);
+          
+          const posts = await getAllUserPosts(f);
+          
+          //Update all of the users posts with his username and profile img URL
   
-        //Query the person he is followings data to get his username and profile picture;
-        const followerData = await getUserbyId(f);
-        const { username, photoURL} = followerData;
-        console.log(followerData);
-        
-        const posts = await getAllUserPosts(f);
-        
-        //Update all of the users posts with his username and profile img URL
-
-        const updatedPosts = posts.map((obj) => ({
-          ...obj,
-          username,
-          photoURL,
-        }));
-
-        //Setting the posts state to the newly fetched posts whilst keeping the previous kept posts
-        setPosts((prev) => {
-          return [...prev, ...updatedPosts];
+          const updatedPosts = posts.map((obj) => ({
+            ...obj,
+            username,
+            photoURL,
+          }));
+  
+          //Setting the posts state to the newly fetched posts whilst keeping the previous kept posts
+          setPosts((prev) => {
+            return [...prev, ...updatedPosts];
+          });
+  
         });
+  
+          }
 
-      });
 
         }
+        catch(error)
+        {
+          console.error(error)
+        }
+ 
       })
 
 
