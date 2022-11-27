@@ -20,10 +20,7 @@ export const useSignIn = () => {
       //Set loading to false
       setIsLoading(false);
 
- 
-
-      const { displayName,uid } = response.user;
-
+      const { displayName, uid } = response.user;
     } catch (error) {
       //catching error
       setError(error);

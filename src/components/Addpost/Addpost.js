@@ -7,25 +7,21 @@ const Addpost = () => {
   const postApi = usePost();
 
   function isImgUrl(url) {
-    return /\.(jpg|jpeg|png|webp|avif|gif)$/.test(url)
+    return /\.(jpg|jpeg|png|webp|avif|gif)$/.test(url);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    if(isImgUrl(imgUrl)) 
-    {
+
+    if (isImgUrl(imgUrl)) {
       postApi.postPost(postText, imgUrl);
       setPostText("");
       setUrl("");
     }
-
-
   };
 
   return (
     <div className="flex-grow gap-3 flex justify-center flex-col items-center ">
-      
       <form
         onSubmit={handleSubmit}
         className="border p-10 rounded bg-slate-200  flex gap-4 flex-col"

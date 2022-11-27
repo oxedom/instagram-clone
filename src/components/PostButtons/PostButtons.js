@@ -5,123 +5,116 @@ import Comment from "../Comment/Comment";
 import { useEffect, useState } from "react";
 import { usePost } from "../../services/usePost";
 import { Link } from "react-router-dom";
-import { formatDistance } from 'date-fns'
+import { formatDistance } from "date-fns";
 
 const PostButtons = (props) => {
   const { text, likes, username, date, id, comments } = props.postData;
 
-
-  const [localComments, setLocalComments] = useState([])
+  const [localComments, setLocalComments] = useState([]);
   const postApi = usePost();
   const [likedState, setLikedState] = useState(unlike);
   const [formatedDate, setFormated] = useState("");
   const [commentText, setComment] = useState("");
-  
 
-  
-
- 
- 
-
-
-  const [textColor, setTextColor] = useState('text-blue-200')
+  const [textColor, setTextColor] = useState("text-blue-200");
 
   const handleCommentSubmit = (e) => {
-    postApi.addComment(id, commentText)
-    setLocalComments((prev) => [...prev, {text: commentText, username: 'Null'}])  
+    postApi.addComment(id, commentText);
+    setLocalComments((prev) => [
+      ...prev,
+      { text: commentText, username: "Null" },
+    ]);
     e.preventDefault();
-    setComment('')
+    setComment("");
   };
 
   const handleLike = () => {
-    
-    
-// eslint-disable-next-line
+    // eslint-disable-next-line
     postApi.tooglelikePost(id);
     if (likedState === liked) {
-      likes.pop('FAKELIKE')
+      likes.pop("FAKELIKE");
 
       setLikedState(unlike);
     } else {
+      likes.push("FAKELIKE");
 
-      likes.push('FAKELIKE')
-      
       setLikedState(liked);
     }
   };
 
   useEffect(() => {
-    if(commentText.length > 1) 
-    {
-      setTextColor('text-blue-400')
-    } 
-    else 
-    {
-      setTextColor('text-blue-200')
+    if (commentText.length > 1) {
+      setTextColor("text-blue-400");
+    } else {
+      setTextColor("text-blue-200");
     }
-  }, [commentText])
+  }, [commentText]);
 
   // eslint-disable-next-line
   useEffect(() => {
-    setLocalComments(comments)
-   
+    setLocalComments(comments);
 
-    if (likes.some((l) => l.uid === 'NULL')) {
+    if (likes.some((l) => l.uid === "NULL")) {
       setLikedState(liked);
     }
-  }, [likes,]);
-
+  }, [likes]);
 
   useEffect(() => {
+    const today = new Date();
+    const dateInWords = formatDistance(date, today.getTime());
 
-    const today = new Date()
-    const dateInWords = formatDistance(date, today.getTime(),)
-    
     setFormated(dateInWords);
   }, [date]);
 
   return (
-
     <div className="bg-white flex flex-col overflow-hidden  ">
       <div className="p-2 flex flex-col ">
         <ul className="flex gap-4 object-contain w-14 mt-2 ">
           <li>
             {" "}
-            <img onClick={handleLike} alt="like" className='hover:cursor-pointer' src={likedState} />{" "}
+            <img
+              onClick={handleLike}
+              alt="like"
+              className="hover:cursor-pointer"
+              src={likedState}
+            />{" "}
           </li>
           <li>
             {" "}
-            <img alt="comment" className="hover:cursor-pointer" src={commmentIcon} />{" "}
+            <img
+              alt="comment"
+              className="hover:cursor-pointer"
+              src={commmentIcon}
+            />{" "}
           </li>
         </ul>
-        {
-            <p> {likes.length} likes </p>
-        }
-    
+        {<p> {likes.length} likes </p>}
+
         <div className="flex gap-1">
           <Link to={`/profile/${username}`}>
-          <p className="font-semibold flex gap-2 "> {username}</p>{" "}
+            <p className="font-semibold flex gap-2 "> {username}</p>{" "}
           </Link>
 
-          <p className="" > {text} </p>
+          <p className=""> {text} </p>
         </div>
         <div>
           <p className="text-sm text-slate-400 p-0.5"> {formatedDate} ago </p>
-
-          
         </div>
-
-        
       </div>
       <div className="mb-2">
-      {localComments.map((c) => { return <Comment key={c.date} commentData={c}> </Comment>})}
+        {localComments.map((c) => {
+          return (
+            <Comment key={c.date} commentData={c}>
+              {" "}
+            </Comment>
+          );
+        })}
       </div>
-   
-
 
       <hr></hr>
       <form onSubmit={handleCommentSubmit} className="rounded flex">
-        <input maxLength={80}
+        <input
+          maxLength={80}
           className="p-3 flex-grow"
           value={commentText}
           onChange={(e) => {
@@ -136,7 +129,6 @@ const PostButtons = (props) => {
           className={"btn rounded font-bold bg-white m-1 p-1 " + textColor}
         >
           {" "}
-          
           Post{" "}
         </button>
       </form>

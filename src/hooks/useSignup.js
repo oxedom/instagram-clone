@@ -4,7 +4,6 @@ import { auth, firestore } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 
 export const useSignup = () => {
-  
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
 
@@ -27,10 +26,8 @@ export const useSignup = () => {
       //SETTING Error if it exists
       setError(response.error);
       //Set loading to false
-    
+
       const { displayName, uid } = response.user;
-
-
 
       await addDoc(collection(firestore, "users"), {
         username,
@@ -39,8 +36,6 @@ export const useSignup = () => {
         followers: [],
         following: [],
       });
-
-
 
       setIsLoading(false);
     } catch (error) {

@@ -4,7 +4,6 @@ import img from "../../assests/sam-logo.png";
 import { useNavigate } from "react-router-dom";
 import { useSignup } from "../../hooks/useSignup";
 
-
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,9 +25,9 @@ const Signup = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await signup(email, password, username, profileUrl).then(() => {       navigate("/feed");})
-      
-
+      await signup(email, password, username, profileUrl).then(() => {
+        navigate("/feed");
+      });
     } catch (err) {
       console.error(err);
     }
