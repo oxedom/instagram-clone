@@ -63,7 +63,7 @@ const Feed = () => {
   return (
     <div>
       <div className="bg-slate-50 flex-grow gap-3 flex justify-center flex-col items-center">
-        {/* <Suggestions></Suggestions> */}
+        <Suggestions></Suggestions>
           {(posts.length === 0) ?
           <>
             <PostSkeleton></PostSkeleton>  

@@ -1,4 +1,4 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
   collection,
   getDocs,
@@ -9,7 +9,7 @@ import {
   arrayUnion,
 } from "firebase/firestore";
 
-import { firestore } from "../firebase";
+import { auth, firestore } from "../firebase";
 
 
 export function UserService() {
@@ -50,6 +50,18 @@ export function UserService() {
     }
 
   };
+
+  const getCurrentUser = async () => 
+  {
+    let answer = undefined
+    await onAuthStateChanged(auth, (user) => 
+    {
+      if(user) { answer = user}
+      if(!user) { answer = {}}
+    })
+
+    return answer
+  }
 
   // const updateUser = async (updatedObj) => {
   //   //Update user function updates any key value that is inside the user DOC
@@ -162,5 +174,6 @@ export function UserService() {
     getAllUsers,
     getUserByUsername,
     toogleFollow,
+    getCurrentUser
   };
 }

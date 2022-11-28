@@ -7,7 +7,7 @@ Things to do:
 CSS SPINNER
 Delete unsed Vars
 Form validation; (error == true)
-useRef t- get comment click;
+
 fix like count;
 fix typoshook
 checkout imgs storage
