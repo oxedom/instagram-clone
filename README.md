@@ -9,7 +9,7 @@ Delete unsed Vars
 Form validation; (error == true)
 useRef t- get comment click;
 fix like count;
-fix typos
+fix typoshook
 checkout imgs storage
 check about transactions
 refactor code with adding a profile picture and signing up;

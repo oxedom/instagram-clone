@@ -2,7 +2,7 @@ import unlike from "../../assests/heart.png";
 import liked from "../../assests/darkheart.png";
 import commmentIcon from "../../assests/comment.png";
 import Comment from "../Comment/Comment";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef} from "react";
 import { PostService } from "../../services/PostService";
 import { Link } from "react-router-dom";
 import { formatDistance } from "date-fns";
@@ -19,7 +19,7 @@ const PostButtons = (props) => {
 
   const [formatedDate, setFormated] = useState("");
   const [commentText, setComment] = useState("");
-
+  const inputRefContainer = useRef(null)
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const PostButtons = (props) => {
     setComment("");
   };
 
-
+  const handleCommentButton = () => {inputRefContainer.current.focus()}
 
   const handleLike = () => {
   
@@ -49,6 +49,7 @@ const PostButtons = (props) => {
       setTextColor("text-blue-200");
     }
   }, [commentText]);
+
 
 
 
@@ -85,7 +86,7 @@ const PostButtons = (props) => {
           </li>
           <li>
             {" "}
-            <img
+            <img onClick={handleCommentButton}
               alt="comment"
               className="hover:cursor-pointer"
               src={commmentIcon}
@@ -118,6 +119,7 @@ const PostButtons = (props) => {
       <hr></hr>
       <form onSubmit={handleCommentSubmit} className="rounded flex">
         <input
+          ref={inputRefContainer}
           maxLength={250}
           className="p-3 flex-grow"
           value={commentText}
