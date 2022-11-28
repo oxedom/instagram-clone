@@ -29,11 +29,14 @@ const Suggestions = () => {
   }, []);
 
   return (
-    <>
+    <>  
+    <div className="flex items-center m-3 ml-20">
+    <SuggestionsSkeleton></SuggestionsSkeleton>
+    </div>
 
       <div className="shadow-md border-solid text-center p-1 mt-2 slide relative rounded-lg flex w-max gap-4 bg-white  ">
-      <SuggestionsSkeleton></SuggestionsSkeleton>
-        {false && users.map((u) => {
+
+        {true && users.map((u) => {
           return (
             <section>
               <Link to={`/profile/${u.username}`}>

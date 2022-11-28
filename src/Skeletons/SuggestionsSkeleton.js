@@ -20,8 +20,8 @@ const SuggestionsSkeleton = props => (
     <rect x="215" y="83" rx="5" ry="5" width="25" height="10" />
     <circle cx="320" cy="38" r="38" />
     <rect x="307" y="83" rx="5" ry="5" width="25" height="10" />
-    <circle cx="410" cy="38" r="38" />
-    <rect x="398" y="83" rx="5" ry="5" width="25" height="10" />
+    {/* <circle cx="410" cy="38" r="38" />
+    <rect x="398" y="83" rx="5" ry="5" width="25" height="10" /> */}
   </ContentLoader>
 )
 
