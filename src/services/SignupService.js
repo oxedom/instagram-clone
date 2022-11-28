@@ -35,6 +35,7 @@ export const SignupService = () => {
         bio: "Default bio",
         followers: [],
         following: [],
+        photoURL: profileUrl
       });
 
       setIsLoading(false);
