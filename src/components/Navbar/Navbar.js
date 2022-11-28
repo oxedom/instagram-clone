@@ -113,12 +113,17 @@ const Navbar = ({ children }) => {
 
           <div>
             <Link to={`/profile/${userData.username}`}>
-              <img
-                className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
-                alt="profile"
-                //Need to update photoURL
-                src={userData.photoURL}
-              />
+                 {!userData && <img alt="profile" className="rounded-full object-cover aspect-ratio: auto; w-10 h-10" src={userIcon}/>}
+                {userData && 
+                
+                
+                <img
+                  className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
+                  alt="profile"
+                  //Need to update photoURL
+
+                  src={userData.photoURL}
+                />}
             </Link>
           </div>
 

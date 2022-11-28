@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserService } from "../../services/UserService";
+import SuggestionsSkeleton from "../../Skeletons/SuggestionsSkeleton";
 
 const Suggestions = () => {
   const userAPI = UserService();
@@ -31,7 +32,8 @@ const Suggestions = () => {
     <>
 
       <div className="shadow-md border-solid text-center p-1 mt-2 slide relative rounded-lg flex w-max gap-4 bg-white  ">
-        {users.map((u) => {
+      <SuggestionsSkeleton></SuggestionsSkeleton>
+        {false && users.map((u) => {
           return (
             <section>
               <Link to={`/profile/${u.username}`}>
