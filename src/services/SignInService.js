@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-
+import { LogoutService } from "./LogoutService";
 export const SignInService = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
+  const { logout} = LogoutService();
 
   const signIn = async (email, password) => {
+    logout()
     setIsLoading(true);
     setError(null);
 

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import img from "../../assests/sam-logo.png";
 import { useNavigate } from "react-router-dom";
 import { SignInService } from "../../services/SignInService";
+import { LogoutService } from "../../services/LogoutService";
 
 const Signin = (props) => {
   const [email, setEmail] = useState("");
@@ -11,6 +12,8 @@ const Signin = (props) => {
   const [buttonState, setButtonState] = useState();
 
   const { signIn, error, isLoading } = SignInService();
+  const { logout} = LogoutService();
+
   const navigate = useNavigate();
 
   const handleTestUser = () => {
@@ -20,6 +23,7 @@ const Signin = (props) => {
   //Changes btn-color based on password length, needs to do more things
 
   useEffect(() => {
+
     if (password.length < 6) {
       setButtonState("bg-blue-300 hover:bg-blue-300 ");
     } else {
@@ -30,6 +34,7 @@ const Signin = (props) => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      await logout()
       await signIn(email, password);
       navigate("/feed");
     } catch (err) {
