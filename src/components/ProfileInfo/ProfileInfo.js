@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import threeDots from "../../assests/dots.png";
-
+import anonymousProfile from '../../assests/emptyUser.png'
 import { UserService } from "../../services/UserService";
 
 const ProfileInfo = (props) => {
@@ -27,11 +27,18 @@ const ProfileInfo = (props) => {
     <div className="mt-5 flex flex-col">
       <div className="m-4 flex justify-around ">
         {/* profile Pictutre */}
-        <img
+        {photoURL && <img
           className="rounded-full object-cover aspect-ratio: auto; w-20 h-20 md:w-32 md:h-32"
           src={photoURL}
           alt="profile"
-        />
+        /> }
+        {!photoURL &&
+          <img
+          className="rounded-full object-cover aspect-ratio: auto; w-20 h-20 md:w-32 md:h-32"
+          src={anonymousProfile}
+          alt="profile"
+        /> }
+
 
         {/* Username and follow button */}
         <div className="flex gap-2 flex-col justify-self-center">

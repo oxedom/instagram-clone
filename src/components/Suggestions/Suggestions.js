@@ -30,20 +30,19 @@ const Suggestions = () => {
 
   return (
     <>  
-    <div className="flex items-center m-3 ml-20">
-    <SuggestionsSkeleton></SuggestionsSkeleton>
-    </div>
+    {/* {!users.length > 0 && 
+    <SuggestionsSkeleton></SuggestionsSkeleton> } */}
 
-      <div className="shadow-md border-solid text-center p-1 mt-2 slide relative rounded-lg flex w-max gap-4 bg-white  ">
 
-        {true && users.map((u) => {
+     {users.length > 0 && <div className="shadow-md border-solid text-center p-4 mt-2 slide relative rounded-lg flex  gap-4 bg-white w-[450px]">
+        {users.map((u) => {
           return (
-            <section>
+            <section key={u.username}>
               <Link to={`/profile/${u.username}`}>
                 <div className="flex gap-1 flex-grow-1 flex-col items-center ">
                   <img
                     alt="suggested profile"
-                    className="m-1 rounded-full object-cover aspect-ratio: auto; w-10 h-10"
+                    className="m-1 rounded-full object-cover aspect-ratio: auto; w-16 h-16"
                     src={u.photoURL}
                   />
                   <p> {u.username} </p>
@@ -52,7 +51,7 @@ const Suggestions = () => {
             </section>
           );
         })}
-      </div>
+      </div>}
     </>
   );
 };

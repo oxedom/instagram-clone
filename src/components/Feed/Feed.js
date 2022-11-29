@@ -12,7 +12,8 @@ const Feed = () => {
   //eslint-disable-next-line
 
   const [posts, setPosts] = useState([]);
-
+  const [noPost, setNoPost] = useState(false)
+  
   //Functions from useEffect that allow the client to interact with the database through BL;
   const { getUserbyId } = UserService();
   //################################
@@ -27,6 +28,7 @@ const Feed = () => {
         if (userData) {
           const user = await getUserbyId(userData.uid);
           //Fetch their posts and set them as posts on the feed
+          if(user.following.length === 0) { setNoPost(true)}
             await user.following.forEach(async (f) => {
             //Query the person he is followings data to get his username and profile picture;
             const followerData = await getUserbyId(f);
@@ -48,10 +50,13 @@ const Feed = () => {
               return [...prev, ...updatedPosts];
             });
           });
+  
         }
+        
       } catch (error) {
         console.error(error);
       }
+    
     });
   }, []);
 
@@ -64,19 +69,28 @@ const Feed = () => {
     <div>
       <div className="bg-slate-50 flex-grow gap-3 flex justify-center flex-col items-center">
         <Suggestions></Suggestions>
-          {(posts.length === 0) ?
+          {(posts.length === 0 && !noPost)  ?
           <>
             <PostSkeleton></PostSkeleton>  
            <PostSkeleton></PostSkeleton>  
            <PostSkeleton></PostSkeleton>  
           </>
            : <></>}
-
+   
         {posts.map((p) => (
           <Post key={p.id} postData={p}>
             {" "}
           </Post>
         ))}
+        
+        {noPost && 
+          <div className="m-10 text-xl flex flex-col justify-center items-center w-max h-96">
+          <h1 className=""> You are not following anyone yet</h1>
+          <p> Follow People to see their posts</p>
+          </div>
+        
+        }
+
       </div>
     </div>
   );

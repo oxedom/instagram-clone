@@ -1,19 +1,14 @@
 import unlike from "../../assests/heart.png";
 import liked from "../../assests/darkheart.png";
 import commmentIcon from "../../assests/comment.png";
-
-import { useEffect, useState, useRef} from "react";
+import { useEffect, useState} from "react";
 import { PostService } from "../../services/PostService";
 import { Link } from "react-router-dom";
-
 import CommentSection from "../CommentSection/CommentSection.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
-import { set } from "date-fns";
 
 const PostButtons = (props) => {
-
-
 
 
   const { text, likes, username, date, id, comments } = props.postData;
@@ -21,9 +16,6 @@ const PostButtons = (props) => {
 
   const postApi = PostService();
   const [likedState, setLikedState] = useState(false);
-
-
-
 
 
 
@@ -87,8 +79,7 @@ const PostButtons = (props) => {
         </div>
 
 
-
-        <CommentSection  postData={{text, likes, username, date, id, comments,  }}> </CommentSection>
+        <CommentSection  postData={{text, likes, username, date, id, comments}}> </CommentSection>
       </div>
 
       
