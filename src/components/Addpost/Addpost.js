@@ -21,7 +21,7 @@ const Addpost = () => {
   };
 
   return (
-    <div className="flex-grow gap-3 flex justify-center flex-col items-center ">
+    <div className="flex-grow gap-3 flex justify-center flex-col items-center m-20 ">
       <form
         onSubmit={handleSubmit}
         className="border p-10 rounded bg-slate-200  flex gap-4 flex-col"
@@ -49,7 +49,7 @@ const Addpost = () => {
         ></input>
         <button className="btn bg-slate-50" type="submit">
           {" "}
-          Click me{" "}
+          Post Post!{" "}
         </button>
       </form>
     </div>

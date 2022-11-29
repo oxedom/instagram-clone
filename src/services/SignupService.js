@@ -9,7 +9,7 @@ export const SignupService = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
 
-  const signup = async (email, password, username, profileUrl) => {
+  const signup = async (email, password, username, profileUrl, bio) => {
     setIsLoading(true);
     setError(null);
 
@@ -34,7 +34,7 @@ export const SignupService = () => {
       await addDoc(collection(firestore, "users"), {
         username,
         uid,
-        bio: "Default bio",
+        bio: bio,
         followers: [],
         following: [],
         photoURL: profileUrl

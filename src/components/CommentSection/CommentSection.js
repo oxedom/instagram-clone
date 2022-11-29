@@ -41,6 +41,7 @@ const CommentSection = (props) => {
     {
       const fewComments = comments.slice(comments.length-3)
       setAllComments(fewComments);
+      if(comments.length === 0) { setViewAll(true)}
   
     },[])
 
@@ -68,7 +69,7 @@ const CommentSection = (props) => {
     <div>
 {!viewAll &&
         <div className="flex items-center " onClick={handleShowMore}>
-          <p className="text-gray-500"> View all {comments.length} comments </p>
+            <p className="text-gray-500"> View all {comments.length} comments </p> 
          </div> }
       <div className="mb-2">
         {allComments.map((c) => {

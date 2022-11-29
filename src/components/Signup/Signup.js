@@ -8,6 +8,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [bio, setBio] = useState("")
   const [profileUrl, setProfileUrl] = useState("");
   const [buttonState, setButtonState] = useState();
   //eslint-disable-next-line
@@ -25,7 +26,7 @@ const Signup = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await signup(email, password, username, profileUrl).then(() => {
+      await signup(email, password, username, profileUrl,bio).then(() => {
         navigate("/feed");
       });
     } catch (err) {
@@ -77,13 +78,24 @@ const Signup = () => {
           ></input>
           <input
             className="bg-slate-50 p-2 border-2 border-gray-100"
-            placeholder="URL to img of profile picture"
+            placeholder="Image URL for profile picture"
             id="profileimg"
             type="text"
             onChange={(e) => {
               setProfileUrl(e.target.value);
             }}
             name="profile"
+          ></input>
+
+<input
+            className="bg-slate-50 p-2 border-2 border-gray-100"
+            placeholder="Bio"
+            id="bio"
+            type="text"
+            onChange={(e) => {
+              setBio(e.target.value);
+            }}
+            name="bio"
           ></input>
 
           <input

@@ -20,6 +20,7 @@ const Profile = () => {
   const [isFollowing, setIsFollowing] = useState(false);
 
   const fetchData = useCallback(async () => {
+    setLoading(true);
     const user = await getUserByUsername(username);
     //If not user renavigate to to /
     if(user === undefined) { navigate('/')}
@@ -48,8 +49,10 @@ const Profile = () => {
   }, [fetchData]);
 
   return (
-    <div className="lg:ml-28 lg:mr-28 xl:ml-48 xl:mr-48 2xl:mr-96 2xl:ml-96">
-      {!loading && (
+   <>
+    {!loading &&
+      <div className="lg:ml-28 lg:mr-28 xl:ml-48 xl:mr-48 2xl:mr-96 2xl:ml-96">
+   
         <div className="flex flex-col">
           <ProfileInfo
             setIsFollowing={setIsFollowing}
@@ -60,8 +63,10 @@ const Profile = () => {
           ></ProfileInfo>
           <PhotoGrid posts={userPosts}> </PhotoGrid>
         </div>
-      )}
-    </div>
+  
+    </div> } 
+      </>
+   
   );
 };
 

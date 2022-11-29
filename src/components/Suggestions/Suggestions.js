@@ -18,7 +18,7 @@ const Suggestions = () => {
       .map((value) => ({ value, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
       .map(({ value }) => value);
-    const slicedUsers = shuffled.slice(shuffled.length - 4);
+    const slicedUsers = shuffled.slice();
     
  
      setUsers(slicedUsers);
@@ -34,7 +34,7 @@ const Suggestions = () => {
     <SuggestionsSkeleton></SuggestionsSkeleton> } */}
 
 
-     {users.length > 0 && <div className="shadow-md border-solid text-center p-4 mt-2 slide relative rounded-lg flex  gap-4 bg-white w-[450px]">
+     {users.length > 0 && <div className="mt-2 shadow-md border-solid text-center p-4  slide relative rounded-lg flex  gap-4 bg-white w-[450px]">
         {users.map((u) => {
           return (
             <section key={u.username}>
