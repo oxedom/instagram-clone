@@ -66,8 +66,8 @@ const Feed = () => {
 
   return (
     <div>
-      <div className=" flex-grow gap-3 flex justify-center flex-col items-center">
-        <Suggestions></Suggestions>
+      <div className="flex ga-2 justify-center flex-col items-center">
+      <Suggestions></Suggestions>
         {posts.length === 0 && !noPost ? (
           <>
             <PostSkeleton></PostSkeleton>
@@ -79,11 +79,12 @@ const Feed = () => {
         )}
 
         {posts.map((p) => (
+          
           <Post key={p.id} postData={p}>
             {" "}
           </Post>
         ))}
-
+        <div className="mt-10"> </div>
         {noPost && (
           <div className="m-10 text-xl flex flex-col justify-center items-center w-max h-96">
             <h1 className=""> You are not following anyone yet</h1>

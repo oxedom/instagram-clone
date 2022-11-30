@@ -54,8 +54,8 @@ const Profile = () => {
   return (
     <>
       {!loading && (
-        <div className="lg:ml-28 lg:mr-28 xl:ml-48 xl:mr-48 2xl:mr-96 2xl:ml-96">
-          <div className="flex flex-col">
+        <div className=" w-[500px] md:w-[1000px]">
+          <div className="flex  flex-col">
             <ProfileInfo
               setIsFollowing={setIsFollowing}
               isFollowing={isFollowing}

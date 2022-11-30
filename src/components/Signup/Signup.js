@@ -42,7 +42,7 @@ const Signup = () => {
   return (
     <>
       {" "}
-      {!sent && (
+      {!isLoading && (
         <div className=" xl:bg-slate-100 flex-grow  justify-center">
           <div className="flex mx-auto flex-col p-5 max-w-lg gap-5 md:p-20 items-stretch mt-20 bg-white xl:border  ">
             <div className="flex justify-center flex-col gap-3 ">
@@ -81,11 +81,12 @@ const Signup = () => {
                 }}
                 name="username"
               ></input>
+             
               <UploadButton
                 selectedImage={selectedImage}
                 setSelectedImage={setSelectedImage}
               ></UploadButton>
-
+       
               <input
                 className="bg-slate-50 p-2 border-2 border-gray-100"
                 placeholder="Bio"

@@ -13,6 +13,7 @@ const Post = (props) => {
             className="rounded-full object-cover  aspect-ratio: auto; w-10 h-10 "
             alt="profile of user"
             src={photoURL}
+            rel="preload"
           />
           <Link
             to={`/profile/${username}`}

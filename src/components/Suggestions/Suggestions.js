@@ -29,11 +29,11 @@ const Suggestions = () => {
 
   return (
     <>
-      {/* {!users.length > 0 && 
-    <SuggestionsSkeleton></SuggestionsSkeleton> } */}
+      {!users.length > 0 && 
+    <SuggestionsSkeleton></SuggestionsSkeleton> }
 
       {users.length > 0 && (
-        <div className="mt-2 shadow-md border-solid text-center p-4  slide relative rounded-lg flex  gap-4 bg-white w-[450px]">
+        <div className="mt-2 shadow-md border-solid text-center p-4 slide relative rounded-lg flex  gap-4 w-[400px] bg-white md:w-[500px]">
           {users.map((u) => {
             return (
               <section key={u.username}>

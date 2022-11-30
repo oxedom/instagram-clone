@@ -47,17 +47,11 @@ const ProfileInfo = (props) => {
             {/* Username and follow button */}
             <div className="flex gap-2 flex-col flex-grow-1  items-center justify-self-center">
               <div className="flex gap-5">
-                <h1 className="font-meduim text-4xl"> {username} </h1>
+                <h1 className="font-meduim text-2xl md:text-2xl"> {username} </h1>
 
                 {myAccount && (
                   <div className="flex items-center">
-                    <Link to="/settings">
-                      <img
-                        className=" text-white  text-center hover:cursor-pointer"
-                        src={threeDots}
-                        alt="settings"
-                      />
-                    </Link>
+          
                   </div>
                 )}
               </div>

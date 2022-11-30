@@ -39,7 +39,7 @@ const Navbar = ({ children }) => {
   }, []);
 
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col">
       <nav className="bg-white border shadow-lg hidden  md:block ">
         <div className="flex justify-around items-center m-3 ">
           <Link to="/feed">
@@ -92,8 +92,10 @@ const Navbar = ({ children }) => {
           </div>
         </div>
       </nav>
-
+      <div className="flex justify-center">
       {children}
+      </div>
+
       {/* BOTTOM NAV */}
       <nav className="block p-2 fixed inset-x-0 bottom-0 z-10 border shadow-lg  bg-white   md:hidden ">
         <div className="flex justify-around items-center ">

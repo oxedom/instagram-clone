@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { PostService } from "../../services/PostService";
 import UploadButton from "../UploadButton/UploadButton";
 const Addpost = () => {
-  const [imgUrl, setUrl] = useState("");
+
   const [postText, setPostText] = useState("");
   const postApi = PostService();
   const [selectedImage, setSelectedImage] = useState(null);
@@ -43,7 +43,7 @@ const Addpost = () => {
                 setPostText(e.target.value);
               }}
             ></input>
-            <button className="btn bg-slate-50" type="submit">
+            <button className="btn bg-blue-500 rounded p-2 hover:bg-blue-700" type="submit">
               {" "}
               Post Post!{" "}
             </button>
