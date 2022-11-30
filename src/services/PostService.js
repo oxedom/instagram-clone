@@ -15,8 +15,10 @@ import { auth, firestore, storage } from "../firebase";
 import { UserService } from "./UserService";
 import { ref, uploadBytes, getDownloadURL} from 'firebase/storage'
 import uniqid from 'uniqid';
+import { useNavigate } from "react-router";
 
 export const PostService = () => {
+  const navigate = useNavigate()
   const userAPI = UserService();
 
   const getPostByID = async (id) => {
@@ -39,6 +41,7 @@ export const PostService = () => {
         posts.push({ ...doc.data(), id: doc.id });
       });
 
+ 
       return posts;
     } catch (error) {}
   };
@@ -52,6 +55,9 @@ export const PostService = () => {
       querySnapshot.forEach((doc) => {
         posts.push({ ...doc.data(), id: doc.id });
       });
+
+  
+      posts = posts.sort(function(a, b) {return b.date - a.date;})
 
       return posts;
     } catch (err) {
@@ -79,7 +85,6 @@ export const PostService = () => {
 
   const uploadImage = async (imgFile) => 
   {
-  
     const imageRef = ref(storage, `images/${ uniqid(imgFile.name) + imgFile.name }`)
     const uploadedIMGURL = await uploadBytes(imageRef, imgFile)
     const url = await getDownloadURL(uploadedIMGURL.ref)
@@ -87,11 +92,15 @@ export const PostService = () => {
   }
 
   const postPost = async (imgFile, text) => {
+    let result = undefined
       try {
-
-      const storedImage = await uploadImage(imgFile)
+  
       auth.onAuthStateChanged(async (user) => {
+
+      
+
         if (user) {
+          const storedImage = await uploadImage(imgFile)
           const currentUID = user.uid;
           const data = {
             text: text,
@@ -106,15 +115,20 @@ export const PostService = () => {
           });
 
           console.log("Document written with ID: ", docRef.id);
-          return docRef.id;
+          navigate(`/post/${docRef.id}`)
+          result = docRef
+          return result
         } else {
-          return;
+          return result
         }
+
+
       });
     
     } catch (err) {
       console.error(err);
     }
+    return result
   };
 
   //Deletes post
@@ -203,6 +217,7 @@ export const PostService = () => {
     getPostByID,
     tooglelikePost,
     addComment,
+    uploadImage
     
   };
 };

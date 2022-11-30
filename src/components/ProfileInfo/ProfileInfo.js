@@ -43,7 +43,7 @@ const ProfileInfo = (props) => {
 
 
         {/* Username and follow button */}
-        <div className="flex gap-2 flex-col justify-self-center">
+        <div className="flex gap-2 flex-col flex-grow-1  items-center justify-self-center">
           <div className="flex gap-5">
             <h1 className="font-meduim text-4xl"> {username} </h1>
 
@@ -105,7 +105,7 @@ const ProfileInfo = (props) => {
           <span className="text-sm"> followers </span>
         </div>
 
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center ">
           <span className="text-sm font-semibold"> {following.length} </span>
           <span className="text-sm"> following </span>
         </div> 

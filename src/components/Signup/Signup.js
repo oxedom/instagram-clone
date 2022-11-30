@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import img from "../../assests/sam-logo.png";
 import { useNavigate } from "react-router-dom";
 import { SignupService } from "../../services/SignupService";
+import UploadButton from "../UploadButton/UploadButton";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("")
-  const [profileUrl, setProfileUrl] = useState("");
+  const [sent, setSent] = useState(false)
+  const [selectedImage, setSelectedImage] = useState(null);
   const [buttonState, setButtonState] = useState();
   //eslint-disable-next-line
   const { signup, error, isLoading } = SignupService();
@@ -26,7 +28,7 @@ const Signup = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await signup(email, password, username, profileUrl,bio).then(() => {
+      await signup(email, password, username, selectedImage,bio).then(() => {
         navigate("/feed");
       });
     } catch (err) {
@@ -38,7 +40,9 @@ const Signup = () => {
   }
 
   return (
+    <> {!sent && 
     <div className=" xl:bg-slate-100 flex-grow  justify-center">
+
       <div className="flex mx-auto flex-col p-5 max-w-lg gap-5 md:p-20 items-stretch mt-20 bg-white xl:border  ">
         <div className="flex justify-center flex-col gap-3 ">
           <img
@@ -76,16 +80,7 @@ const Signup = () => {
             }}
             name="username"
           ></input>
-          <input
-            className="bg-slate-50 p-2 border-2 border-gray-100"
-            placeholder="Image URL for profile picture"
-            id="profileimg"
-            type="text"
-            onChange={(e) => {
-              setProfileUrl(e.target.value);
-            }}
-            name="profile"
-          ></input>
+               <UploadButton selectedImage={selectedImage} setSelectedImage={setSelectedImage}></UploadButton>
 
 <input
             className="bg-slate-50 p-2 border-2 border-gray-100"
@@ -127,9 +122,10 @@ const Signup = () => {
         <p> Have an account? </p>{" "}
         <Link className="text-blue-500 font-medium" to="/sign-in">
           Sign in
-        </Link>
-      </div>
-    </div>
+      </Link>
+  </div> 
+  </div> }
+  </>
   );
 };
 

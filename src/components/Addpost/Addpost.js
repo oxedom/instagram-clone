@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
+
 import { PostService } from "../../services/PostService";
 import UploadButton from "../UploadButton/UploadButton";
 const Addpost = () => {
@@ -6,23 +8,24 @@ const Addpost = () => {
   const [postText, setPostText] = useState("");
   const postApi = PostService();
   const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
-  function isImgUrl(url) {
-    return /\.(jpg|jpeg|png|webp|avif|gif)$/.test(url);
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setLoading(true)
+    postApi.postPost(selectedImage, postText).then((docRef) => 
+    {
+      navigate(`/post/${docRef.id}`)
+    })
     
-      postApi.postPost(selectedImage, postText)
-      setPostText("");
 
     
   };
 
   return (
- 
+    <> {!loading &&
     <div  className="flex-grow-1 flex justify-center items-center mt-32">
       <form
         onSubmit={handleSubmit}
@@ -44,7 +47,8 @@ const Addpost = () => {
           Post Post!{" "}
         </button>
       </form>
-    </div>
+    </div> }
+    </>
   );
 };
 

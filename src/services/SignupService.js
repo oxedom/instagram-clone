@@ -3,18 +3,24 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, firestore } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { UserService } from "./UserService";
+import { PostService } from "./PostService";
 
 export const SignupService = () => {
   const userAPI = UserService()
+  const postApi = PostService()
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
 
-  const signup = async (email, password, username, profileUrl, bio) => {
+  const signup = async (email, password, username, imgFile, bio) => {
     setIsLoading(true);
     setError(null);
 
+
+
+
     try {
       //Signing up with Firebase
+      const profileUrl = await postApi.uploadImage(imgFile)
       const response = await createUserWithEmailAndPassword(
         auth,
         email,

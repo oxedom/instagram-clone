@@ -10,43 +10,45 @@ const UploadButton = (props) => {
     return /\.(jpg|jpeg|png|webp|avif|gif)$/.test(url);
   }
 
-    const [imgError, setError] = useState(false)
+  const [removeButton, setRemoveButton] = useState(false)
 
-    const handleRemove = () => { setSelectedImage(null)}
+
+    const handleRemove = (e) => {
+      e.preventDefault()
+      setRemoveButton(false)
+
+
+      setSelectedImage(null)
+    }
+      
 
     const handleInputUpload = (e) => {
+      e.preventDefault()
+      setRemoveButton(true)
+ 
+     
+    const file = e.target.files[0]
+    setSelectedImage(file);
       
-      setError(false)
-      if(!isImgUrl(e.target.files[0].name)) 
-      {
-        setError(true)
-        handleRemove()
-      }
       
-      const file = e.target.files[0]
-
-      setSelectedImage(file);
     }
 
 
     return (
-      <div className=' p-2 flex items-center justify-center flex-col'>
-        {selectedImage && (
-          <div className='flex items-center flex-col'>
-          <img alt="NO IMAGE" className='flex items w-[250px]' src={URL.createObjectURL(selectedImage)} />
+    
 
-          <button className='p-1 bg-red-600 rounded-md text-white' onClick={handleRemove}>Remove</button>
-   
-          </div>
-        )}
-   
+      <form className='flex  items-center gap-2 justify-between'> 
         <input
+          key={selectedImage}
           type="file"
+          accept="image/png, image/gif, image/jpeg"
           name="myImage"
           onChange={handleInputUpload}
         />
-        {imgError && <p className='text-center text-red-600 font-bold  '> The file you have choosen is not a image...  </p> }
-      </div>
+           {removeButton && <button className='p-1  bg-red-300 rounded-md text-white hover:bg-red-500' onClick={handleRemove}>Remove</button> }
+      </form>
+
+
     );
   };
  
