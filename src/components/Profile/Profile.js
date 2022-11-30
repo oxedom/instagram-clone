@@ -22,6 +22,7 @@ const Profile = () => {
   const fetchData = useCallback(async () => {
     setLoading(true);
     const user = await getUserByUsername(username);
+    console.log(user);
     //If not user renavigate to to /
     if (user === undefined) {
       navigate("/");

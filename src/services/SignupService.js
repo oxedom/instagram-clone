@@ -25,8 +25,8 @@ export const SignupService = () => {
       );
       //Updating Username
       await updateProfile(auth.currentUser, {
-        displayName: username,
-        photoURL: profileUrl,
+        displayName: username.trim(),
+        photoURL: profileUrl.trim(),
       });
       //SETTING Error if it exists
       setError(response.error);
@@ -35,12 +35,12 @@ export const SignupService = () => {
       const { uid } = response.user;
 
       await addDoc(collection(firestore, "users"), {
-        username,
+        username: username.trim(),
         uid,
         bio: bio,
         followers: [],
         following: [],
-        photoURL: profileUrl,
+        photoURL:profileUrl,
       });
 
       setIsLoading(false);
