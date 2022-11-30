@@ -41,7 +41,7 @@ const CommentSection = (props) => {
     {
       const fewComments = comments.slice(comments.length-3)
       setAllComments(fewComments);
-      if(comments.length === 0) { setViewAll(true)}
+      if(comments.length <= 3) { setViewAll(true)}
   
     },[])
 
