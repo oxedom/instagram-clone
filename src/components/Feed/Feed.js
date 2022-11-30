@@ -67,6 +67,7 @@ const Feed = () => {
 
   return (
     <div>
+
       <div className=" flex-grow gap-3 flex justify-center flex-col items-center">
         <Suggestions></Suggestions>
           {(posts.length === 0 && !noPost)  ?

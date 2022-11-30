@@ -12,7 +12,7 @@ const Signin = (props) => {
   const [buttonState, setButtonState] = useState();
 
   const { signIn, error, isLoading } = SignInService();
-  const { logout} = LogoutService();
+  const { logout} = LogoutService()
 
   const navigate = useNavigate();
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PostService } from "../../services/PostService";
+import UploadButton from "../UploadButton/UploadButton";
 
 const Addpost = () => {
   const [imgUrl, setUrl] = useState("");
@@ -26,7 +27,7 @@ const Addpost = () => {
         onSubmit={handleSubmit}
         className="border p-10 rounded bg-slate-200  flex gap-4 flex-col"
       >
-        <input
+        {/* <input
           className="bg-slate-50 p-2 border-2 border-gray-100"
           placeholder="Image URL"
           maxLength={250}
@@ -35,7 +36,9 @@ const Addpost = () => {
           onChange={(e) => {
             setUrl(e.target.value);
           }}
-        ></input>
+        ></input> */}
+        <UploadButton></UploadButton>
+
 
         <input
           className="bg-slate-50 p-2 border-2 border-gray-100"
