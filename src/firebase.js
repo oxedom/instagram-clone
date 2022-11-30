@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import {getStorage} from 'firebase/storage'
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -16,7 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-const storage  = getStorage(app)
+const storage = getStorage(app);
 
 auth.onAuthStateChanged((user) => {
   if (user) {
@@ -26,4 +26,4 @@ auth.onAuthStateChanged((user) => {
 });
 const firestore = getFirestore(app);
 
-export { firestore, provider, auth, storage};
+export { firestore, provider, auth, storage };

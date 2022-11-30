@@ -5,72 +5,62 @@ import { useEffect, useState } from "react";
 import { auth } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 const CommentSection = (props) => {
+  const { text, likes, username, date, id, comments } = props.postData;
 
-    const {text, likes, username, date, id, comments } = props.postData
+  const postApi = PostService();
+  const [commentText, setComment] = useState("");
+  const [viewAll, setViewAll] = useState(false);
+  const [allComments, setAllComments] = useState([]);
+  const [textColor, setTextColor] = useState("text-blue-200");
+  const [formatedDate, setFormated] = useState("");
 
-    const postApi = PostService()
-    const [commentText, setComment] = useState("");
-    const [viewAll, setViewAll] = useState(false)
-    const [allComments, setAllComments] = useState([]);
-    const [textColor, setTextColor] = useState("text-blue-200");
-    const [formatedDate, setFormated] = useState("");
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    onAuthStateChanged(auth, (user) => {
+      postApi.addComment(id, commentText);
+      setAllComments((prev) => [
+        ...prev,
+        { text: commentText, username: user.displayName },
+      ]);
+    });
+    setComment("");
+  };
 
+  const handleShowMore = () => {
+    setAllComments(comments);
+    setViewAll(true);
+  };
 
-
-    const handleCommentSubmit = (e) => {
-      e.preventDefault();
-      onAuthStateChanged(auth, (user) => {
-        postApi.addComment(id, commentText);
-        setAllComments((prev) => [
-          ...prev,
-          { text: commentText, username: user.displayName},
-        ]);
-      })
-      setComment("");
-    };
-  
-    const handleShowMore = () => 
-    {
-      setAllComments(comments)
-      setViewAll(true)
+  useEffect(() => {
+    const fewComments = comments.slice(comments.length - 3);
+    setAllComments(fewComments);
+    if (comments.length <= 3) {
+      setViewAll(true);
     }
+  }, []);
 
+  useEffect(() => {
+    const today = new Date();
+    const dateInWords = formatDistance(date, today.getTime());
 
+    setFormated(dateInWords);
+  }, [date]);
 
-    useEffect(() => 
-    {
-      const fewComments = comments.slice(comments.length-3)
-      setAllComments(fewComments);
-      if(comments.length <= 3) { setViewAll(true)}
-  
-    },[])
+  useEffect(() => {
+    if (commentText.length > 1) {
+      setTextColor("text-blue-400");
+    } else {
+      setTextColor("text-blue-200");
+    }
+  }, [commentText]);
 
-
-    useEffect(() => {
-        const today = new Date();
-        const dateInWords = formatDistance(date, today.getTime());
-    
-        setFormated(dateInWords);
-      }, [date]);
-    
-
-
-    useEffect(() => {
-        if (commentText.length > 1) {
-          setTextColor("text-blue-400");
-        } else {
-          setTextColor("text-blue-200");
-        }
-      }, [commentText]);
-    
-    
-
-    return (
+  return (
     <div>
-{!viewAll &&
+      {!viewAll && (
         <div className="flex items-center " onClick={handleShowMore}>
-            <p className="text-gray-500"> View all {comments.length} comments </p> 
-         </div> }
+          <p className="text-gray-500"> View all {comments.length} comments </p>
+        </div>
+      )}
       <div className="mb-2">
         {allComments.map((c) => {
           return (
@@ -81,15 +71,13 @@ const CommentSection = (props) => {
         })}
       </div>
 
-
-         <div>
-          <p className="text-sm text-slate-400 p-0.5"> {formatedDate} ago </p>
-        </div>
+      <div>
+        <p className="text-sm text-slate-400 p-0.5"> {formatedDate} ago </p>
+      </div>
 
       <hr></hr>
       <form onSubmit={handleCommentSubmit} className="rounded flex">
         <input
-  
           maxLength={250}
           className="p-3 flex-grow"
           value={commentText}
@@ -108,12 +96,8 @@ const CommentSection = (props) => {
           Post{" "}
         </button>
       </form>
-
-
     </div>
-    
+  );
+};
 
-     );
-}
- 
 export default CommentSection;

@@ -4,7 +4,7 @@ import homepageIcon from "../../assests/homepage.png";
 
 import { Link } from "react-router-dom";
 import { LogoutService } from "../../services/LogoutService";
-import userIcon from "../../assests/emptyUser.png"
+import userIcon from "../../assests/emptyUser.png";
 import { useCallback, useEffect, useState } from "react";
 import { UserService } from "../../services/UserService";
 import { onAuthStateChanged } from "firebase/auth";
@@ -71,18 +71,22 @@ const Navbar = ({ children }) => {
 
             <div>
               <Link to={`/profile/${userData.username}`}>
-                {!userData && <img alt="profile" className="rounded-full object-cover aspect-ratio: auto; w-10 h-10" src={userIcon}/>}
-                {userData && 
-                
-                
-                <img
-                  className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
-                  alt="profile"
-                  //Need to update photoURL
+                {!userData && (
+                  <img
+                    alt="profile"
+                    className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
+                    src={userIcon}
+                  />
+                )}
+                {userData && (
+                  <img
+                    className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
+                    alt="profile"
+                    //Need to update photoURL
 
-                  src={userData.photoURL}
-                />}
-
+                    src={userData.photoURL}
+                  />
+                )}
               </Link>
             </div>
           </div>
@@ -113,17 +117,22 @@ const Navbar = ({ children }) => {
 
           <div>
             <Link to={`/profile/${userData.username}`}>
-                 {!userData && <img alt="profile" className="rounded-full object-cover aspect-ratio: auto; w-10 h-10" src={userIcon}/>}
-                {userData && 
-                
-                
+              {!userData && (
+                <img
+                  alt="profile"
+                  className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
+                  src={userIcon}
+                />
+              )}
+              {userData && (
                 <img
                   className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
                   alt="profile"
                   //Need to update photoURL
 
                   src={userData.photoURL}
-                />}
+                />
+              )}
             </Link>
           </div>
 

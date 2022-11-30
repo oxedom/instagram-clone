@@ -1,4 +1,3 @@
-
 import {
   collection,
   getDocs,
@@ -13,12 +12,10 @@ import {
 } from "firebase/firestore";
 import { auth, firestore, storage } from "../firebase";
 import { UserService } from "./UserService";
-import { ref, uploadBytes, getDownloadURL} from 'firebase/storage'
-import uniqid from 'uniqid';
-import { useNavigate } from "react-router";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import uniqid from "uniqid";
 
 export const PostService = () => {
-  const navigate = useNavigate()
   const userAPI = UserService();
 
   const getPostByID = async (id) => {
@@ -41,7 +38,6 @@ export const PostService = () => {
         posts.push({ ...doc.data(), id: doc.id });
       });
 
- 
       return posts;
     } catch (error) {}
   };
@@ -56,8 +52,9 @@ export const PostService = () => {
         posts.push({ ...doc.data(), id: doc.id });
       });
 
-  
-      posts = posts.sort(function(a, b) {return b.date - a.date;})
+      posts = posts.sort(function (a, b) {
+        return b.date - a.date;
+      });
 
       return posts;
     } catch (err) {
@@ -77,30 +74,28 @@ export const PostService = () => {
       });
       //ID of the user who follows people
 
-      return followersPosts
+      return followersPosts;
     } catch (err) {
       console.error(err);
     }
   };
 
-  const uploadImage = async (imgFile) => 
-  {
-    const imageRef = ref(storage, `images/${ uniqid(imgFile.name) + imgFile.name }`)
-    const uploadedIMGURL = await uploadBytes(imageRef, imgFile)
-    const url = await getDownloadURL(uploadedIMGURL.ref)
-    return url
-  }
+  const uploadImage = async (imgFile) => {
+    const imageRef = ref(
+      storage,
+      `images/${uniqid(imgFile.name) + imgFile.name}`
+    );
+    const uploadedIMGURL = await uploadBytes(imageRef, imgFile);
+    const url = await getDownloadURL(uploadedIMGURL.ref);
+    return url;
+  };
 
   const postPost = async (imgFile, text) => {
-    let result = undefined
-      try {
-  
+    let result = undefined;
+    try {
       auth.onAuthStateChanged(async (user) => {
-
-      
-
         if (user) {
-          const storedImage = await uploadImage(imgFile)
+          const storedImage = await uploadImage(imgFile);
           const currentUID = user.uid;
           const data = {
             text: text,
@@ -115,20 +110,17 @@ export const PostService = () => {
           });
 
           console.log("Document written with ID: ", docRef.id);
-          navigate(`/post/${docRef.id}`)
-          result = docRef
-          return result
+
+          result = docRef;
+          return result;
         } else {
-          return result
+          return result;
         }
-
-
       });
-    
     } catch (err) {
       console.error(err);
     }
-    return result
+    return result;
   };
 
   //Deletes post
@@ -185,7 +177,9 @@ export const PostService = () => {
   };
 
   const addComment = async (postID, text) => {
-    if(text.length > 250) { return new Error('Too much text')}
+    if (text.length > 250) {
+      return new Error("Too much text");
+    }
     try {
       auth.onAuthStateChanged(async (user) => {
         if (user) {
@@ -217,7 +211,6 @@ export const PostService = () => {
     getPostByID,
     tooglelikePost,
     addComment,
-    uploadImage
-    
+    uploadImage,
   };
 };

@@ -8,20 +8,19 @@ const Suggestions = () => {
   const [users, setUsers] = useState([]);
 
   const fetchData = useCallback(async () => {
-    //Not scaleable soultion because I don't want to pay for Firebase functions to create complex queries; 
+    //Not scaleable soultion because I don't want to pay for Firebase functions to create complex queries;
     //Just a make shift soultion to implemenet this suggestions feature!
     const users = await userAPI.getAllUsers();
-    const currentUser = await userAPI.getCurrentUser()
-    const filteredUsers = users.filter(u => u.uid !== currentUser.uid)
+    const currentUser = await userAPI.getCurrentUser();
+    const filteredUsers = users.filter((u) => u.uid !== currentUser.uid);
 
     const shuffled = filteredUsers
       .map((value) => ({ value, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
       .map(({ value }) => value);
     const slicedUsers = shuffled.slice();
-    
- 
-     setUsers(slicedUsers);
+
+    setUsers(slicedUsers);
   }, []);
 
   useEffect(() => {
@@ -29,29 +28,30 @@ const Suggestions = () => {
   }, []);
 
   return (
-    <>  
-    {/* {!users.length > 0 && 
+    <>
+      {/* {!users.length > 0 && 
     <SuggestionsSkeleton></SuggestionsSkeleton> } */}
 
-
-     {users.length > 0 && <div className="mt-2 shadow-md border-solid text-center p-4  slide relative rounded-lg flex  gap-4 bg-white w-[450px]">
-        {users.map((u) => {
-          return (
-            <section key={u.username}>
-              <Link to={`/profile/${u.username}`}>
-                <div className="flex gap-1 flex-grow-1 flex-col items-center ">
-                  <img
-                    alt="suggested profile"
-                    className="m-1 rounded-full object-cover aspect-ratio: auto; w-16 h-16"
-                    src={u.photoURL}
-                  />
-                  <p> {u.username} </p>
-                </div>
-              </Link>
-            </section>
-          );
-        })}
-      </div>}
+      {users.length > 0 && (
+        <div className="mt-2 shadow-md border-solid text-center p-4  slide relative rounded-lg flex  gap-4 bg-white w-[450px]">
+          {users.map((u) => {
+            return (
+              <section key={u.username}>
+                <Link to={`/profile/${u.username}`}>
+                  <div className="flex gap-1 flex-grow-1 flex-col items-center ">
+                    <img
+                      alt="suggested profile"
+                      className="m-1 rounded-full object-cover aspect-ratio: auto; w-16 h-16"
+                      src={u.photoURL}
+                    />
+                    <p> {u.username} </p>
+                  </div>
+                </Link>
+              </section>
+            );
+          })}
+        </div>
+      )}
     </>
   );
 };

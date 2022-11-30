@@ -6,8 +6,8 @@ import { UserService } from "./UserService";
 import { PostService } from "./PostService";
 
 export const SignupService = () => {
-  const userAPI = UserService()
-  const postApi = PostService()
+  const userAPI = UserService();
+  const postApi = PostService();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
 
@@ -15,12 +15,9 @@ export const SignupService = () => {
     setIsLoading(true);
     setError(null);
 
-
-
-
     try {
       //Signing up with Firebase
-      const profileUrl = await postApi.uploadImage(imgFile)
+      const profileUrl = await postApi.uploadImage(imgFile);
       const response = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -43,7 +40,7 @@ export const SignupService = () => {
         bio: bio,
         followers: [],
         following: [],
-        photoURL: profileUrl
+        photoURL: profileUrl,
       });
 
       setIsLoading(false);

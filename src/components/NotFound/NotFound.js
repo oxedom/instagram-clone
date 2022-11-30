@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { auth } from "../../firebase";
 
-
 const NotFound = () => {
   const navigate = useNavigate();
 
@@ -18,11 +17,7 @@ const NotFound = () => {
     });
   }, []);
 
-  return (
-    <div className="">
-
-    </div>
-  );
+  return <div className=""></div>;
 };
 
 export default NotFound;

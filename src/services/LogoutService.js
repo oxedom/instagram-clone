@@ -5,7 +5,7 @@ export const LogoutService = () => {
   const navigate = useNavigate();
   const logout = async () => {
     await auth.signOut();
-    navigate("/sign-in")
+    navigate("/sign-in");
   };
   return { logout };
 };

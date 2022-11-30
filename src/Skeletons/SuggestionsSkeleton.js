@@ -1,7 +1,7 @@
-import React from 'react'
-import ContentLoader from 'react-content-loader'
+import React from "react";
+import ContentLoader from "react-content-loader";
 
-const SuggestionsSkeleton = props => (
+const SuggestionsSkeleton = (props) => (
   <ContentLoader
     width={450}
     height={130}
@@ -9,10 +9,7 @@ const SuggestionsSkeleton = props => (
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"
     {...props}
-  >
-
-
-  </ContentLoader>
-)
+  ></ContentLoader>
+);
 
 export default SuggestionsSkeleton;

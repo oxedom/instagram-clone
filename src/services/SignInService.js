@@ -5,10 +5,10 @@ import { LogoutService } from "./LogoutService";
 export const SignInService = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
-  const { logout} = LogoutService();
+  const { logout } = LogoutService();
 
   const signIn = async (email, password) => {
-    logout()
+    logout();
     setIsLoading(true);
     setError(null);
 
@@ -20,8 +20,6 @@ export const SignInService = () => {
       setError(response.error);
       //Set loading to false
       setIsLoading(false);
-
-  
     } catch (error) {
       //catching error
       setError(error);
