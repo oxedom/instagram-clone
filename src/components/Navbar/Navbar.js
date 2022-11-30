@@ -139,7 +139,7 @@ const Navbar = ({ children }) => {
           </div>
 
           <div
-            className="rounded text-white    text-center font-bold btn p-1 bg-blue-500 hover:bg-blue-700`"
+            className="rounded text-white    text-center font-bold btn p-2 bg-blue-400 hover:bg-blue-700`"
             onClick={handleLogout}
           >
             {" "}

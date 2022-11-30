@@ -23,7 +23,7 @@ const PostPage = () => {
   }, []);
 
   return (
-    <div className="bg-slate-50 flex-grow gap-3 flex justify-center flex-col items-center">
+    <div className="flex-grow gap-3 flex justify-center flex-col items-center">
       {!post &&  <PostSkeleton></PostSkeleton>}
       {post && <Post postData={post}> </Post> }
     </div>

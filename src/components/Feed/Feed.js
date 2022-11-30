@@ -66,8 +66,8 @@ const Feed = () => {
 
   return (
     <div>
-      <div className="flex ga-2 justify-center flex-col items-center">
-      <Suggestions></Suggestions>
+      <div className="">
+      {/* <Suggestions></Suggestions> */}
         {posts.length === 0 && !noPost ? (
           <>
             <PostSkeleton></PostSkeleton>
