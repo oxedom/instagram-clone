@@ -1,3 +1,4 @@
+
 import {
   collection,
   getDocs,
@@ -10,8 +11,10 @@ import {
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
-import { auth, firestore } from "../firebase";
+import { auth, firestore, storage } from "../firebase";
 import { UserService } from "./UserService";
+import { ref, uploadBytes, getDownloadURL} from 'firebase/storage'
+import uniqid from 'uniqid';
 
 export const PostService = () => {
   const userAPI = UserService();
@@ -68,20 +71,31 @@ export const PostService = () => {
       });
       //ID of the user who follows people
 
-      return followersPosts;
+      return followersPosts
     } catch (err) {
       console.error(err);
     }
   };
 
-  const postPost = async (text, imgUrl) => {
-    try {
+  const uploadImage = async (imgFile) => 
+  {
+  
+    const imageRef = ref(storage, `images/${ uniqid(imgFile.name) + imgFile.name }`)
+    const uploadedIMGURL = await uploadBytes(imageRef, imgFile)
+    const url = await getDownloadURL(uploadedIMGURL.ref)
+    return url
+  }
+
+  const postPost = async (imgFile, text) => {
+      try {
+
+      const storedImage = await uploadImage(imgFile)
       auth.onAuthStateChanged(async (user) => {
         if (user) {
           const currentUID = user.uid;
           const data = {
             text: text,
-            imgUrl: imgUrl,
+            imgUrl: storedImage,
             likes: [],
             comments: [],
             uid: currentUID,
@@ -97,6 +111,7 @@ export const PostService = () => {
           return;
         }
       });
+    
     } catch (err) {
       console.error(err);
     }
@@ -188,5 +203,6 @@ export const PostService = () => {
     getPostByID,
     tooglelikePost,
     addComment,
+    
   };
 };

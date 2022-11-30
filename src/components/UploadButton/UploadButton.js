@@ -1,27 +1,31 @@
-import { tr } from 'date-fns/locale';
-import { useEffect, useRef, useState } from 'react';
-import uploadIcon from '../../assests/plus.png'
 
-const UploadButton = () => {
+import { useEffect, useRef, useState } from 'react';
+
+
+const UploadButton = (props) => {
     
+
+  const {selectedImage, setSelectedImage} = props
   function isImgUrl(url) {
     return /\.(jpg|jpeg|png|webp|avif|gif)$/.test(url);
   }
-    const [selectedImage, setSelectedImage] = useState(null);
+
     const [imgError, setError] = useState(false)
 
     const handleRemove = () => { setSelectedImage(null)}
 
     const handleInputUpload = (e) => {
+      
       setError(false)
       if(!isImgUrl(e.target.files[0].name)) 
       {
         setError(true)
         handleRemove()
       }
-    
-      console.log(e.target.files[0]);
-      setSelectedImage(e.target.files[0]);
+      
+      const file = e.target.files[0]
+
+      setSelectedImage(file);
     }
 
 

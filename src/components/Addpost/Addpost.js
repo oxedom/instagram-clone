@@ -5,6 +5,7 @@ const Addpost = () => {
   const [imgUrl, setUrl] = useState("");
   const [postText, setPostText] = useState("");
   const postApi = PostService();
+  const [selectedImage, setSelectedImage] = useState(null);
 
   function isImgUrl(url) {
     return /\.(jpg|jpeg|png|webp|avif|gif)$/.test(url);
@@ -13,21 +14,21 @@ const Addpost = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (isImgUrl(imgUrl)) {
-      postApi.postPost(postText, imgUrl);
+    
+      postApi.postPost(selectedImage, postText)
       setPostText("");
-      setUrl("");
-    }
+
+    
   };
 
   return (
+ 
     <div  className="flex-grow-1 flex justify-center items-center mt-32">
-
       <form
         onSubmit={handleSubmit}
         className="border rounded bg-slate-200 flex gap-4 p-5 flex-col"
       >
-        <UploadButton></UploadButton>
+        <UploadButton selectedImage={selectedImage} setSelectedImage={setSelectedImage}></UploadButton>
 
 
         <input
