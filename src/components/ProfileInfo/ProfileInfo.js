@@ -4,7 +4,7 @@ import anonymousProfile from '../../assests/emptyUser.png'
 import { UserService } from "../../services/UserService";
 
 const ProfileInfo = (props) => {
-  const { isFollowing, setIsFollowing, myAccount, posts } = props;
+  const { isFollowing, setIsFollowing, myAccount, posts, loading } = props;
 
   const { photoURL, username, bio, following, followers, uid } =
     props.profileData;
@@ -24,6 +24,8 @@ const ProfileInfo = (props) => {
   };
 
   return (
+    <>
+    {!loading &&
     <div className="mt-5 flex flex-col">
       <div className="m-4 flex justify-around ">
         {/* profile Pictutre */}
@@ -85,7 +87,7 @@ const ProfileInfo = (props) => {
           )}
         </div>
       </div>
-
+              
       <p className="m-4 font-semibold" alt="bio">
         {" "}
         {bio}{" "}
@@ -106,9 +108,10 @@ const ProfileInfo = (props) => {
         <div className="flex flex-col justify-center items-center">
           <span className="text-sm font-semibold"> {following.length} </span>
           <span className="text-sm"> following </span>
-        </div>
-      </div>
-    </div>
+        </div> 
+      </div> 
+    </div> }
+    </>
   );
 };
 

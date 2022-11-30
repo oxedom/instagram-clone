@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { PostService } from "../../services/PostService";
 import UploadButton from "../UploadButton/UploadButton";
-
 const Addpost = () => {
   const [imgUrl, setUrl] = useState("");
   const [postText, setPostText] = useState("");
@@ -22,21 +21,12 @@ const Addpost = () => {
   };
 
   return (
-    <div className="flex-grow gap-3 flex justify-center flex-col items-center m-20 ">
+    <div  className="flex-grow-1 flex justify-center items-center mt-32">
+
       <form
         onSubmit={handleSubmit}
-        className="border p-10 rounded bg-slate-200  flex gap-4 flex-col"
+        className="border rounded bg-slate-200 flex gap-4 p-5 flex-col"
       >
-        {/* <input
-          className="bg-slate-50 p-2 border-2 border-gray-100"
-          placeholder="Image URL"
-          maxLength={250}
-          value={imgUrl}
-          type="text"
-          onChange={(e) => {
-            setUrl(e.target.value);
-          }}
-        ></input> */}
         <UploadButton></UploadButton>
 
 
@@ -46,9 +36,7 @@ const Addpost = () => {
           placeholder="Post description "
           value={postText}
           type="text"
-          onChange={(e) => {
-            setPostText(e.target.value);
-          }}
+          onChange={(e) => {setPostText(e.target.value); }}
         ></input>
         <button className="btn bg-slate-50" type="submit">
           {" "}

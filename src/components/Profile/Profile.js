@@ -59,6 +59,7 @@ const Profile = () => {
             isFollowing={isFollowing}
             myAccount={myAccount}
             posts={userPosts}
+            loading={loading}
             profileData={userInfo}
           ></ProfileInfo>
           <PhotoGrid posts={userPosts}> </PhotoGrid>
