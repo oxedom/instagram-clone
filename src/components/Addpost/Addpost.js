@@ -29,7 +29,7 @@ const Addpost = () => {
         <div className="flex justify-center items-cente m-32  ">
           <form
             onSubmit={handleSubmit}
-            className="border rounded-lg shadow-lg border bg-slate-200 flex gap-4 p-5 flex-col">
+            className="border rounded-lg shadow-lg  bg-slate-200 flex gap-4 p-5 flex-col">
                 {selectedImage &&  <div className="bg-red-400 hover:bg-red-500 p-2 rounded text-center order-2 text-white  "  onClick={handleRemove}> Remove </div> }     
               <label for="files" className="btn w-[250px] flex justify-center  ">
               {selectedImage &&  <div className="flex flex-col gap-2  p-1">

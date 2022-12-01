@@ -1,5 +1,5 @@
 import instaIcon from "../../assests/sam-logo.png";
-import uploadIcon from "../../assests/upload.png";
+import uploadIcon from "../../assests/uploadPhoto.png";
 import homepageIcon from "../../assests/homepage.png";
 
 import { Link } from "react-router-dom";

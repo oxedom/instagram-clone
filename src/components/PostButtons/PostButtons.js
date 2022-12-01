@@ -36,7 +36,7 @@ const PostButtons = (props) => {
   }, [likes]);
 
   return (
-    <div className="bg-white flex flex-col overflow-hidden   ">
+    <div className="bg-white flex flex-col overflow-hidden rounded-lg   ">
       <div className="p-2 flex flex-col ">
         <ul className="flex gap-4 object-contain w-14 mt-2 ">
           <li>

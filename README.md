@@ -4,17 +4,13 @@
 
 Things to do:
 
-CSS SPINNER
-Delete unsed Vars
-Form validation; (error == true)
+Delte Unused Vars;
+Check ESLinter Errors
+Form Validation for Sign UP/Sign in 
+Skeleton Loding for Feed Posts, For Profile, For One post
+Do something about Edit Profile 
+Restyle Navbar Icons on the right
+Sort out Hosting and CI/CD
+Smarter Query for Suggestions
 
-fix typoshook
-checkout imgs storage
-check about transactions
-refactor code with adding a profile picture and signing up;
-Add reroute for undefined pages profile page 404;
-Skeleton Loding
-smarter suggestions query
-cleancode and add comments
-scrolling for view new people
-make suggestions function more cleaner and elgant backend wise;
+

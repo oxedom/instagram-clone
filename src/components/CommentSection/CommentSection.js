@@ -61,7 +61,7 @@ const CommentSection = (props) => {
           <p className="text-gray-500"> View all {comments.length} comments </p>
         </div>
       )}
-      <div className="mb-2">
+      <div className="flex flex-col gap-1">
         {allComments.map((c) => {
           return (
             <Comment key={c.date} commentData={c}>
