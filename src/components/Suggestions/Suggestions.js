@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserService } from "../../services/UserService";
-import SuggestionsSkeleton from "../../Skeletons/SuggestionsSkeleton";
 
 const Suggestions = () => {
   const userAPI = UserService();
@@ -29,8 +28,8 @@ const Suggestions = () => {
 
   return (
     <>
-      {!users.length > 0 && 
-    <SuggestionsSkeleton></SuggestionsSkeleton> }
+      {/* {!users.length > 0 && 
+    <SuggestionsSkeleton></SuggestionsSkeleton> } */}
 
       {users.length > 0 && (
         <div className="mt-2 shadow-md border-solid text-center p-4 slide relative rounded-lg flex  gap-4 w-[400px] bg-white md:w-[500px]">

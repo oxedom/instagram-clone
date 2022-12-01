@@ -5,7 +5,7 @@ const UploadButton = (props) => {
 
 
   const handleInputUpload = (e) => {
-    alert(e.target.files[0].name)
+
     e.preventDefault();
 
     const file = e.target.files[0];

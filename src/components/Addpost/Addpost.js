@@ -29,11 +29,11 @@ const Addpost = () => {
         <div className="flex justify-center items-cente m-32  ">
           <form
             onSubmit={handleSubmit}
-            className="border rounded-lg bg-slate-200 flex gap-4 p-5 flex-col">
-                {selectedImage &&  <div className="bg-red-400 hover:bg-red-500 p-2 rounded text-center "  onClick={handleRemove}> Remove </div> }     
+            className="border rounded-lg shadow-lg border bg-slate-200 flex gap-4 p-5 flex-col">
+                {selectedImage &&  <div className="bg-red-400 hover:bg-red-500 p-2 rounded text-center order-2 text-white  "  onClick={handleRemove}> Remove </div> }     
               <label for="files" className="btn w-[250px] flex justify-center  ">
               {selectedImage &&  <div className="flex flex-col gap-2  p-1">
-                <img alt="user upload" src={URL.createObjectURL(selectedImage)} />
+                <img className="shadow-lg rounded" alt="user upload" src={URL.createObjectURL(selectedImage)} />
    
                 </div> }
 
@@ -57,7 +57,7 @@ const Addpost = () => {
                 setPostText(e.target.value);
               }}
             ></textarea>
-            <button className="btn bg-blue-500 rounded p-2 hover:bg-blue-700" type="submit">
+            <button className="btn bg-blue-400 rounded p-2 text-white  hover:bg-blue-500" type="submit">
               {" "}
               Post Post!{" "}
             </button>

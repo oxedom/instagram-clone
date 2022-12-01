@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import PostButtons from "../PostButtons/PostButtons";
+import Skeleton from "react-loading-skeleton";
 
 const Post = (props) => {
   const { imgUrl, text, uid, likes, username, id, date, photoURL, comments } =
     props.postData;
 
   return (
-    <div className="flex flex-col shadow-md border-solid m-3 rounded max-w-[450px]   ">
+    
+    <div className="flex flex-col shadow-md border-solid m-3 rounded max-w-[450px]">
       <div className="bg-white p-4 rounded-lg ">
         <div className="flex items-center gap-2 align-center  ">
           <img
@@ -33,7 +35,8 @@ const Post = (props) => {
       >
         {" "}
       </PostButtons>
-    </div>
+    </div> 
+    
   );
 };
 
