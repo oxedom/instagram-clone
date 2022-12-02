@@ -4,7 +4,12 @@ import { UserService } from "../../services/UserService";
 import { PostService } from "../../services/PostService";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
+<<<<<<< HEAD
 
+=======
+import Suggestions from "../Suggestions/Suggestions";
+import PostSkeleton from "../Post/PostSkeleton";
+>>>>>>> parent of 730ccb6 (removed skeletons)
 
 
 const Feed = () => {
@@ -75,7 +80,9 @@ const Feed = () => {
 
       <div className="flex flex-col gap-5 items-center">
   
-        {isLoading}
+
+        {!isLoading && <PostSkeleton cards={1} />}
+
 
         {posts.map((p) => (
           

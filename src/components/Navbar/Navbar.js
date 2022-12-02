@@ -9,9 +9,6 @@ import { useCallback, useEffect, useState } from "react";
 import { UserService } from "../../services/UserService";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
-
-
-
 const Navbar = ({ children }) => {
   //Fetching logout function
   const { logout } = LogoutService();
@@ -48,14 +45,14 @@ const Navbar = ({ children }) => {
           <Link to="/feed">
             <img
               alt="Instagram"
-              className=" object-contain h-8 w-18 sm:h-10 sm:w-30"
+              className=" object-contain h-8 w-18 sm:h-10 sm:w-30 "
               src={instaIcon}
             />
           </Link>
 
           <div className="flex items-center gap-3">
             <div
-              className="rounded text-white  hover:cursor-pointer  text-center font-bold btn p-1 bg-blue-400 hover:bg-blue-500 "
+              className="rounded text-white  hover:cursor-pointer  text-center font-bold btn p-1 bg-blue-500 hover:bg-blue-700`"
               onClick={handleLogout}
             >
               {" "}
@@ -73,23 +70,29 @@ const Navbar = ({ children }) => {
             </div>
 
             <div>
-        
               <Link to={`/profile/${userData.username}`}>
-    
-                {userData && (<img  
-                 className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
+                {!userData && (
+                  <img
                     alt="profile"
+                    className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
+                    src={userIcon}
+                  />
+                )}
+                {userData && (
+                  <img
+                    className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
+                    alt="profile"
+                    //Need to update photoURL
+
                     src={userData.photoURL}
-                  /> 
+                  />
                 )}
               </Link>
             </div>
           </div>
         </div>
       </nav>
-
-      
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center">
       {children}
       </div>
 
@@ -116,10 +119,16 @@ const Navbar = ({ children }) => {
 
           <div>
             <Link to={`/profile/${userData.username}`}>
-     
+              {!userData && (
+                <img
+                  alt="profile"
+                  className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
+                  src={userIcon}
+                />
+              )}
               {userData && (
                 <img
-                   className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
+                  className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
                   alt="profile"
                   //Need to update photoURL
 
@@ -130,7 +139,7 @@ const Navbar = ({ children }) => {
           </div>
 
           <div
-            className="rounded text-white text-center font-bold btn p-2 bg-blue-400 hover:bg-blue-700"
+            className="rounded text-white    text-center font-bold btn p-2 bg-blue-400 hover:bg-blue-700`"
             onClick={handleLogout}
           >
             {" "}
