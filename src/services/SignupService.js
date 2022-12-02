@@ -2,11 +2,11 @@ import { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, firestore } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
-import { UserService } from "./UserService";
+
 import { PostService } from "./PostService";
 
 export const SignupService = () => {
-  const userAPI = UserService();
+
   const postApi = PostService();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);

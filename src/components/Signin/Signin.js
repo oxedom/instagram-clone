@@ -11,7 +11,7 @@ const Signin = (props) => {
   const [loginError, setLoginError] = useState(false);
   const [buttonState, setButtonState] = useState();
 
-  const { signIn, error, isLoading } = SignInService();
+  const { signIn,  } = SignInService();
   const { logout } = LogoutService();
 
   const navigate = useNavigate();
@@ -31,12 +31,14 @@ const Signin = (props) => {
   }, [email, password]);
 
   async function handleSubmit(e) {
+    setLoginError(false)
     e.preventDefault();
     try {
       await logout();
       await signIn(email, password);
       navigate("/feed");
     } catch (err) {
+      setLoginError(true)
       console.error(err);
     }
 

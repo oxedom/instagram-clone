@@ -4,7 +4,7 @@ import homepageIcon from "../../assests/homepage.png";
 
 import { Link } from "react-router-dom";
 import { LogoutService } from "../../services/LogoutService";
-import userIcon from "../../assests/emptyUser.png";
+
 import { useCallback, useEffect, useState } from "react";
 import { UserService } from "../../services/UserService";
 import { onAuthStateChanged } from "firebase/auth";

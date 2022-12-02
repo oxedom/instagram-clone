@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import PostButtons from "../PostButtons/PostButtons";
-import Skeleton from "react-loading-skeleton";
+
 
 const Post = (props) => {
   const { imgUrl, text, uid, likes, username, id, date, photoURL, comments } =

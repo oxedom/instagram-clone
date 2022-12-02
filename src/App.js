@@ -1,6 +1,6 @@
 import RouteSwitch from "./RouteSwitch";
 import "./index.css";
-import { SkeletonTheme } from "react-loading-skeleton";
+// import { SkeletonTheme } from "react-loading-skeleton";
 
 
 function App() {

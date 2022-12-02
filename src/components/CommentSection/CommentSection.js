@@ -4,8 +4,9 @@ import { PostService } from "../../services/PostService";
 import { useEffect, useState } from "react";
 import { auth } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
+
 const CommentSection = (props) => {
-  const { text, likes, username, date, id, comments } = props.postData;
+  const {  date, id, comments } = props.postData;
 
   const postApi = PostService();
   const [commentText, setComment] = useState("");

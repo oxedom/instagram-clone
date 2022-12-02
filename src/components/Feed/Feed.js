@@ -4,7 +4,7 @@ import { UserService } from "../../services/UserService";
 import { PostService } from "../../services/PostService";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
-import Suggestions from "../Suggestions/Suggestions";
+
 
 
 const Feed = () => {
@@ -75,7 +75,7 @@ const Feed = () => {
 
       <div className="flex flex-col gap-5 items-center">
   
-      
+        {isLoading}
 
         {posts.map((p) => (
           
