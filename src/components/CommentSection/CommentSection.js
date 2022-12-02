@@ -28,6 +28,7 @@ const CommentSection = (props) => {
 
   const handleShowMore = () => {
     setAllComments(comments);
+    
     setViewAll(true);
   };
 
