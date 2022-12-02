@@ -1,0 +1,26 @@
+
+name: GitHub Actions For Instagram CLone
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Instaclone
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 16
+      - name: Install dependencies
+        run: npm ci
+      - name: build
+        run: npm run build
+      - name: Deploy to GH Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./build
+          github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+        env:
+
+            repository: ${{ github.repository }}
