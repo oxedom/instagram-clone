@@ -10,17 +10,8 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Instagram Clone
-        uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Install dependencies
-        run: npm i 
-     
-      - name: build
-        run: npm run build
+      - uses: actions/checkout@v2
+      - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
