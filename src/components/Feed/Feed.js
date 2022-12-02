@@ -5,7 +5,6 @@ import { PostService } from "../../services/PostService";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import Suggestions from "../Suggestions/Suggestions";
-import PostSkeleton from "../Post/PostSkeleton";
 
 
 const Feed = () => {
@@ -76,7 +75,7 @@ const Feed = () => {
 
       <div className="flex flex-col gap-5 items-center">
   
-        {!isLoading && <PostSkeleton cards={1} />}
+      
 
         {posts.map((p) => (
           
