@@ -10,6 +10,7 @@ import {
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
+import { useNavigate } from "react-router";
 import { auth, firestore, storage } from "../firebase";
 import { UserService } from "./UserService";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -17,6 +18,7 @@ import uniqid from "uniqid";
 
 export const PostService = () => {
   const userAPI = UserService();
+  const navigate = useNavigate();
 
   const getPostByID = async (id) => {
     try {
@@ -91,36 +93,33 @@ export const PostService = () => {
   };
 
   const postPost = async (imgFile, text) => {
-    let result = undefined;
     try {
-      auth.onAuthStateChanged(async (user) => {
-        if (user) {
-          const storedImage = await uploadImage(imgFile);
-          const currentUID = user.uid;
-          const data = {
-            text: text,
-            imgUrl: storedImage,
-            likes: [],
-            comments: [],
-            uid: currentUID,
-            date: Date.now(),
-          };
-          const docRef = await addDoc(collection(firestore, "posts"), {
-            ...data,
-          });
+      const currentUser = auth.currentUser;
 
-          console.log("Document written with ID: ", docRef.id);
-
-          result = docRef;
-          return result;
-        } else {
-          return result;
-        }
+      const storedImage = await uploadImage(imgFile);
+      const currentUID = currentUser.uid;
+      const data = {
+        text: text,
+        imgUrl: storedImage,
+        likes: [],
+        comments: [],
+        uid: currentUID,
+        date: Date.now(),
+      };
+      const docRef = await addDoc(collection(firestore, "posts"), {
+        ...data,
       });
-    } catch (err) {
+  
+      console.log("Document written with ID: ", docRef.id);
+      navigate(`/post/${docRef.id}`);
+      return docRef;
+    }
+    catch(err) 
+    {
       console.error(err);
     }
-    return result;
+
+
   };
 
   //Deletes post

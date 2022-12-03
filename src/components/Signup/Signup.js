@@ -81,12 +81,12 @@ const Signup = () => {
                 }}
                 name="username"
               ></input>
-             
+
               <UploadButton
                 selectedImage={selectedImage}
                 setSelectedImage={setSelectedImage}
               ></UploadButton>
-       
+
               <input
                 className="bg-slate-50 p-2 border-2 border-gray-100"
                 placeholder="Bio"

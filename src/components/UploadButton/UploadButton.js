@@ -1,11 +1,7 @@
-
-
 const UploadButton = (props) => {
   const { selectedImage, setSelectedImage } = props;
 
-
   const handleInputUpload = (e) => {
-
     e.preventDefault();
 
     const file = e.target.files[0];
@@ -13,11 +9,10 @@ const UploadButton = (props) => {
   };
 
   return (
-
-      <div>
+    <div>
       <input
-      className=""
-      id="files"
+        className=""
+        id="files"
         key={selectedImage}
         type="file"
         title="Upload Photo"
@@ -25,8 +20,7 @@ const UploadButton = (props) => {
         name="myImage"
         onChange={handleInputUpload}
       />
-      </div>
-
+    </div>
   );
 };
 

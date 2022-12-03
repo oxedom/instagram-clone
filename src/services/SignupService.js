@@ -40,7 +40,7 @@ export const SignupService = () => {
         bio: bio,
         followers: [],
         following: [],
-        photoURL:profileUrl,
+        photoURL: profileUrl,
       });
 
       setIsLoading(false);

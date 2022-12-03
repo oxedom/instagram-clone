@@ -7,7 +7,6 @@ const Post = (props) => {
     props.postData;
 
   return (
-    
     <div className="flex flex-col shadow-md border-solid m-3 rounded max-w-[450px]">
       <div className="bg-white p-4 rounded-lg ">
         <div className="flex items-center gap-2 align-center  ">
@@ -35,8 +34,7 @@ const Post = (props) => {
       >
         {" "}
       </PostButtons>
-    </div> 
-    
+    </div>
   );
 };
 

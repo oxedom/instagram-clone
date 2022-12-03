@@ -10,8 +10,6 @@ import { UserService } from "../../services/UserService";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 
-
-
 const Navbar = ({ children }) => {
   //Fetching logout function
   const { logout } = LogoutService();
@@ -73,14 +71,13 @@ const Navbar = ({ children }) => {
             </div>
 
             <div>
-        
               <Link to={`/profile/${userData.username}`}>
-    
-                {userData && (<img  
-                 className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
+                {userData && (
+                  <img
+                    className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
                     alt="profile"
                     src={userData.photoURL}
-                  /> 
+                  />
                 )}
               </Link>
             </div>
@@ -88,10 +85,7 @@ const Navbar = ({ children }) => {
         </div>
       </nav>
 
-      
-      <div className="flex justify-center items-center">
-      {children}
-      </div>
+      <div className="flex justify-center items-center">{children}</div>
 
       {/* BOTTOM NAV */}
       <nav className="block p-2 fixed inset-x-0 bottom-0 z-10 border shadow-lg  bg-white   md:hidden ">
@@ -116,10 +110,9 @@ const Navbar = ({ children }) => {
 
           <div>
             <Link to={`/profile/${userData.username}`}>
-     
               {userData && (
                 <img
-                   className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
+                  className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
                   alt="profile"
                   //Need to update photoURL
 

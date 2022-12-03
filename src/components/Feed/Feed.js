@@ -6,11 +6,10 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import Suggestions from "../Suggestions/Suggestions";
 
-
 const Feed = () => {
   //eslint-disable-next-line
 
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [noPost, setNoPost] = useState(false);
 
@@ -21,10 +20,9 @@ const Feed = () => {
   const { getAllUserPosts } = PostService();
 
   const fetchData = useCallback(async () => {
- 
     //Resets Posts array so no stale data or rerenders duplicate the amount of posts
     setPosts([]);
-    setLoading(true)
+    setLoading(true);
     onAuthStateChanged(auth, async (userData) => {
       try {
         if (userData) {
@@ -33,7 +31,7 @@ const Feed = () => {
           if (user.following.length === 0) {
             setNoPost(true);
           }
-      
+
           await user.following.forEach(async (f) => {
             //Query the person he is followings data to get his username and profile picture;
             const followerData = await getUserbyId(f);
@@ -55,12 +53,11 @@ const Feed = () => {
               return [...prev, ...updatedPosts];
             });
           });
-   
         }
       } catch (error) {
         console.error(error);
       }
-      setLoading(false)
+      setLoading(false);
     });
   }, []);
 
@@ -71,18 +68,11 @@ const Feed = () => {
 
   return (
     <div>
-
-
       <div className="flex flex-col gap-5 items-center">
-  
-      
-
         {posts.map((p) => (
-          
           <Post key={p.id} postData={p}>
             {" "}
           </Post>
-          
         ))}
         <div className="mt-10 "> </div>
         {noPost && (
