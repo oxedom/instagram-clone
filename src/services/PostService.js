@@ -109,17 +109,13 @@ export const PostService = () => {
       const docRef = await addDoc(collection(firestore, "posts"), {
         ...data,
       });
-  
+
       console.log("Document written with ID: ", docRef.id);
       navigate(`/post/${docRef.id}`);
       return docRef;
-    }
-    catch(err) 
-    {
+    } catch (err) {
       console.error(err);
     }
-
-
   };
 
   //Deletes post
