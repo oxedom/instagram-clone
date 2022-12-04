@@ -1,10 +1,9 @@
 import instaIcon from "../../assests/sam-logo.png";
 import uploadIcon from "../../assests/uploadPhoto.png";
 import homepageIcon from "../../assests/homeicon.png";
-
+import myLikes from "../../assests/heart.png"
 import { Link } from "react-router-dom";
 import { LogoutService } from "../../services/LogoutService";
-import userIcon from "../../assests/emptyUser.png";
 import { useCallback, useEffect, useState } from "react";
 import { UserService } from "../../services/UserService";
 import { onAuthStateChanged } from "firebase/auth";
@@ -16,6 +15,8 @@ const Navbar = ({ children }) => {
 
   const [userData, setUserData] = useState("");
   const { getUserByUsername } = UserService();
+
+  const [query, setQuery] = useState("")
 
   const handleLogout = async () => {
     await logout();
@@ -50,6 +51,7 @@ const Navbar = ({ children }) => {
   return (
     <div className="flex flex-col">
       <nav className="bg-white border shadow-lg hidden  md:block ">
+
         <div className="flex justify-around items-center m-3 ">
           <Link to="/feed">
             <img
@@ -57,7 +59,12 @@ const Navbar = ({ children }) => {
               className=" object-contain h-8 w-18 sm:h-10 sm:w-30"
               src={instaIcon}
             />
+
+
           </Link>
+          <input      onChange={(e) => {
+              setQuery(e.target.value);
+            }} value={query} className="bg-gray-100 rounded-lg p-1" placeholder=" Search" type='text'/>
 
           <div className="flex items-center gap-3">
             <div
@@ -95,8 +102,9 @@ const Navbar = ({ children }) => {
 
 
 
-      <div  className="flex p-3 justify-center  items-stretch inset-x-0 top-0   border shadow  bg-white   md:hidden ">
+      <div  className="flex p-3  justify-center items-center inset-x-0 top-0   border shadow  bg-white   md:hidden ">
         <input className="bg-gray-100 rounded-lg p-1 w-7/12 " placeholder=" Search" type='text'/>
+        <img className="oject-cover aspect-ratio: auto; w-7 h-7 ml-5 sm:w-10 sm:h-10" src={myLikes} />
         </div> 
 
 
@@ -124,7 +132,7 @@ const Navbar = ({ children }) => {
             <Link to={"/upload"}>
               <img
                 alt="upload"
-                className="bject-cover aspect-ratio: auto; w-8 h-8 sm:w-10 sm:h-10"
+                className="oject-cover aspect-ratio: auto; w-8 h-8 sm:w-10 sm:h-10"
                 src={uploadIcon}
               />
             </Link>
