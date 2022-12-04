@@ -11,12 +11,12 @@ const Post = (props) => {
     let height = e.naturalHeight
     let width = e.naturalWidth
 
-    if(width < height) { 
+    if(width <= height) { 
       //Portarit mode
       setLandscape("max-w-[450px]")}
  
       
-    if(width > height) { 
+    if(width >= height) { 
 
       setTempSize({width: "680", height: "450"})
       setLandscape("max-w-[650px]")}

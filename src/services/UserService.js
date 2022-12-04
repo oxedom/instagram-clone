@@ -7,6 +7,9 @@ import {
   updateDoc,
   doc,
   arrayUnion,
+  startAt,
+  orderBy,
+  limit,
 } from "firebase/firestore";
 
 import { auth, firestore } from "../firebase";
@@ -25,6 +28,31 @@ export function UserService() {
       return user;
     } catch (error) {
       console.error(error);
+    }
+  };
+
+
+
+
+
+  const search = async (text) => {
+
+    const users = [];
+    if (text !== '') {
+  
+
+  
+      const usersRef = collection(firestore, "users");
+  
+      const q = query(usersRef, orderBy("username"),startAt(text.toLowerCase()),limit(5))
+
+      const querySnapshot = await getDocs(q)
+
+
+      querySnapshot.forEach((doc) => {
+        console.log("DATA IS ");
+        console.log(doc.data());
+      })
     }
   };
 
@@ -66,6 +94,23 @@ export function UserService() {
       console.error(error);
     }
   };
+
+  // const getFiveUsers = async () => {
+  //   try {
+  //     let users = [];
+
+  //     const usersRef = collection(firestore, "users");
+
+  //     const querySnapshot = await getDocs(usersRef).limit(5);
+  //     querySnapshot.forEach((doc) => {
+  //       users.push(doc.data());
+  //     });
+
+  //     return users;
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   const getCurrentUser = async () => {
     let answer = undefined;
@@ -188,6 +233,7 @@ export function UserService() {
     getUserByUsername,
     toogleFollow,
     getCurrentUser,
-    getAllLikes
+    getAllLikes,
+    search
   };
 }

@@ -12,6 +12,7 @@ import UserIconSkeleton from "../Skeletons/UserIconSkeleton";
 
 const Navbar = ({ children }) => {
   //Fetching logout function
+  const {search} = UserService()
   const { logout } = LogoutService();
   const [profileLoaded, setProfileLoaded] = useState(false)
   const [userData, setUserData] = useState("");
@@ -48,8 +49,13 @@ const Navbar = ({ children }) => {
   };
 
 
+
   useEffect(() => {
-  
+
+    search(query)
+
+
+
   }, [query])
 
 
@@ -139,6 +145,7 @@ const Navbar = ({ children }) => {
       </nav>
 
       <div className="flex p-3  justify-center items-center inset-x-0 top-0   border shadow  bg-white   md:hidden ">
+
         <input
         onChange={(e) => {
                   setQuery(e.target.value);
