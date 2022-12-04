@@ -55,6 +55,10 @@ const Navbar = ({ children }) => {
     setResults(users)
   }, [])
 
+
+  const handleResultClick = () => {
+    setQuery('')
+  }
   useEffect( () => {
 
     fetchQuery(query)
@@ -79,9 +83,10 @@ const Navbar = ({ children }) => {
           </Link>
 
 
+        <div className="flex flex-col items-center ">
 
-
-          <input
+     
+        <input
             onChange={(e) => {
               setQuery(e.target.value);
             }}
@@ -91,7 +96,25 @@ const Navbar = ({ children }) => {
             type="text"
           />
 
-           {results.map((u) => <div> {u.username} </div>)}
+        {results.length > 0 &&
+        <ul className="flex flex-col gap-2 mt-10 z-20 border boder-black p-3 rounded-2xl shadow-lg absolute  bg-white w-[400px]">
+        {results.map((u) => 
+        <Link to={`/profile/${u.username}`}>
+            <div onClick={handleResultClick} className="flex gap-2 bg-white  rounded-2xl items-center" >
+            <img className="rounded-full object-cover shadow aspect-ratio: auto; w-12 h-12" src={u.photoURL} />
+             <li> {u.username}</li>
+            </div>
+    
+        </Link>
+      )}
+
+        </ul> }
+       
+
+        </div>
+
+    
+        
           
 
           <div className="flex items-center gap-3">
@@ -109,7 +132,7 @@ const Navbar = ({ children }) => {
               <Link to={"/upload"}>
                 <img
                   alt="upload"
-                  className="oject-cover aspect-ratio: auto; w-8 h-8 sm:w-10 sm:h-10"
+                  className="object-cover aspect-ratio: auto; w-8 h-8 sm:w-10 sm:h-10"
                   src={uploadIcon}
                 />
               </Link>
