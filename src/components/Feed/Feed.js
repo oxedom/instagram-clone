@@ -10,10 +10,8 @@ import PostSkeleton from "../Skeletons/PostSkeleton";
 const Feed = () => {
   //eslint-disable-next-line
 
-  const [isLoading, setLoading] = useState(false);
+  const [noPost, setNoPost] = useState(false)
   const [posts, setPosts] = useState([]);
-  const [noPost, setNoPost] = useState(false);
-
   //Functions from useEffect that allow the client to interact with the database through BL;
   const { getUserbyId } = UserService();
   //################################
@@ -23,7 +21,7 @@ const Feed = () => {
   const fetchData = useCallback(async () => {
     //Resets Posts array so no stale data or rerenders duplicate the amount of posts
     setPosts([]);
-    setLoading(true);
+  
     onAuthStateChanged(auth, async (userData) => {
       try {
         if (userData) {
@@ -58,26 +56,27 @@ const Feed = () => {
       } catch (error) {
         console.error(error);
       }
-      setLoading(false);
+
     });
   }, []);
 
   useEffect(() => {
     //Init for fetch data function;
-    fetchData();
+
+    fetchData()
   }, []);
 
   return (
     <div>
       <div className="flex flex-col gap-5 items-center">
-        {isLoading && [1,2,3].map((s) => { return <PostSkeleton key={s}></PostSkeleton>})}
+        {(posts.length <=0 && !noPost) && [1,2,3].map((s) => { return <PostSkeleton key={s}></PostSkeleton>})}
         {posts.map((p) => (
           <Post key={p.id} postData={p}>
             {" "}
           </Post>
         ))}
         <div className="mt-10 "> </div>
-        {noPost && (
+        {noPost >= 1 && (
           <div className="m-10 text-xl flex flex-col justify-center items-center w-max h-96">
             <h1 className=""> You are not following anyone yet</h1>
             <p> Follow People to see their posts</p>
