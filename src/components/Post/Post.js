@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import PostButtons from "../PostButtons/PostButtons";
-import Skeleton from "react-loading-skeleton";
-import PostSkeleton from "../Skeletons/PostSkeleton";
+
 import { useState } from "react";
 
 const Post = (props) => {
-  const [loaded, setLoaded] = useState(false)
+
+  const [tempSize, setTempSize] = useState({width: "500", height: "650"})
+  const handleLoad = () => {
+    setTempSize({})
+  }
   const { imgUrl, text, uid, likes, username, id, date, photoURL, comments } =
     props.postData;
 
@@ -31,7 +34,7 @@ const Post = (props) => {
       </div>
 
       <Link to={`/post/${id}`}>
-        <img className="" alt={text} src={imgUrl} />
+        <img width={tempSize.width} height={tempSize.height} alt={text} src={imgUrl} onLoad={handleLoad} />
       </Link>
       <PostButtons
         postData={{ likes, uid, text, username, date, id, comments }}

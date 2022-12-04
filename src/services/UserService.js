@@ -28,6 +28,28 @@ export function UserService() {
     }
   };
 
+  const getAllLikes = async () => 
+  {
+    // try {
+    //   const id = auth.currentUser.uid
+    //   let likes = [];
+    //   const q = query(collection(firestore, "posts"), where("uid", "==", id));
+      
+    //   const querySnapshot = await getDocs(q);
+    //   querySnapshot.forEach((doc) => {
+    //     likes.push({ ...doc.data(), id: doc.id });
+    //   });
+
+    //   likes = likes.sort(function (a, b) {
+    //     return b.date - a.date;
+    //   });
+
+    //   return likes;
+    // } catch (err) {
+    //   console.error(err);
+    // }
+  }
+
   const getAllUsers = async () => {
     try {
       let users = [];
@@ -166,5 +188,6 @@ export function UserService() {
     getUserByUsername,
     toogleFollow,
     getCurrentUser,
+    getAllLikes
   };
 }

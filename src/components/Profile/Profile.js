@@ -6,6 +6,7 @@ import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import { useNavigate, useParams } from "react-router";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
+import ProfileSkeleton from "../Skeletons/ProfileSkeleton";
 
 const Profile = () => {
   const { getUserbyId, getUserByUsername } = UserService();
@@ -52,7 +53,10 @@ const Profile = () => {
   }, [fetchData]);
 
   return (
-    <>
+    <div className="flex flex-col ">
+      {loading && <ProfileSkeleton></ProfileSkeleton> }
+
+
       {!loading && (
         <div className="justify-self-center w-[500px] md:w-[1000px]">
           <div className="flex  flex-col">
@@ -68,7 +72,8 @@ const Profile = () => {
           </div>
         </div>
       )}
-    </>
+      
+    </div>
   );
 };
 

@@ -9,6 +9,7 @@ import Profile from "./components/Profile/Profile";
 import PostPage from "./components/PostPage/PostPage";
 import Addpost from "./components/Addpost/Addpost";
 import NotFound from "./components/NotFound/NotFound";
+import LikesPages from "./components/LikesPage/LikesPage";
 
 const RouteSwitch = () => {
   return (
@@ -62,6 +63,17 @@ const RouteSwitch = () => {
             <Protected>
               <Navbar>
                 <Addpost></Addpost>
+              </Navbar>
+            </Protected>
+          }
+        ></Route>
+
+        <Route
+          path="likes"
+          element={
+            <Protected>
+              <Navbar>
+                <LikesPages></LikesPages>
               </Navbar>
             </Protected>
           }

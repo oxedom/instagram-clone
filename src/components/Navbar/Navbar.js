@@ -68,6 +68,10 @@ const Navbar = ({ children }) => {
               src={instaIcon}
             />
           </Link>
+
+
+
+
           <input
             onChange={(e) => {
               setQuery(e.target.value);
@@ -78,14 +82,18 @@ const Navbar = ({ children }) => {
             type="text"
           />
 
+          
+
           <div className="flex items-center gap-3">
-            <div
-              className="rounded text-white  hover:cursor-pointer  text-center font-bold btn p-1 bg-blue-400 hover:bg-blue-500 "
-              onClick={handleLogout}
-            >
-              {" "}
-              Logout{" "}
-            </div>
+
+          <Link to='/likes'>
+        <img
+          className="oject-cover aspect-ratio: auto; w-7 h-7 ml-5 sm:w-8 sm:h-8"
+          src={myLikes}
+        />
+        </Link>
+
+  
 
             <div>
               <Link to={"/upload"}>
@@ -112,7 +120,20 @@ const Navbar = ({ children }) => {
                 </div>}
  
               </Link>
+
+  
+
+
             </div>
+
+
+            <div
+              className="rounded text-white  hover:cursor-pointer  text-center font-bold btn p-1 bg-blue-400 hover:bg-blue-500 "
+              onClick={handleLogout}
+            >
+              {" "}
+              Logout{" "}
+            </div>    
           </div>
         </div>
       </nav>
@@ -127,10 +148,13 @@ const Navbar = ({ children }) => {
           placeholder=" Search"
           type="text"
         />
+        <Link to='/likes'>
         <img
           className="oject-cover aspect-ratio: auto; w-7 h-7 ml-5 sm:w-10 sm:h-10"
           src={myLikes}
         />
+        </Link>
+ 
       </div>
 
       <div className="flex justify-center items-center">{children}</div>

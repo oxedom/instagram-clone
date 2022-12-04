@@ -74,9 +74,9 @@ const ProfileInfo = (props) => {
               )}
 
               {myAccount && (
-                <Link to="/settings">
+                <Link to={`/profile/${username}`}>
                   <div className="button flex justify-center p-0.5 border-2 border-slate-300 rounded border-solid text-black bg-grey  text-center hover:cursor-pointer">
-                    <span className="font-size"> Edit profile </span>
+                    <span className="font-size"> Your Profile </span>
                   </div>
                 </Link>
               )}
