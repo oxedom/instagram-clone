@@ -5,6 +5,7 @@ import { PostService } from "../../services/PostService";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import Suggestions from "../Suggestions/Suggestions";
+import PostSkeleton from "../Skeletons/PostSkeleton";
 
 const Feed = () => {
   //eslint-disable-next-line
@@ -69,6 +70,7 @@ const Feed = () => {
   return (
     <div>
       <div className="flex flex-col gap-5 items-center">
+        {isLoading && [1,2,3].map((s) => { return <PostSkeleton key={s}></PostSkeleton>})}
         {posts.map((p) => (
           <Post key={p.id} postData={p}>
             {" "}

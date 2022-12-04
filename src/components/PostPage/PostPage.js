@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { PostService } from "../../services/PostService";
 import { useCallback, useEffect, useState } from "react";
 import { UserService } from "../../services/UserService";
+import PostSkeleton from "../Skeletons/PostSkeleton";
 
 const PostPage = () => {
   const params = useParams();
@@ -23,7 +24,7 @@ const PostPage = () => {
 
   return (
     <div className="flex-grow gap-3 flex justify-center flex-col items-center">
-      {/* {!post &&  <PostSkeleton></PostSkeleton>} */}
+      {!post &&  <PostSkeleton></PostSkeleton>}
       {post && <Post postData={post}> </Post>}
     </div>
   );
