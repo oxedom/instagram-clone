@@ -35,25 +35,29 @@ export function UserService() {
 
 
 
-  const search = async (text) => {
+  const searchUser = async (text) => {
 
-    const users = [];
+    const queryUsers = [];
     if (text !== '') {
+
+      try {
+        const usersRef = collection(firestore, "users");
   
-
+        const q = query(usersRef, orderBy("username"),startAt(text.toLowerCase()),limit(5))
   
-      const usersRef = collection(firestore, "users");
+        const querySnapshot = await getDocs(q)
   
-      const q = query(usersRef, orderBy("username"),startAt(text.toLowerCase()),limit(5))
+        querySnapshot.forEach((doc) => {
+          queryUsers.push(doc.data())
+  
+        })
+      } catch (error) {
+        console.error(error);
+      }
 
-      const querySnapshot = await getDocs(q)
-
-
-      querySnapshot.forEach((doc) => {
-        console.log("DATA IS ");
-        console.log(doc.data());
-      })
     }
+  console.log(queryUsers);
+  return queryUsers;
   };
 
   const getAllLikes = async () => 
@@ -234,6 +238,6 @@ export function UserService() {
     toogleFollow,
     getCurrentUser,
     getAllLikes,
-    search
+    searchUser
   };
 }

@@ -12,11 +12,12 @@ import UserIconSkeleton from "../Skeletons/UserIconSkeleton";
 
 const Navbar = ({ children }) => {
   //Fetching logout function
-  const {search} = UserService()
+  
   const { logout } = LogoutService();
+  const [results , setResults] = useState([])
   const [profileLoaded, setProfileLoaded] = useState(false)
   const [userData, setUserData] = useState("");
-  const { getUserByUsername } = UserService();
+  const { getUserByUsername , searchUser} = UserService();
 
   const [query, setQuery] = useState("");
 
@@ -49,13 +50,15 @@ const Navbar = ({ children }) => {
   };
 
 
+  const fetchQuery = useCallback(async (query) => {
+    const users = await searchUser(query)
+    setResults(users)
+  }, [])
 
-  useEffect(() => {
+  useEffect( () => {
 
-    search(query)
-
-
-
+    fetchQuery(query)
+ 
   }, [query])
 
 
@@ -88,6 +91,7 @@ const Navbar = ({ children }) => {
             type="text"
           />
 
+           {results.map((u) => <div> {u.username} </div>)}
           
 
           <div className="flex items-center gap-3">
