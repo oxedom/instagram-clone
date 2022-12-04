@@ -1,6 +1,6 @@
 import instaIcon from "../../assests/sam-logo.png";
 import uploadIcon from "../../assests/uploadPhoto.png";
-import homepageIcon from "../../assests/homepage.png";
+import homepageIcon from "../../assests/homeicon.png";
 
 import { Link } from "react-router-dom";
 import { LogoutService } from "../../services/LogoutService";
@@ -34,6 +34,14 @@ const Navbar = ({ children }) => {
       }
     });
   }, []);
+
+  const handleBottomHome = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    })
+  }
 
   useEffect(() => {
     fetchData();
@@ -85,6 +93,19 @@ const Navbar = ({ children }) => {
         </div>
       </nav>
 
+
+
+      <div  className="flex p-3 justify-center  items-stretch inset-x-0 top-0   border shadow  bg-white   md:hidden ">
+        <input className="bg-gray-100 rounded-lg p-1 w-7/12 " placeholder=" Search" type='text'/>
+        </div> 
+
+
+
+
+
+
+
+
       <div className="flex justify-center items-center">{children}</div>
 
       {/* BOTTOM NAV */}
@@ -92,6 +113,7 @@ const Navbar = ({ children }) => {
         <div className="flex justify-around items-center ">
           <Link to="/feed">
             <img
+              onClick={handleBottomHome}
               alt="Homepage feed"
               className=" object-contain h-8 w-18 "
               src={homepageIcon}
