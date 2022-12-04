@@ -7,8 +7,11 @@ Things to do:
 Delte Unused Vars;
 Check ESLinter Errors
 Form Validation for Sign UP/Sign in
-Skeleton Loding for Feed Posts, For Profile, For One post
-Do something about Edit Profile
-Restyle Navbar Icons on the right
+Skeleton Loading for suggestions
+Suggestion Query
+Get All User likes query
+Likes page
+Heart goes black when press.
+
 Sort out Hosting and CI/CD
-Smarter Query for Suggestions
+
