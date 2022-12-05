@@ -26,8 +26,10 @@ const ProfileInfo = (props) => {
   return (
     <>
       {!loading && (
-        <div className="mt-5 w-full flex flex-col">
-          <div className="m-4 flex justify-around ">
+
+      
+        <div className="mt-5 flex flex-col">
+          <div className="m-4 grid grid-cols-2 justify-items-center ">
             {/* profile Pictutre */}
             {photoURL && (
               <img
@@ -82,6 +84,12 @@ const ProfileInfo = (props) => {
               )}
             </div>
           </div>
+
+
+
+
+
+
 
           <p className="m-4 font-semibold" alt="bio">
             {" "}

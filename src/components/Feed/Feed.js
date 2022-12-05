@@ -34,6 +34,7 @@ const Feed = () => {
 
           await user.following.forEach(async (f) => {
             //Query the person he is followings data to get his username and profile picture;
+      
             const followerData = await getUserbyId(f);
             const { username, photoURL } = followerData;
             console.log(followerData);
@@ -41,7 +42,10 @@ const Feed = () => {
             const posts = await getAllUserPosts(f);
 
             //Update all of the users posts with his username and profile img URL
-
+            setTimeout(() => 
+            {
+              if(posts.length === 0) { setNoPost(true)}
+            }, 3000)
             const updatedPosts = posts.map((obj) => ({
               ...obj,
               username,
@@ -52,11 +56,11 @@ const Feed = () => {
             setPosts((prev) => {
               return [...prev, ...updatedPosts];
        
-            });
-            setTimeout(() => {
-              if(posts.length === 0) { setNoPost(true)}
-            }, (0));
-          });
+            })
+    
+          })
+          
+          ;
         }
       } catch (error) {
         console.error(error);
@@ -83,10 +87,10 @@ const Feed = () => {
           </Post>
         ))}
         <div className="mt-10 "> </div>
-        {noPost >= 1 && (
+        {noPost  && (
           <div className="m-10 text-xl flex flex-col justify-center items-center w-max h-96">
-            <h1 className=""> You are not following anyone yet</h1>
-            <p> Follow People to see their posts</p>
+            <h1 className=""> There are posts available </h1>
+            <p> Follow People to see their posts!</p>
           </div>
         )}
       </div>

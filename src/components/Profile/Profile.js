@@ -6,6 +6,7 @@ import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import { useNavigate, useParams } from "react-router";
 import { auth } from "../../firebase";
 import ProfileSkeleton from "../Skeletons/ProfileSkeleton";
+import { onAuthStateChanged } from "firebase/auth";
 
 const Profile = () => {
   const { getUserbyId, getUserByUsername } = UserService();
@@ -35,15 +36,20 @@ const Profile = () => {
     setUserInfo(userData);
     setUserPosts(postData);
 
+    onAuthStateChanged(auth,(u) => {
 
-      if (auth.currentUser.uid === user.uid) {
-        setUserInfo({ ...userData, ...auth.currentUser });
+      if (u.uid === user.uid) {
+        setUserInfo({ ...userData, ...u.uid});
         setMyAccount(true);
       }
 
-      if (userData.followers.includes(auth.currentUser)) {
+      if (userData.followers.includes(u.uid)) {
         setIsFollowing(true);
       }
+
+
+    })
+ 
 
 
     setLoading(false);
