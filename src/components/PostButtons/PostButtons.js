@@ -1,17 +1,18 @@
 import unlike from "../../assests/heart.png";
 import liked from "../../assests/darkheart.png";
 import commmentIcon from "../../assests/comment.png";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PostService } from "../../services/PostService";
 import { Link } from "react-router-dom";
 import CommentSection from "../CommentSection/CommentSection.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 
+
 const PostButtons = (props) => {
   const { text, likes, username, date, id, comments } = props.postData;
   const [amountOfLikes, setAmountOfLikes] = useState([]);
-
+  const commentRef = useRef(null)
   const postApi = PostService();
   const [likedState, setLikedState] = useState(false);
 
@@ -25,6 +26,10 @@ const PostButtons = (props) => {
       setLikedState(true);
     }
   };
+
+  const handleCommentClick = () => {
+    commentRef.current.focus()
+  }
 
   useEffect(() => {
     setAmountOfLikes([...likes]);
@@ -51,6 +56,7 @@ const PostButtons = (props) => {
           <li>
             {" "}
             <img
+              onClick={handleCommentClick}
               alt="comment"
               className="hover:cursor-pointer"
               src={commmentIcon}
@@ -69,6 +75,7 @@ const PostButtons = (props) => {
 
         <CommentSection
           postData={{ text, likes, username, date, id, comments }}
+          commentRef={commentRef}
         >
           {" "}
         </CommentSection>

@@ -6,6 +6,8 @@ import { auth } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 const CommentSection = (props) => {
   const { text, likes, username, date, id, comments } = props.postData;
+  const commentRef = props.commentRef
+  console.log(props);
 
   const postApi = PostService();
   const [commentText, setComment] = useState("");
@@ -80,6 +82,7 @@ const CommentSection = (props) => {
         <input
           maxLength={250}
           className="p-3 flex-grow"
+          ref={commentRef}
           value={commentText}
           onChange={(e) => {
             setComment(e.target.value);
