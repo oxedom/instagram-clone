@@ -15,7 +15,7 @@ const ProfileSkeleton = () => {
     <header className="m-4 flex justify-around  ">
     
 
-    <div className="bg-gray-200  animate-pulse rounded-full object-cover aspect-ratio: auto; w-32 h-32" > </div>    
+    <div className="bg-gray-200  animate-pulse rounded-full object-cover aspect-ratio: auto; w-20 h-20 md:w-32 md:h-32" > </div>    
 
      <div className="flex gap-2 flex-col flex-grow-1  animate-pulse items-center justify-self-center">
 

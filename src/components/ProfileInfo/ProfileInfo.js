@@ -29,7 +29,7 @@ const ProfileInfo = (props) => {
 
       
         <div className="mt-5 flex flex-col">
-          <div className="m-4 grid grid-cols-2 justify-items-center ">
+          <div className="m-4 grid grid-cols-2  items-center   ">
             {/* profile Pictutre */}
             {photoURL && (
               <img
@@ -38,18 +38,12 @@ const ProfileInfo = (props) => {
                 alt="profile"
               />
             )}
-            {!photoURL && (
-              <img
-                className="rounded-full object-cover aspect-ratio: auto; w-20 h-20 md:w-32 md:h-32"
-                src={anonymousProfile}
-                alt="profile"
-              />
-            )}
+     
 
             {/* Username and follow button */}
             <div className="flex gap-2 flex-col flex-grow-1  items-center justify-self-center">
               <div className="flex gap-5">
-                <h1 className="font-meduim text-2xl md:text-2xl">
+                <h1 className="font-meduim text-xl md:text-2xl">
                   {" "}
                   {username}{" "}
                 </h1>

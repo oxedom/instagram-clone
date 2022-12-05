@@ -37,7 +37,7 @@ const Suggestions = () => {
      <SuggestionsSkeleton></SuggestionsSkeleton> }
 
       {users.length > 0 && (
-        <div className="mt-2 shadow-md border-solid text-center p-4 slide  rounded-lg grid-cols-4 grid  gap-5 w-[400px] bg-white">
+        <div className="mt-2 shadow-md border-solid text-center p-4 slide  rounded-lg grid-cols-4 grid  gap-5 w-[350px] bg-white">
           {users.map((u) => {
             return (
            
@@ -47,7 +47,7 @@ const Suggestions = () => {
                       width={64}
                       height={64}
                       alt="suggested profile"
-                    
+
                       className="m-1 rounded-full object-cover aspect-ratio:square; w-16 h-16"
                       src={u.photoURL}
                     />

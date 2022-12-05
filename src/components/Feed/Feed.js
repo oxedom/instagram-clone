@@ -91,7 +91,7 @@ const Feed = () => {
         ))}
         <div className="mt-10 "> </div>
         {noPost  && (
-          <div className="m-10 text-xl flex flex-col justify-center items-center w-max h-96">
+          <div className=" text-xl flex flex-col justify-start items-center w-max h-96">
             <h1 className=""> There are posts available </h1>
             <p> Follow People to see their posts!</p>
           </div>
