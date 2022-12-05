@@ -31,10 +31,9 @@ const Signin = (props) => {
 
 
 
-  const handleTestUser = async () => {
+  const handleTestUser =  () => {
     setEmail("test_jest@gmail.com");
     setPassword("jest9999");
-    handleLogin()
   };
   //Changes btn-color based on password length, needs to do more things
 
@@ -53,8 +52,8 @@ const Signin = (props) => {
     e.preventDefault();
     handleLogin()
 
-    // setEmail("");
-    // setPassword("");
+    setEmail("");
+    setPassword("");
   }
 
   return (

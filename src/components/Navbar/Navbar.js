@@ -10,6 +10,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import UserIconSkeleton from "../Skeletons/UserIconSkeleton";
 import igIcon from '../../assests/instaIcon.png'
+import { tr } from "date-fns/locale";
 const Navbar = ({ children }) => {
   //Fetching logout function
   
@@ -18,7 +19,7 @@ const Navbar = ({ children }) => {
   const [profileLoaded, setProfileLoaded] = useState(false)
   const [userData, setUserData] = useState("");
   const { getUserByUsername , searchUser} = UserService();
-
+  const [showSearch, setShowSearch] = useState(false)
   const [query, setQuery] = useState("");
 
   const handleLogout = async () => {
@@ -57,10 +58,12 @@ const Navbar = ({ children }) => {
 
 
   const handleResultClick = () => {
+
     setQuery('')
   }
-  useEffect( () => {
 
+  useEffect( () => {
+    setShowSearch(true)
     fetchQuery(query)
  
   }, [query])
@@ -87,6 +90,7 @@ const Navbar = ({ children }) => {
 
      
         <input
+            onClick={() => { setShowSearch(true)}}
             onChange={(e) => {
               setQuery(e.target.value);
             }}
@@ -96,7 +100,7 @@ const Navbar = ({ children }) => {
             type="text"
           />
 
-        {results.length > 0 &&
+        {(results.length > 0  &&  showSearch) &&
         <ul className="flex flex-col gap-2 mt-10 z-20 border boder-black p-3 rounded-2xl shadow-lg absolute  bg-white w-[400px]">
         {results.map((u) => 
 
@@ -183,6 +187,7 @@ const Navbar = ({ children }) => {
                   <div className="flex flex-col items-center "> 
 
                   <input
+                     onClick={() => { setShowSearch(true)}}
         onChange={(e) => {
                   setQuery(e.target.value);
                   }}
@@ -192,7 +197,7 @@ const Navbar = ({ children }) => {
           type="text"
         />
 
-{results.length > 0 &&
+{(results.length > 0 && showSearch) &&
         <ul className="flex flex-col gap-2 mt-10 z-20 border boder-black p-3 rounded-2xl shadow-lg absolute  bg-white w-[300px]">
         {results.map((u) => 
         <Link key={u.username} to={`/profile/${u.username}`}>
@@ -219,7 +224,7 @@ const Navbar = ({ children }) => {
     
       </div>
 
-      <div className="flex justify-center items-center">{children}</div>
+      <div  onClick={ ()=> {setShowSearch(false)}}className="flex justify-center items-center">{children}</div>
 
       {/* BOTTOM NAV */}
       <nav className="block p-2 fixed inset-x-0 bottom-0 z-10 border shadow-lg  bg-white w-screen    md:hidden ">

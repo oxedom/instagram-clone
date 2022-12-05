@@ -3,6 +3,7 @@
 # Features:
 
 Things to do:
+Sort out comment ref with click
 
 Delte Unused Vars;
 Check ESLinter Errors
