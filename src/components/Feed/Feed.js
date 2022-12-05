@@ -57,7 +57,14 @@ const Feed = () => {
               return [...prev, ...updatedPosts];
        
             })
-    
+            setPosts((prev) => {
+
+               //Sort all posts by date
+               return prev.sort(function (a, b) {
+                return b.date - a.date;})
+
+
+            })
           })
           
           ;

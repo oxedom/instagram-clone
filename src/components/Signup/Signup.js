@@ -11,6 +11,7 @@ const Signup = () => {
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
   const [sent, setSent] = useState(false);
+  const [imgError, setImgError] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null);
   const [buttonState, setButtonState] = useState();
   //eslint-disable-next-line
@@ -26,11 +27,19 @@ const Signup = () => {
   }, [email, password]);
 
   async function handleSubmit(e) {
+    setImgError(false)
     e.preventDefault();
     try {
-      await signup(email.toLowerCase(), password, username.toLowerCase(), selectedImage, bio).then(() => {
-        navigate("/feed");
-      });
+      if(selectedImage === null) {
+        setImgError(true)
+      }
+      else 
+      {
+        await signup(email.toLowerCase(), password, username.toLowerCase(), selectedImage, bio).then(() => {
+          navigate("/feed");
+        });
+      }
+
     } catch (err) {
       console.error(err);
     }
@@ -57,6 +66,7 @@ const Signup = () => {
               </h2>
             </div>
 
+           {imgError &&  <p className="text-red-700 text-center"> A profile picture is required</p> }
             <form className="flex flex-col gap-2 p-2" onSubmit={handleSubmit}>
               <input
                 className="bg-slate-50 p-2 border-2 border-gray-100"
