@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserService } from "../../services/UserService";
+import SuggestionsSkeleton from "../Skeletons/SuggestionsSkeleton";
 
 
 const Suggestions = () => {
@@ -32,25 +33,28 @@ const Suggestions = () => {
 
   return (
     <>
-      {/* {!users.length > 0 && 
-    <Suggestions></Suggestions> } */}
+      {(!users.length > 0)&& 
+     <SuggestionsSkeleton></SuggestionsSkeleton> }
 
       {users.length > 0 && (
         <div className="mt-2 shadow-md border-solid text-center p-4 slide  rounded-lg grid-cols-4 grid  gap-5 w-[400px] bg-white">
           {users.map((u) => {
             return (
-              <section key={u.username}>
-                <Link to={`/profile/${u.username}`}>
-                  <div className="flex gap-1 flex-grow-1 flex-col items-center ">
+           
+                <Link key={u.username} to={`/profile/${u.username}`}>
+               
                     <img
+                      width={64}
+                      height={64}
                       alt="suggested profile"
-                      className="m-1 rounded-full object-cover aspect-ratio:auto; w-16 h-16"
+                    
+                      className="m-1 rounded-full object-cover aspect-ratio:square; w-16 h-16"
                       src={u.photoURL}
                     />
-                    {/* <span> {u.username} </span> */}
-                  </div>
+
+             
                 </Link>
-              </section>
+         
             );
           })}
         </div>

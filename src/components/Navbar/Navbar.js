@@ -128,7 +128,7 @@ const Navbar = ({ children }) => {
               <Link to={"/upload"}>
                 <img
                   alt="upload"
-                  className="object-cover aspect-ratio: object-contain active:scale-105  auto; w-8 h-8 sm:w-10 sm:h-10"
+                  className="object-cover aspect-ratio:auto active:scale-105  auto; w-8 h-8 sm:w-10 sm:h-10"
                   src={uploadIcon}
                 />
               </Link>
@@ -173,7 +173,7 @@ const Navbar = ({ children }) => {
                   <Link to='/feed'>
                   <img 
       alt="Instagram"
-        className="object-cover  active:scale-90  aspect-ratio: auto; w-7 h-7  sm:w-10 sm:h-10"
+        className="object-cover  active:scale-105 aspect-ratio: auto; w-7 h-7  sm:w-10 sm:h-10"
         src={igIcon}/>
  
                   </Link>
@@ -237,7 +237,7 @@ const Navbar = ({ children }) => {
             <Link to={"/upload"}>
               <img
                 alt="upload"
-                className="object-cover active:scale-90 aspect-ratio:square  w-8 h-8 sm:w-10 sm:h-10"
+                className="object-cover active:scale-105 aspect-ratio:square  w-8 h-8 sm:w-10 sm:h-10"
                 src={uploadIcon}
               />
             </Link>
@@ -249,7 +249,7 @@ const Navbar = ({ children }) => {
 
               {userData && (
                   <img
-                  className="rounded-full object-cover aspect-ratio: auto; w-10 h-10"
+                  className="rounded-full active:scale-105 object-cover aspect-ratio: auto; w-10 h-10"
                   alt="profile"
                   src={userData.photoURL}
                 />
