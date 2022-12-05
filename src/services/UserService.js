@@ -1,4 +1,4 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import {
   collection,
   getDocs,
@@ -7,12 +7,13 @@ import {
   updateDoc,
   doc,
   arrayUnion,
-  startAt,
   orderBy,
+  startAt,
   limit,
 } from "firebase/firestore";
 
 import { auth, firestore } from "../firebase";
+
 
 export function UserService() {
   const getUserbyId = async (id) => {
@@ -117,17 +118,7 @@ export function UserService() {
   // };
 
   const getCurrentUser = async () => {
-    let answer = undefined;
-    await onAuthStateChanged(auth, (user) => {
-      if (user) {
-        answer = user;
-      }
-      if (!user) {
-        answer = {};
-      }
-    });
-
-    return answer;
+    return auth.currentUser;
   };
 
   // const updateUser = async (updatedObj) => {
