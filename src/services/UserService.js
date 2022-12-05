@@ -88,7 +88,7 @@ export function UserService() {
 
       const usersRef = collection(firestore, "users");
 
-      const querySnapshot = await getDocs(usersRef, limit(6));
+      const querySnapshot = await getDocs(usersRef, limit(5));
       
       querySnapshot.forEach((doc) => {
         users.push(doc.data());

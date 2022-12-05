@@ -60,7 +60,7 @@ const ProfileInfo = (props) => {
               {!myAccount && isFollowing && (
                 <div
                   onClick={handleFollow}
-                  className="button flex justify-center p-0.5 border-2 border-slate-300 hover:cursor-pointer"
+                  className="button flex justify-center p-0.5  w-[100px] rounded border-2 border-slate-300 hover:cursor-pointer"
                 >
                   <span className="font-medium"> Following </span>
                 </div>
@@ -69,7 +69,7 @@ const ProfileInfo = (props) => {
               {!myAccount && !isFollowing && (
                 <div
                   onClick={handleFollow}
-                  className="button border flex justify-center p-0.5 text-white bg-blue-500  text-center hover:cursor-pointer"
+                  className="button border flex justify-center p-0.5 rounded w-[100px] text-white bg-blue-500  text-center hover:cursor-pointer"
                 >
                   <span className="font-medium"> Follow </span>
                 </div>
