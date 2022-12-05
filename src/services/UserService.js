@@ -43,8 +43,8 @@ export function UserService() {
 
       try {
         const usersRef = collection(firestore, "users");
-  
-        const q = query(usersRef, orderBy("username"),startAt(text.toLowerCase()),limit(5))
+        const q = query(usersRef,where('username', ">=", text.toLowerCase(), where('username', '=<', text.toLowerCase())),limit(5))
+        // const q = query(usersRef, orderBy("username"),startAt(text.toLowerCase()),limit(5))
   
         const querySnapshot = await getDocs(q)
   

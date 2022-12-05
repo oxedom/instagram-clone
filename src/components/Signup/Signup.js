@@ -28,7 +28,7 @@ const Signup = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await signup(email, password, username, selectedImage, bio).then(() => {
+      await signup(email.toLowerCase(), password, username.toLowerCase(), selectedImage, bio).then(() => {
         navigate("/feed");
       });
     } catch (err) {

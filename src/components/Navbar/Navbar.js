@@ -173,15 +173,40 @@ const Navbar = ({ children }) => {
 
       <div className="flex p-3  justify-center items-center inset-x-0 top-0   border shadow  bg-white   md:hidden ">
 
-        <input
+                  <div className="flex flex-col items-center "> 
+
+                  <input
         onChange={(e) => {
                   setQuery(e.target.value);
                   }}
                   value={query}
-          className="bg-gray-100 rounded-lg p-1 w-7/12 "
+          className="bg-gray-100 rounded-lg p-1 w-[250px] sm:w-[300px] "
           placeholder=" Search"
           type="text"
         />
+
+{results.length > 0 &&
+        <ul className="flex flex-col gap-2 mt-10 z-20 border boder-black p-3 rounded-2xl shadow-lg absolute  bg-white w-[400px]">
+        {results.map((u) => 
+        <Link to={`/profile/${u.username}`}>
+            <div onClick={handleResultClick} className="flex gap-2 bg-white  rounded-2xl items-center" >
+            <img className="rounded-full object-cover shadow aspect-ratio: auto; w-12 h-12" src={u.photoURL} />
+             <li> {u.username}</li>
+            </div>
+    
+        </Link>
+      )}
+
+        </ul> }
+                 
+
+
+                    
+                  </div>
+
+
+
+
         <Link to='/likes'>
         <img
           className="oject-cover aspect-ratio: auto; w-7 h-7 ml-5 sm:w-10 sm:h-10"
