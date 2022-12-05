@@ -53,8 +53,8 @@ const Signin = (props) => {
     e.preventDefault();
     handleLogin()
 
-    setEmail("");
-    setPassword("");
+    // setEmail("");
+    // setPassword("");
   }
 
   return (

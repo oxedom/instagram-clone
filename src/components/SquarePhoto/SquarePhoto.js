@@ -7,7 +7,7 @@ const SquarePhoto = (props) => {
     <div>
       <div className="m-0.5">
         <Link to={`/post/${postID}`}>
-          <img  styles={'aspect-ratio: 1/1;'} className="aspect-square object-cover" alt="" src={imgUrl} />
+          <img  className="aspect-square object-cover" alt="" src={imgUrl} />
         </Link>
       </div>
     </div>
