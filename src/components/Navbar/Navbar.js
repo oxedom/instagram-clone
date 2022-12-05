@@ -9,7 +9,7 @@ import { UserService } from "../../services/UserService";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import UserIconSkeleton from "../Skeletons/UserIconSkeleton";
-
+import igIcon from '../../assests/instaIcon.png'
 const Navbar = ({ children }) => {
   //Fetching logout function
   
@@ -39,7 +39,7 @@ const Navbar = ({ children }) => {
         console.error(err);
       }
     });
-  }, []);
+  }, [searchUser,getUserByUsername]);
 
   const handleBottomHome = () => {
     window.scrollTo({
@@ -99,9 +99,10 @@ const Navbar = ({ children }) => {
         {results.length > 0 &&
         <ul className="flex flex-col gap-2 mt-10 z-20 border boder-black p-3 rounded-2xl shadow-lg absolute  bg-white w-[400px]">
         {results.map((u) => 
-        <Link to={`/profile/${u.username}`}>
+
+        <Link key={u.username} to={`/profile/${u.username}`}>
             <div onClick={handleResultClick} className="flex gap-2 bg-white  rounded-2xl items-center" >
-            <img className="rounded-full object-cover shadow aspect-ratio: auto; w-12 h-12" src={u.photoURL} />
+            <img    alt={u.username}  className="rounded-full object-cover shadow aspect-ratio: auto; w-12 h-12" src={u.photoURL} />
              <li> {u.username}</li>
             </div>
     
@@ -121,7 +122,8 @@ const Navbar = ({ children }) => {
 
           <Link to='/likes'>
         <img
-          className="oject-cover aspect-ratio: auto; w-7 h-7 ml-5 sm:w-8 sm:h-8"
+          alt="likes"
+          className="object-cover aspect-ratio: auto; w-7 h-7 ml-5 sm:w-8 sm:h-8"
           src={myLikes}
         />
         </Link>
@@ -171,7 +173,16 @@ const Navbar = ({ children }) => {
         </div>
       </nav>
 
-      <div className="flex p-3  justify-center items-center inset-x-0 top-0   border shadow  bg-white   md:hidden ">
+      <div className="flex p-3  justify-between items-center inset-x-0 top-0   border shadow  bg-white   md:hidden ">
+
+
+
+      <img 
+      alt="Instagram"
+        className="object-cover   aspect-ratio: auto; w-7 h-7  sm:w-10 sm:h-10"
+        src={igIcon}/>
+ 
+
 
                   <div className="flex flex-col items-center "> 
 
@@ -186,11 +197,11 @@ const Navbar = ({ children }) => {
         />
 
 {results.length > 0 &&
-        <ul className="flex flex-col gap-2 mt-10 z-20 border boder-black p-3 rounded-2xl shadow-lg absolute  bg-white w-[400px]">
+        <ul className="flex flex-col gap-2 mt-10 z-20 border boder-black p-3 rounded-2xl shadow-lg absolute  bg-white w-[300px]">
         {results.map((u) => 
-        <Link to={`/profile/${u.username}`}>
+        <Link key={u.username} to={`/profile/${u.username}`}>
             <div onClick={handleResultClick} className="flex gap-2 bg-white  rounded-2xl items-center" >
-            <img className="rounded-full object-cover shadow aspect-ratio: auto; w-12 h-12" src={u.photoURL} />
+            <img alt={u.username} className="rounded-full object-cover shadow aspect-ratio: auto; w-12 h-12" src={u.photoURL} />
              <li> {u.username}</li>
             </div>
     
@@ -209,17 +220,19 @@ const Navbar = ({ children }) => {
 
         <Link to='/likes'>
         <img
-          className="oject-cover aspect-ratio: auto; w-7 h-7 ml-5 sm:w-10 sm:h-10"
+          alt="likes"
+          className="object-cover aspect-ratio: auto; w-7 h-7  sm:w-10 sm:h-10"
           src={myLikes}
         />
         </Link>
- 
+
+    
       </div>
 
       <div className="flex justify-center items-center">{children}</div>
 
       {/* BOTTOM NAV */}
-      <nav className="block p-2 fixed inset-x-0 bottom-0 z-10 border shadow-lg  bg-white   md:hidden ">
+      <nav className="block p-2 fixed inset-x-0 bottom-0 z-10 border shadow-lg  bg-white w-[400px]   md:hidden ">
         <div className="flex justify-around items-center ">
           <Link to="/feed">
             <img
