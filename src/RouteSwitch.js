@@ -13,7 +13,7 @@ import NotFound from "./components/NotFound/NotFound";
 
 const RouteSwitch = () => {
   return (
-    <HashRouter basename="/">
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="sign-in" element={<Signin></Signin>} />
         <Route path="sign-up" element={<Signup></Signup>} />
@@ -72,7 +72,9 @@ const RouteSwitch = () => {
 
         <Route path="*" element={<NotFound> </NotFound>}></Route>
       </Routes>
-    </HashRouter>
+
+    </BrowserRouter>
+
   );
 };
 
