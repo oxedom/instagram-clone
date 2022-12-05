@@ -4,6 +4,7 @@ import img from "../../assests/sam-logo.png";
 import { useNavigate } from "react-router-dom";
 import { SignInService } from "../../services/SignInService";
 import { LogoutService } from "../../services/LogoutService";
+import { async } from "@firebase/util";
 
 const Signin = (props) => {
   const [email, setEmail] = useState("");
@@ -16,10 +17,24 @@ const Signin = (props) => {
 
   const navigate = useNavigate();
 
-  const handleTestUser = () => {
+  const handleLogin = async () => 
+  {
+    try {
+      await logout();
+      await signIn(email, password);
+      navigate("/feed");
+    } catch (err) {
+      console.error(err);
+    }
+
+  }
+
+
+
+  const handleTestUser = async () => {
     setEmail("test_jest@gmail.com");
     setPassword("jest9999");
-    handleSubmit();
+    handleLogin()
   };
   //Changes btn-color based on password length, needs to do more things
 
@@ -31,15 +46,12 @@ const Signin = (props) => {
     }
   }, [email, password]);
 
-  async function handleSubmit(e) {
+
+
+
+  async function handleSubmit(e ) {
     e.preventDefault();
-    try {
-      await logout();
-      await signIn(email, password);
-      navigate("/feed");
-    } catch (err) {
-      console.error(err);
-    }
+    handleLogin()
 
     setEmail("");
     setPassword("");
