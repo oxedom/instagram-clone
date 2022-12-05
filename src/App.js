@@ -8,7 +8,7 @@ function App() {
 
       <RouteSwitch></RouteSwitch>
 
-      <div className="mt-10"></div>
+      <div className="mt-20 sm:mt-10 "></div>
     </div>
   );
 }

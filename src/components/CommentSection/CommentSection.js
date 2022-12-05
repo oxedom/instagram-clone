@@ -3,9 +3,9 @@ import { formatDistance } from "date-fns";
 import { PostService } from "../../services/PostService";
 import { useEffect, useState } from "react";
 import { auth } from "../../firebase";
-import { onAuthStateChanged } from "firebase/auth";
+
 const CommentSection = (props) => {
-  const { text, likes, username, date, id, comments } = props.postData;
+  const {  date, id, comments } = props.postData;
   const commentRef = props.commentRef
   console.log(props);
 
@@ -18,13 +18,14 @@ const CommentSection = (props) => {
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
-    onAuthStateChanged(auth, (user) => {
+    
+
       postApi.addComment(id, commentText);
       setAllComments((prev) => [
         ...prev,
-        { text: commentText, username: user.displayName },
+        { text: commentText, username: auth.currentUser.displayName },
       ]);
-    });
+ 
     setComment("");
   };
 

@@ -42,8 +42,8 @@ const ProfileInfo = (props) => {
 
             {/* Username and follow button */}
             <div className="grid grid-rows-2 gap-2 flex-col flex-grow-1   justify-center items-center">
-              <div className="flex">
-                <h1 className="font-meduim text-xl md:text-2xl">
+              <div className="">
+                <h1 className="font-meduim text-center text-xl md:text-2xl">
                   {" "}
                   {username}{" "}
                 </h1>
