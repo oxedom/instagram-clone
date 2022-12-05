@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 
 import Signup from "./components/Signup/Signup";
 import Signin from "./components/Signin/Signin";
@@ -13,7 +13,7 @@ import NotFound from "./components/NotFound/NotFound";
 
 const RouteSwitch = () => {
   return (
-    <BrowserRouter basename="/">
+    <HashRouter basename="/">
       <Routes>
         <Route path="sign-in" element={<Signin></Signin>} />
         <Route path="sign-up" element={<Signup></Signup>} />
@@ -72,7 +72,7 @@ const RouteSwitch = () => {
 
         <Route path="*" element={<NotFound> </NotFound>}></Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
