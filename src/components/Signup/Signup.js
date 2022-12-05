@@ -63,6 +63,7 @@ const Signup = () => {
                 placeholder="Email"
                 id="email"
                 type="email"
+                required
                 max="50"
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -75,6 +76,7 @@ const Signup = () => {
                 id="username"
                 max="30"
                 min="10"
+                required
                 type="text"
                 onChange={(e) => {
                   setUsername(e.target.value);
@@ -90,6 +92,7 @@ const Signup = () => {
               <input
                 className="bg-slate-50 p-2 border-2 border-gray-100"
                 placeholder="Bio"
+                required
                 id="bio"
                 type="text"
                 onChange={(e) => {
@@ -103,6 +106,7 @@ const Signup = () => {
                 placeholder="Password"
                 id="password"
                 min="6"
+                required
                 max="100"
                 type="password"
                 onChange={(e) => {
@@ -124,6 +128,7 @@ const Signup = () => {
                 </div>
               )}
             </form>
+        
           </div>
 
           <div className=" flex mx-auto p-10 max-w-lg items-center justify-center gap-5 mt-10 border bg-white">

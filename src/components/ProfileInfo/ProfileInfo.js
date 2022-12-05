@@ -41,8 +41,8 @@ const ProfileInfo = (props) => {
      
 
             {/* Username and follow button */}
-            <div className="flex gap-2 flex-col flex-grow-1  items-center justify-self-center">
-              <div className="flex gap-5">
+            <div className="grid grid-rows-2 gap-2 flex-col flex-grow-1   justify-center items-center">
+              <div className="flex">
                 <h1 className="font-meduim text-xl md:text-2xl">
                   {" "}
                   {username}{" "}
@@ -71,7 +71,7 @@ const ProfileInfo = (props) => {
 
               {myAccount && (
                 <Link to={`/profile/${username}`}>
-                  <div className="button flex justify-center p-0.5 border-2 border-slate-300 rounded border-solid text-black bg-grey  text-center hover:cursor-pointer">
+                  <div className="button flex justify-center p-0.5  w-[100px] rounded border-2 border-slate-300 hover:cursor-pointer">
                     <span className="font-size"> Your Profile </span>
                   </div>
                 </Link>

@@ -3,16 +3,16 @@ const ProfileSkeleton = () => {
     const SkeletonSquare = () => {
         return (         <div className=" bg-gray-200 animate-pulse 
         h-[110px] w-[110px]
-        sm:w-[200px] sm:h-[200px] 
-        md:w-[250px] md:h-[250px]
-        lg:w-[320px] lg:h-[320px]"> </div>
+        sm:w-[196px] sm:h-[196px] 
+        md:w-[236px] md:h-[236px]
+        lg:w-[328px] lg:h-[328px]"> </div>
 );
     }
      
 
     return ( 
     <div className="flex flex-col mt-8 flex-grow-1 ">
-    <header className="m-4 flex justify-around  ">
+    <header className="m-4 grid grid-cols-2   items-center    ">
     
 
     <div className="bg-gray-200  animate-pulse rounded-full object-cover aspect-ratio: auto; w-20 h-20 md:w-32 md:h-32" > </div>    

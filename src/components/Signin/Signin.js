@@ -17,8 +17,8 @@ const Signin = (props) => {
   const navigate = useNavigate();
 
   const handleTestUser = () => {
-    setEmail("test_user@gmail.com");
-    setPassword("asdfg12345");
+    setEmail("test_jest@gmail.com");
+    setPassword("jest9999");
   };
   //Changes btn-color based on password length, needs to do more things
 

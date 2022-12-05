@@ -63,12 +63,12 @@ const Profile = () => {
 
 
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col  ">
       {loading && <ProfileSkeleton></ProfileSkeleton> }
 
 
       {!loading && (
-        <div className="justify-self-center w-[350px] sm:w-[700px] md:w-[800px] lg:w-[1000px]">
+        <div className="justify-self-center w-[350px] sm:w-[600px] md:w-[700px] lg:w-[1000px]">
           <div className="flex  flex-col">
             <ProfileInfo
               setIsFollowing={setIsFollowing}

@@ -13,6 +13,7 @@ const UploadButton = (props) => {
       <input
         className=""
         id="files"
+       
         key={selectedImage}
         type="file"
         title="Upload Photo"

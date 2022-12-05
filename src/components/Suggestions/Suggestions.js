@@ -33,7 +33,7 @@ const Suggestions = () => {
 
   return (
     <>
-      {(!users.length > 0)&& 
+      {(!users.length > 0 )&& 
      <SuggestionsSkeleton></SuggestionsSkeleton> }
 
       {users.length > 0 && (

@@ -237,7 +237,7 @@ const Navbar = ({ children }) => {
             <Link to={"/upload"}>
               <img
                 alt="upload"
-                className="object-cover active:scale-105 aspect-ratio:square  w-8 h-8 sm:w-10 sm:h-10"
+                className="object-cover active:scale-100 aspect-ratio:square  w-8 h-8 sm:w-10 sm:h-10"
                 src={uploadIcon}
               />
             </Link>
