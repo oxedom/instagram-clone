@@ -10,7 +10,6 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
-  const [sent, setSent] = useState(false);
   const [imgError, setImgError] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null);
   const [buttonState, setButtonState] = useState();

@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import threeDots from "../../assests/dots.png";
-import anonymousProfile from "../../assests/emptyUser.png";
 import { UserService } from "../../services/UserService";
 
 const ProfileInfo = (props) => {

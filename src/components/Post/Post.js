@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import PostButtons from "../PostButtons/PostButtons";
 
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 const Post = (props) => {
 

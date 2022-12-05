@@ -2,7 +2,7 @@ import ShowMoreText from "react-show-more-text";
 
 import { Link } from "react-router-dom";
 const Comment = (props) => {
-  const { text, username, date } = props.commentData;
+  const { text, username } = props.commentData;
 
   return (
     <div className={`flex  gap-1`}>

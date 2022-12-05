@@ -13,7 +13,7 @@ const Addpost = () => {
     e.preventDefault();
     setLoading(true);
     if(selectedImage) {
-      const doc = await postApi.postPost(selectedImage, postText);
+       await postApi.postPost(selectedImage, postText);
     }
 
   };
