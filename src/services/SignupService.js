@@ -17,13 +17,14 @@ export const SignupService = () => {
 
     try {
       //Signing up with Firebase
-      const profileUrl = await postApi.uploadImage(imgFile);
+  
       const response = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
       //Updating Username
+      const profileUrl = await postApi.uploadImage(imgFile);
       await updateProfile(auth.currentUser, {
         displayName: username.trim(),
         photoURL: profileUrl.trim(),
