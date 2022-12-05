@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
 import { auth, firestore } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
-import { UserService } from "./UserService";
 import { PostService } from "./PostService";
 
+
 export const SignupService = () => {
-  const userAPI = UserService();
+;
   const postApi = PostService();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
@@ -22,9 +22,13 @@ export const SignupService = () => {
         auth,
         email,
         password
-      );
+      )
       //Updating Username
-      const profileUrl = await postApi.uploadImage(imgFile);
+
+        
+
+
+        const profileUrl = await postApi.uploadImage(imgFile);
       await updateProfile(auth.currentUser, {
         displayName: username.trim(),
         photoURL: profileUrl.trim(),
@@ -45,6 +49,7 @@ export const SignupService = () => {
       });
 
       setIsLoading(false);
+
     } catch (error) {
       //catching error
 
