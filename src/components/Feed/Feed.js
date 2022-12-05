@@ -81,7 +81,7 @@ const Feed = () => {
 
     <div>
       
-      <div className="flex flex-col gap-5 items-center">
+      <div className="flex flex-col gap-2 items-center">
       <Suggestions></Suggestions>
         {(posts.length <=0 && !noPost) && [1,2,3].map((s) => { return <PostSkeleton key={s}></PostSkeleton>})}
         {posts.map((p) => (
@@ -89,7 +89,7 @@ const Feed = () => {
             {" "}
           </Post>
         ))}
-        <div className="mt-10 "> </div>
+        <div className="mt-16 "> </div>
         {noPost  && (
           <div className=" text-xl flex flex-col justify-start items-center w-max h-96">
             <h1 className=""> There are posts available </h1>

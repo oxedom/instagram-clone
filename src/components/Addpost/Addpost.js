@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import uploadIcon from "../../assests/uploadPhoto.png";
+import imageGallery from "../../assests/image-gallery.png";
 import { PostService } from "../../services/PostService";
 import UploadButton from "../UploadButton/UploadButton";
 const Addpost = () => {
@@ -12,7 +12,10 @@ const Addpost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const doc = await postApi.postPost(selectedImage, postText);
+    if(selectedImage) {
+      const doc = await postApi.postPost(selectedImage, postText);
+    }
+
   };
 
   const handleRemove = (e) => {
@@ -23,10 +26,10 @@ const Addpost = () => {
     <>
       {" "}
       {!loading && (
-        <div className="flex justify-center items-cente m-32  ">
+        <div className="flex justify-center items-center  m-2 ">
           <form
             onSubmit={handleSubmit}
-            className=" rounded-lg bg-slate-200 flex gap-4 p-5 flex-col"
+            className=" rounded-lg bg-white shadow-sm flex gap-4 p-10 flex-col"
           >
             {selectedImage && (
               <div
@@ -41,20 +44,31 @@ const Addpost = () => {
               {selectedImage && (
                 <div className="flex flex-col gap-2  p-1">
                   <img
+                    width={250}
                     className="shadow-lg rounded"
                     alt="user upload"
                     src={URL.createObjectURL(selectedImage)}
                   />
                 </div>
               )}
-
-              {!selectedImage && (
+            <div>
+            {!selectedImage && <div className="flex flex-col gap-3 hover:cursor-pointer">
+        
                 <img
-                  src={uploadIcon}
+                  width={150}
+                  src={imageGallery}
                   alt="upload button"
-                  className="w-[150px] invert  "
+                  className="w-[150px]  "
                 />
-              )}
+                
+     
+
+
+             <div className="w-50 bg-blue-500 rounded-md  text-white text-center p-1 "> Select from device </div>
+            </div> }
+              
+            </div>  
+
             </label>
             <div className="hidden">
               <UploadButton
@@ -63,7 +77,7 @@ const Addpost = () => {
               ></UploadButton>
             </div>
 
-            <textarea
+            {selectedImage &&<  textarea
               className="bg-slate-50 p-2 border-2 border-gray-100"
               maxLength={250}
               placeholder="Post description "
@@ -72,14 +86,14 @@ const Addpost = () => {
               onChange={(e) => {
                 setPostText(e.target.value);
               }}
-            ></textarea>
-            <button
+            ></textarea> }
+              {selectedImage && <button
               className="btn bg-blue-400 rounded p-2 text-white  hover:bg-blue-500"
               type="submit"
             >
               {" "}
               Post Post!{" "}
-            </button>
+            </button> }
           </form>
         </div>
       )}

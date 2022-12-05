@@ -2,7 +2,7 @@ const ProfileSkeleton = () => {
 
     const SkeletonSquare = () => {
         return (         <div className=" bg-gray-200 animate-pulse 
-        h-[130px] w-[130px]
+        h-[110px] w-[110px]
         sm:w-[200px] sm:h-[200px] 
         md:w-[250px] md:h-[250px]
         lg:w-[320px] lg:h-[320px]"> </div>
@@ -11,7 +11,7 @@ const ProfileSkeleton = () => {
      
 
     return ( 
-    <div className="flex flex-col mt-8 flex-grow-1">
+    <div className="flex flex-col mt-8 flex-grow-1 ">
     <header className="m-4 flex justify-around  ">
     
 
