@@ -110,7 +110,7 @@ export const PostService = () => {
         ...data,
       });
 
-      console.log("Document written with ID: ", docRef.id);
+   
       navigate(`/post/${docRef.id}`);
       return docRef;
     } catch (err) {
@@ -126,7 +126,7 @@ export const PostService = () => {
       const docRef = doc(firestore, "posts", id);
       try {
         await deleteDoc(docRef);
-        console.log("doc with ID" + id + "Has been deleted");
+
       } catch (err) {
         console.error(err);
       }

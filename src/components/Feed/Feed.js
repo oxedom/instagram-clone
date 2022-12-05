@@ -37,7 +37,7 @@ const Feed = () => {
       
             const followerData = await getUserbyId(f);
             const { username, photoURL } = followerData;
-            console.log(followerData);
+
 
             const posts = await getAllUserPosts(f);
 
@@ -78,8 +78,11 @@ const Feed = () => {
   }, []);
 
   return (
+
     <div>
+      
       <div className="flex flex-col gap-5 items-center">
+      <Suggestions></Suggestions>
         {(posts.length <=0 && !noPost) && [1,2,3].map((s) => { return <PostSkeleton key={s}></PostSkeleton>})}
         {posts.map((p) => (
           <Post key={p.id} postData={p}>

@@ -1,7 +1,7 @@
 import instaIcon from "../../assests/sam-logo.png";
 import uploadIcon from "../../assests/uploadPhoto.png";
 import homepageIcon from "../../assests/homeicon.png";
-import myLikes from "../../assests/heart.png";
+
 import { Link } from "react-router-dom";
 import { LogoutService } from "../../services/LogoutService";
 import { useCallback, useEffect, useState } from "react";
@@ -120,13 +120,7 @@ const Navbar = ({ children }) => {
 
           <div className="flex items-center gap-3">
 
-          <Link to='/likes'>
-        <img
-          alt="likes"
-          className="object-cover aspect-ratio: auto; w-7 h-7 ml-5 sm:w-8 sm:h-8"
-          src={myLikes}
-        />
-        </Link>
+   
 
   
 
@@ -173,7 +167,7 @@ const Navbar = ({ children }) => {
         </div>
       </nav>
 
-      <div className="flex p-3  justify-between items-center inset-x-0 top-0   border shadow  bg-white   md:hidden ">
+      <div className="flex p-3  justify-around items-center inset-x-0 top-0   border shadow  bg-white   md:hidden ">
 
 
 
@@ -218,13 +212,7 @@ const Navbar = ({ children }) => {
 
 
 
-        <Link to='/likes'>
-        <img
-          alt="likes"
-          className="object-cover aspect-ratio: auto; w-7 h-7  sm:w-10 sm:h-10"
-          src={myLikes}
-        />
-        </Link>
+   
 
     
       </div>
@@ -232,7 +220,7 @@ const Navbar = ({ children }) => {
       <div className="flex justify-center items-center">{children}</div>
 
       {/* BOTTOM NAV */}
-      <nav className="block p-2 fixed inset-x-0 bottom-0 z-10 border shadow-lg  bg-white w-[400px]   md:hidden ">
+      <nav className="block p-2 fixed inset-x-0 bottom-0 z-10 border shadow-lg  bg-white w-screen    md:hidden ">
         <div className="flex justify-around items-center ">
           <Link to="/feed">
             <img
@@ -247,7 +235,7 @@ const Navbar = ({ children }) => {
             <Link to={"/upload"}>
               <img
                 alt="upload"
-                className="oject-cover aspect-ratio: auto; w-8 h-8 sm:w-10 sm:h-10"
+                className="oject-cover aspect-ratio:square  w-8 h-8 sm:w-10 sm:h-10"
                 src={uploadIcon}
               />
             </Link>

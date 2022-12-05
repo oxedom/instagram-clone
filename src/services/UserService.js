@@ -62,27 +62,7 @@ export function UserService() {
   return queryUsers;
   };
 
-  const getAllLikes = async () => 
-  {
-    // try {
-    //   const id = auth.currentUser.uid
-    //   let likes = [];
-    //   const q = query(collection(firestore, "posts"), where("uid", "==", id));
-      
-    //   const querySnapshot = await getDocs(q);
-    //   querySnapshot.forEach((doc) => {
-    //     likes.push({ ...doc.data(), id: doc.id });
-    //   });
 
-    //   likes = likes.sort(function (a, b) {
-    //     return b.date - a.date;
-    //   });
-
-    //   return likes;
-    // } catch (err) {
-    //   console.error(err);
-    // }
-  }
 
   const getAllUsers = async () => {
     try {
@@ -101,58 +81,34 @@ export function UserService() {
     }
   };
 
-  // const getFiveUsers = async () => {
-  //   try {
-  //     let users = [];
 
-  //     const usersRef = collection(firestore, "users");
+  const getSuggestions = async () => {
+    try {
+      let users = [];
 
-  //     const querySnapshot = await getDocs(usersRef).limit(5);
-  //     querySnapshot.forEach((doc) => {
-  //       users.push(doc.data());
-  //     });
+      const usersRef = collection(firestore, "users");
 
-  //     return users;
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+      const querySnapshot = await getDocs(usersRef, limit(6));
+      
+      querySnapshot.forEach((doc) => {
+        users.push(doc.data());
+      });
+
+      
+      return users;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+
 
   const getCurrentUser = async () => {
     return auth.currentUser;
   };
 
-  // const updateUser = async (updatedObj) => {
-  //   //Update user function updates any key value that is inside the user DOC
-  //   //Be warry with making sure the right caps lock is on and not overriding existing
-  //   //props by mistake, need to make sure to add SANTIZATOIN on this function.
 
-  //   if (!isImgUrl(updatedObj.photoURL)) {
-  //     return;
-  //   }
-
-  //   let id = undefined;
-  //   const q = query(
-  //     collection(firestore, "users"),
-  //     where("uid", "==", `${auth.currentUser.uid}`)
-  //   );
-  //   const querySnapshot = await getDocs(q);
-  //   querySnapshot.forEach((doc) => {
-  //     id = doc.id;
-  //   });
-  //   const userRef = doc(firestore, "users", id);
-  //   await updateDoc(userRef, { ...updatedObj });
-
-  //   //Updates the auth.current username Object
-
-  //   await updateProfile(auth.currentUser, {
-  //     // photoURL: updatedObj.
-  //     displayName: updatedObj.username,
-  //     photoURL: updatedObj.photoURL,
-  //   });
-
-  //   //Force Refreshs page to rerender navbar comp
-  // };
 
   const getUserByUsername = async (username) => {
     try {
@@ -185,7 +141,7 @@ export function UserService() {
 
       //GET USER DATA FOR Followers Array
       const currentFollowingData = await getUserbyId(userToFollowID);
-      console.log(currentFollowingData);
+
 
       //Doc ID for doc Refs
       const userFollowing_ID = currentUserData.id;
@@ -226,10 +182,10 @@ export function UserService() {
   return {
     getUserbyId,
     getAllUsers,
+    getSuggestions,
     getUserByUsername,
     toogleFollow,
     getCurrentUser,
-    getAllLikes,
     searchUser
   };
 }

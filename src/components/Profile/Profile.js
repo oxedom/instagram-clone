@@ -26,7 +26,7 @@ const Profile = () => {
   
     setLoading(true);
     const user = await getUserByUsername(username);
-    console.log(user);
+
     //If not user renavigate to to /
     if (user === undefined) {
       navigate("/");
