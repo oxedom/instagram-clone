@@ -26,7 +26,7 @@ const ProfileInfo = (props) => {
   return (
     <>
       {!loading && (
-        <div className="mt-5 flex flex-col">
+        <div className="mt-5 w-full flex flex-col">
           <div className="m-4 flex justify-around ">
             {/* profile Pictutre */}
             {photoURL && (

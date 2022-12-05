@@ -7,8 +7,7 @@ import {
   updateDoc,
   doc,
   arrayUnion,
-  orderBy,
-  startAt,
+
   limit,
 } from "firebase/firestore";
 
@@ -38,14 +37,14 @@ export function UserService() {
 
   const searchUser = async (text) => {
 
-    const queryUsers = [];
+    let queryUsers = [];
     if (text !== '') {
 
       try {
         const usersRef = collection(firestore, "users");
-        const q = query(usersRef,where('username', ">=", text.toLowerCase(), where('username', '=<', text.toLowerCase())),limit(5))
+        const q = query(usersRef,where('username', ">=", text.toLowerCase(), where('username', '=<', text.toLowerCase())),limit(6))
         // const q = query(usersRef, orderBy("username"),startAt(text.toLowerCase()),limit(5))
-  
+        
         const querySnapshot = await getDocs(q)
   
         querySnapshot.forEach((doc) => {
@@ -57,7 +56,9 @@ export function UserService() {
       }
 
     }
-  console.log(queryUsers);
+    
+    queryUsers = queryUsers.filter(u => u.username !== auth.currentUser.displayName)
+  
   return queryUsers;
   };
 

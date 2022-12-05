@@ -30,6 +30,7 @@ const Feed = () => {
           if (user.following.length === 0) {
             setNoPost(true);
           }
+          
 
           await user.following.forEach(async (f) => {
             //Query the person he is followings data to get his username and profile picture;
@@ -50,7 +51,11 @@ const Feed = () => {
             //Setting the posts state to the newly fetched posts whilst keeping the previous kept posts
             setPosts((prev) => {
               return [...prev, ...updatedPosts];
+       
             });
+            setTimeout(() => {
+              if(posts.length === 0) { setNoPost(true)}
+            }, (0));
           });
         }
       } catch (error) {
@@ -59,6 +64,8 @@ const Feed = () => {
 
     });
   }, []);
+
+
 
   useEffect(() => {
     //Init for fetch data function;

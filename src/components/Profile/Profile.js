@@ -4,7 +4,6 @@ import { PostService } from "../../services/PostService";
 import PhotoGrid from "../PhotoGrid/PhotoGrid";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import { useNavigate, useParams } from "react-router";
-import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import ProfileSkeleton from "../Skeletons/ProfileSkeleton";
 
@@ -21,6 +20,9 @@ const Profile = () => {
   const [isFollowing, setIsFollowing] = useState(false);
 
   const fetchData = useCallback(async () => {
+    setMyAccount(false);
+    setIsFollowing(false);
+  
     setLoading(true);
     const user = await getUserByUsername(username);
     console.log(user);
@@ -33,16 +35,16 @@ const Profile = () => {
     setUserInfo(userData);
     setUserPosts(postData);
 
-    onAuthStateChanged(auth, async (u) => {
-      if (u.uid === user.uid) {
-        setUserInfo({ ...userData, ...u });
+
+      if (auth.currentUser.uid === user.uid) {
+        setUserInfo({ ...userData, ...auth.currentUser });
         setMyAccount(true);
       }
 
-      if (userData.followers.includes(u.uid)) {
+      if (userData.followers.includes(auth.currentUser)) {
         setIsFollowing(true);
       }
-    });
+
 
     setLoading(false);
     //  eslint-disable-next-line
@@ -52,13 +54,15 @@ const Profile = () => {
     fetchData();
   }, [fetchData]);
 
+
+
   return (
     <div className="flex flex-col ">
       {loading && <ProfileSkeleton></ProfileSkeleton> }
 
 
       {!loading && (
-        <div className="justify-self-center sm:w-[700px] md:w-[800px] lg:w-[1000px]">
+        <div className="justify-self-center w-[350px] sm:w-[700px] md:w-[800px] lg:w-[1000px]">
           <div className="flex  flex-col">
             <ProfileInfo
               setIsFollowing={setIsFollowing}
