@@ -11,7 +11,7 @@ const ProfileSkeleton = () => {
      
 
     return ( 
-    <div className="flex flex-col mt-8 flex-grow-1 ">
+    <div className="flex flex-col mt-5 flex-grow-1 ">
     <header className="m-4 grid grid-cols-2   items-center    ">
     
 
