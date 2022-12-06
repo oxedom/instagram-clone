@@ -1,4 +1,4 @@
-import { isSafari } from "react-device-detect";
+import { isMobile } from "react-device-detect";
 import { Link } from "react-router-dom";
 
 const SquarePhoto = (props) => {
@@ -30,14 +30,14 @@ const SquarePhoto = (props) => {
 
 
   let aspectRatio = 'aspect-square'
-  if(!isSafari) {
+
+  // let aspectRatio = 'bg-red-500'
+
+  if(!isMobile) {
     containerStyle = {}
     imgStyles = {}
   }
-  else 
-  {
-  aspectRatio = ''
-  }
+
   return (
     <div>
       <div  style={containerStyle} className="">
