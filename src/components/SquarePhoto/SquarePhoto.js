@@ -31,8 +31,6 @@ const SquarePhoto = (props) => {
 
   let aspectRatio = 'aspect-square'
 
-  // let aspectRatio = 'bg-red-500'
-
   if(!isMobile) {
     containerStyle = {}
     imgStyles = {}
