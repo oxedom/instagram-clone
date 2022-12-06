@@ -17,7 +17,7 @@ const Comment = (props) => {
           className=""
           anchorClass="hover:underline text-gray-500 "
           width={300}
-          lines={1}
+          lines={2}
         >
           {" "}
           {text}{" "}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
 import { auth, firestore } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { PostService } from "./PostService";
@@ -13,48 +13,50 @@ export const SignupService = () => {
 
   const signup = async (email, password, username, imgFile, bio) => {
     setIsLoading(true);
-    setError(null);
 
+    setError(null);
     try {
       //Signing up with Firebase
-  
       const response = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       )
-      //Updating Username
-
-        
-
-
-        const profileUrl = await postApi.uploadImage(imgFile);
-      await updateProfile(auth.currentUser, {
-        displayName: username.trim(),
-        photoURL: profileUrl.trim(),
-      });
-      //SETTING Error if it exists
-      setError(response.error);
-      //Set loading to false
-
-      const { uid } = response.user;
-
-      await addDoc(collection(firestore, "users"), {
-        username: username.trim(),
-        uid,
-        bio: bio,
-        followers: [],
-        following: [],
-        photoURL: profileUrl,
-      });
-
-      setIsLoading(false);
-
-    } catch (error) {
-      //catching error
-
-      setError(error);
     }
+   catch (error) {
+    //catching error
+    setError(error);
+  }
+
+      onAuthStateChanged(auth, async (user) => {
+        const profileUrl = await postApi.uploadImage(imgFile);
+
+                //Updating Displayname and Adding a URL to profile photo
+        await updateProfile(auth.currentUser, {
+          displayName: username.trim(),
+          photoURL: profileUrl.trim(),
+        });
+
+        const { uid } = user
+
+        await addDoc(collection(firestore, "users"), {
+          username: username.trim(),
+          uid: uid,
+          bio: bio,
+          followers: [],
+          following: [],
+          photoURL: profileUrl,
+        });
+
+        setIsLoading(false);
+
+
+
+      })
+        //Uploading photo to firebase STORAGE and then getting a URL;
+
+
+ 
   };
   return { signup, isLoading, error };
 };
