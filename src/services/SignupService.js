@@ -3,15 +3,20 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } fro
 import { auth, firestore } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { PostService } from "./PostService";
-
+import { useNavigate } from "react-router";
 
 export const SignupService = () => {
-;
+
+  const navigate = useNavigate()
+
   const postApi = PostService();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
 
   const signup = async (email, password, username, imgFile, bio) => {
+    // await logout()
+    await auth.signOut();
+
     setIsLoading(true);
 
     setError(null);
@@ -49,7 +54,7 @@ export const SignupService = () => {
           following: [],
           photoURL: profileUrl,
         });
-
+        setTimeout(() => { navigate('/feed')},0)
         setIsLoading(false);
 
 

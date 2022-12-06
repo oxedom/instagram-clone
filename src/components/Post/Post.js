@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import PostButtons from "../PostButtons/PostButtons";
 import backIcon from "../../assests/backicon.png"
 import {  useState } from "react";
-import { useDoubleTap } from "use-double-tap";
+
 import { PostService } from "../../services/PostService";
 
 const Post = (props) => {

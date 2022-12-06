@@ -5,7 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { SignupService } from "../../services/SignupService";
 import UploadButton from "../UploadButton/UploadButton";
 
+
+
+
 const Signup = () => {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -17,12 +21,17 @@ const Signup = () => {
   const { signup, error, isLoading } = SignupService();
   const navigate = useNavigate();
 
+
+
+
+
   useEffect(() => {
     if (password.length < 6) {
       setButtonState("bg-blue-300");
     } else {
       setButtonState("bg-blue-500");
     }
+
   }, [email, password]);
 
   async function handleSubmit(e) {
@@ -34,9 +43,7 @@ const Signup = () => {
       }
       else 
       {
-        await signup(email.toLowerCase(), password, username.toLowerCase(), selectedImage, bio).then(() => {
-          navigate("/feed");
-        });
+        await signup(email.toLowerCase(), password, username.toLowerCase(), selectedImage, bio)
       }
 
     } catch (err) {
