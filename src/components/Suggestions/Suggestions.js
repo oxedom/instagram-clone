@@ -23,7 +23,6 @@ const Suggestions = () => {
       .sort((a, b) => a.sort - b.sort)
       .map(({ value }) => value);
 
-
     setUsers(shuffled);
   }, []);
 

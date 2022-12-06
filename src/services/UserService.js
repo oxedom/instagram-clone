@@ -85,27 +85,29 @@ export function UserService() {
   const getSuggestions = async () => {
     try {
       let users = [];
-
-      // let posts = [];
-      // const q = query(collection(firestore, "posts"), where("uid", "==", id));
-
-      // const querySnapshot = await getDocs(q);
-      // querySnapshot.forEach((doc) => {
-      //   posts.push({ ...doc.data(), id: doc.id });
-      // });
+      
 
 
 
       const usersRef = collection(firestore, "users");
-      const q = query(usersRef, limit(5))
+      const q = query(usersRef, limit(50))
       const querySnapshot = await getDocs(q)
       
       querySnapshot.forEach((doc) => {
         users.push(doc.data());
       });
-
       
-      return users;
+
+      users = users.map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
+
+      const sliced = []
+      for (let index = 0; index < 5; index++) {
+        sliced.push(users[index])
+        
+      }
+      return sliced;
     } catch (error) {
       console.error(error);
     }
