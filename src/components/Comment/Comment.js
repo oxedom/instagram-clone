@@ -6,7 +6,7 @@ const Comment = (props) => {
   const { text, username } = props.commentData;
 
   const [displayText, setDisplayText] = useState(text)
-  const [render, setRender] = useState(null)
+  const [render, setRender] = useState(true)
 
   
   useEffect(() => {
@@ -26,7 +26,7 @@ const Comment = (props) => {
         }
       })
       if(wordArray.length === 0) {
-        setRender('hidden')
+        setRender(false)
       }
       else {
         setDisplayText(wordArray.join(' ').toString())
@@ -41,6 +41,8 @@ const Comment = (props) => {
   ,[])
 
 
+  if(!render) { return }
+  if(render)
   return (
 
     <div className={`flex  gap-1 ${render}`}>
@@ -69,6 +71,7 @@ const Comment = (props) => {
       </div>
     </div> 
   )
+
     
   ;
 };
