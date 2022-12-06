@@ -86,9 +86,19 @@ export function UserService() {
     try {
       let users = [];
 
-      const usersRef = collection(firestore, "users");
+      // let posts = [];
+      // const q = query(collection(firestore, "posts"), where("uid", "==", id));
 
-      const querySnapshot = await getDocs(usersRef, limit(5));
+      // const querySnapshot = await getDocs(q);
+      // querySnapshot.forEach((doc) => {
+      //   posts.push({ ...doc.data(), id: doc.id });
+      // });
+
+
+
+      const usersRef = collection(firestore, "users");
+      const q = query(usersRef, limit(5))
+      const querySnapshot = await getDocs(q)
       
       querySnapshot.forEach((doc) => {
         users.push(doc.data());

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, firestore } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { PostService } from "./PostService";
