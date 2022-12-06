@@ -17,7 +17,7 @@ export const SignupService = () => {
     setError(null);
     try {
       //Signing up with Firebase
-      const response = await createUserWithEmailAndPassword(
+       await createUserWithEmailAndPassword(
         auth,
         email,
         password
@@ -29,6 +29,8 @@ export const SignupService = () => {
   }
 
       onAuthStateChanged(auth, async (user) => {
+             //Uploading photo to firebase STORAGE and then getting a URL;
+
         const profileUrl = await postApi.uploadImage(imgFile);
 
                 //Updating Displayname and Adding a URL to profile photo
@@ -51,10 +53,8 @@ export const SignupService = () => {
         setIsLoading(false);
 
 
-
       })
-        //Uploading photo to firebase STORAGE and then getting a URL;
-
+   
 
  
   };

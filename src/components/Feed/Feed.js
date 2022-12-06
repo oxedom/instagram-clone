@@ -92,7 +92,7 @@ const Feed = () => {
       <Suggestions></Suggestions>
         {(posts.length <=0 && !noPost) && [1,2,3].map((s) => { return <PostSkeleton key={s}></PostSkeleton>})}
         {posts.map((p) => (
-          <Post key={p.id} postData={p}>
+          <Post postPage={false} key={p.id} postData={p}>
             {" "}
           </Post>
         ))}

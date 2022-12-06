@@ -12,13 +12,10 @@
     "react": "^18.2.0",
     "react-content-loader": "^6.2.0",
     "react-dom": "^18.2.0",
-    "react-loading-skeleton": "^3.1.0",
-    "react-popper": "^2.3.0",
     "react-router": "^6.4.3",
     "react-router-dom": "^6.4.3",
     "react-scripts": "^5.0.1",
     "react-show-more-text": "^1.6.2",
-    "skeleton-css": "^2.0.4",
     "tailwind": "^4.0.0",
     "uniqid": "^5.4.0",
     "web-vitals": "^2.1.4"

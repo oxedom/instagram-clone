@@ -21,7 +21,7 @@ const SquarePhoto = (props) => {
     <div>
       <div  style={containerStyle} className="">
         <Link to={`/post/${postID}`}>
-          <img style={imgStyles}className="m-0.5 sm:m-0 object-cover" alt="" src={imgUrl} />
+          <img style={imgStyles}className="m-0.5 sm:m-0 aspect-square object-cover" alt="" src={imgUrl} />
         </Link>
       </div>
     </div>
