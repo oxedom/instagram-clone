@@ -17,7 +17,7 @@ import { auth, firestore } from "../firebase";
 export function UserService() {
   const getUserbyId = async (id) => {
     try {
-      let user = {};
+      let user = undefined;
       const q = query(collection(firestore, "users"), where("uid", "==", id));
 
       const querySnapshot = await getDocs(q);
