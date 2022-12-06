@@ -10,7 +10,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import UserIconSkeleton from "../Skeletons/UserIconSkeleton";
 import igIcon from '../../assests/instaIcon.png'
-import { tr } from "date-fns/locale";
+
 const Navbar = ({ children }) => {
   //Fetching logout function
   
@@ -21,7 +21,7 @@ const Navbar = ({ children }) => {
   const { getUserByUsername , searchUser} = UserService();
   const [showSearch, setShowSearch] = useState(false)
   const [query, setQuery] = useState("");
-
+  
   const handleLogout = async () => {
     await logout();
   };
@@ -34,7 +34,8 @@ const Navbar = ({ children }) => {
         if (user) {
           const userData = await getUserByUsername(user.displayName);
 
-          setUserData({ ...userData, ...user });
+
+          setUserData({ ...userData, ...user});
         }
       } catch (err) {
         console.error(err);

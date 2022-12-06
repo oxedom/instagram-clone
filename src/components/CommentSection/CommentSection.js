@@ -7,7 +7,7 @@ import { auth } from "../../firebase";
 const CommentSection = (props) => {
   const {  date, id, comments } = props.postData;
   const commentRef = props.commentRef
-  console.log(props);
+
 
   const postApi = PostService();
   const [commentText, setComment] = useState("");
@@ -67,7 +67,7 @@ const CommentSection = (props) => {
       <div className="flex flex-col gap-1 ">
         {allComments.map((c) => {
           return (
-            <Comment key={c.date} commentData={c}>
+            <Comment key={c.date + Math.random(30)} commentData={c}>
               {" "}
             </Comment>
           );

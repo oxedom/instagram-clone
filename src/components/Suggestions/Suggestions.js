@@ -18,12 +18,8 @@ const Suggestions = () => {
     if(filteredUsers.length === 5) { 
       filteredUsers.pop();
     }
-    const shuffled = filteredUsers
-      .map((value) => ({ value, sort: Math.random() }))
-      .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => value);
 
-    setUsers(shuffled);
+    setUsers(filteredUsers);
   }, []);
 
   useEffect(() => {
