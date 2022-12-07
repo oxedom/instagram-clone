@@ -1,4 +1,4 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, updateProfile } from "firebase/auth";
 import {
   collection,
   getDocs,
@@ -9,8 +9,9 @@ import {
   arrayUnion,
   limit,
 } from "firebase/firestore";
-
-import { auth, firestore } from "../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { auth, firestore, storage } from "../firebase";
+import uniqid from "uniqid";
 
 export function UserService() {
   const getUserbyId = async (id) => {
@@ -38,8 +39,7 @@ export function UserService() {
           usersRef,
           where(
             "username",
-            ">=",
-            text.toLowerCase(),
+            ">=",text.toLowerCase(),
             where("username", "=<", text.toLowerCase())
           ),
           limit(6)
@@ -97,11 +97,6 @@ export function UserService() {
         .sort((a, b) => a.sort - b.sort)
         .map(({ value }) => value);
 
-      // const sliced = [];
-      // for (let index = 0; index < 5; index++) {
-      //   sliced.push(users[index]);
-      // }
-
       return users;
     } catch (error) {
       console.error(error);
@@ -130,6 +125,31 @@ export function UserService() {
       console.error(error);
     }
   };
+
+  const uploadImage = async (imgFile) => {
+    const imageRef = ref(
+      storage,
+      `images/${uniqid(imgFile.name) + imgFile.name}`
+    );
+    const uploadedIMGURL = await uploadBytes(imageRef, imgFile);
+    const url = await getDownloadURL(uploadedIMGURL.ref);
+    return url;
+  };
+
+
+  const updateProfilePicutre = async(selectedImage) => 
+  {
+    const imageUrl = await uploadImage(selectedImage)
+    const auth = getAuth();
+    const userDoc = await getUserbyId(auth.currentUser.uid)
+
+    const userRef = doc(firestore, 'users', userDoc.id )
+  
+   await updateDoc(userRef, { photoURL: imageUrl})
+    await updateProfile(auth.currentUser, {photoURL: imageUrl } )
+
+  }
+
 
   const toogleFollow = async (userToFollowID) => {
     try {
@@ -187,6 +207,7 @@ export function UserService() {
     getUserByUsername,
     toogleFollow,
     getCurrentUser,
+    updateProfilePicutre,
     searchUser,
   };
 }
