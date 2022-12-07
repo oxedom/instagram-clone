@@ -138,6 +138,7 @@ export function UserService() {
 
   const getAllFollowersByUsername = async (username) => {
 
+    // const populated = await Promise.all(followers.map(getUserbyId))
     const userData = await getUserByUsername(username)
     const {followers} = userData;
 
