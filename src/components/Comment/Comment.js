@@ -9,6 +9,7 @@ const Comment = (props) => {
   const [render, setRender] = useState(true);
 
   useEffect(() => {
+
     const checkIfTooLong = (para) => {
       let wordArray = para.split(" ");
 
@@ -27,6 +28,7 @@ const Comment = (props) => {
     if (text.length > 50) {
       checkIfTooLong(text);
     }
+
   }, []);
 
   if (!render) {
