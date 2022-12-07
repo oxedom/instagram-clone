@@ -97,11 +97,13 @@ export function UserService() {
         .sort((a, b) => a.sort - b.sort)
         .map(({ value }) => value);
 
-      const sliced = [];
-      for (let index = 0; index < 5; index++) {
-        sliced.push(users[index]);
-      }
-      return sliced;
+      
+      // const sliced = [];
+      // for (let index = 0; index < 5; index++) {
+      //   sliced.push(users[index]);
+      // }
+
+      return users  ;
     } catch (error) {
       console.error(error);
     }

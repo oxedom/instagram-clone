@@ -26,6 +26,7 @@ const Feed = () => {
       try {
         if (userData) {
           const user = await getUserbyId(userData.uid);
+
           //Fetch their posts and set them as posts on the feed
           if (user.following.length === 0) {
             setNoPost(true);
