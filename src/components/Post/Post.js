@@ -3,10 +3,7 @@ import PostButtons from "../PostButtons/PostButtons";
 import backIcon from "../../assests/backicon.png";
 import { useState } from "react";
 
-
 const Post = (props) => {
-
-
   const navigate = useNavigate();
   const [tempSize, setTempSize] = useState({ width: "450", height: "680" });
   const [landscape, setLandscape] = useState("");

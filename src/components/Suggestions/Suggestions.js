@@ -8,31 +8,20 @@ const Suggestions = () => {
   const [users, setUsers] = useState([]);
 
   const fetchData = useCallback(async () => {
-
     const users = await userAPI.getSuggestions();
     const currentUser = await userAPI.getCurrentUser();
     // console.log(users);
     const filteredUsers = users.filter((u) => u.uid !== currentUser.uid);
-
-
-
 
     if (filteredUsers.length > 5) {
       let sliced = [];
       for (let index = 0; index < 5; index++) {
         sliced.push(users[index]);
       }
-      setUsers(sliced)
-       }
-      else 
-      {
-        setUsers(filteredUsers);
-      }
-
-
-
-
-  
+      setUsers(sliced);
+    } else {
+      setUsers(filteredUsers);
+    }
   }, []);
 
   useEffect(() => {

@@ -16,7 +16,6 @@ const Signup = () => {
 
   const { signup, error, isLoading } = SignupService();
 
-
   useEffect(() => {
     if (password.length < 6) {
       setButtonState("bg-blue-300");
