@@ -10,7 +10,10 @@ import PostPage from "./components/PostPage/PostPage";
 import Addpost from "./components/Addpost/Addpost";
 import NotFound from "./components/NotFound/NotFound";
 import Settings from "./components/Settings/Settings";
+
 import Following from "./components/Following/Following";
+
+import Followers from "./components/Followers/Followers";
 
 const RouteSwitch = () => {
   return (
@@ -97,7 +100,7 @@ const RouteSwitch = () => {
           element={
             <Protected>
               <Navbar>
-              <Following></Following>
+              <Followers></Followers>
               </Navbar>
             </Protected>
           }

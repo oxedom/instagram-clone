@@ -2,8 +2,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams} from "react-router";
 import { UserService } from "../../services/UserService";
-import ListUser from "../ListUser/ListUser";
 import backIcon from "../../assests/backicon.png";
+import ListUser from "../ListUser/ListUser";
+
+
+
+
 const Followers = () => {
 
     const [followers, setFollowers] = useState([])
@@ -14,13 +18,16 @@ const Followers = () => {
     const {username} = params
 
 
-    const fetchData = useCallback(async () => {
+    const fetchData =  async () => {
+        
         const data = await userAPI.getAllFollowersByUsername(username)
         setFollowers(data)
-    }, [])
+    }
 
     useEffect(() => {
+  
         fetchData();
+        return () => { setFollowers([])}
     }, [])  
 
      
@@ -36,9 +43,8 @@ const Followers = () => {
         </div>
 
         <hr></hr>
-        {followers.map((f) => 
-                <ListUser key={f} id={f}></ListUser>
-        )}
+    
+        {followers.map((f) => <ListUser key={f} id={f}></ListUser>)}
 
 
     </div> 

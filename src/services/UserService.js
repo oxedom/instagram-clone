@@ -137,13 +137,16 @@ export function UserService() {
   };
 
   const getAllFollowersByUsername = async (username) => {
+    alert('DOG')
     const userData = await getUserByUsername(username)
     const {followers} = userData;
+
     return followers
   }
 
   const getAllFollowingByUsername = async (username) => {
 
+    alert("Asshole")
     const userData = await getUserByUsername(username)
     const {following} = userData;
 

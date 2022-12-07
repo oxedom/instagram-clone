@@ -1,9 +1,10 @@
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams} from "react-router";
 import { UserService } from "../../services/UserService";
 import ListUser from "../ListUser/ListUser";
-import backIcon from "../../assests/backicon.png";
+import backIcon from "../../assests/backicon.png"
+
 const Following = () => {
 
     const [following, setFollowing] = useState([])
@@ -14,14 +15,16 @@ const Following = () => {
     const {username} = params
 
 
-    const fetchData = useCallback(async () => {
-        const data = await userAPI.getAllFollowersByUsername(username)
-   
+    const fetchData = async () => {
+        const data = await userAPI.getAllFollowingByUsername(username)
+    
         setFollowing(data)
-    }, [])
+
+    }
 
     useEffect(() => {
         fetchData();
+        return () => { setFollowing([])}
     }, [])  
 
      
@@ -37,9 +40,8 @@ const Following = () => {
         </div>
 
         <hr></hr>
-        {following.map((f) => 
-                <ListUser id={f}></ListUser>
-        )}
+        {following.map((f) => <ListUser key={f} id={f}></ListUser>)}
+
 
 
     </div> 
