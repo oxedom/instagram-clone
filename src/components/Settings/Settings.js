@@ -11,6 +11,7 @@ const Settings = () => {
     const [selectedImage, setSelectedImage] = useState(null)
     const userAPI = UserService()
     const handleUpload = () => {
+        if(selectedImage === null) { return}
         setUpload(true)
         userAPI.updateProfilePicutre(selectedImage).then(() => 
         {
@@ -34,9 +35,9 @@ const Settings = () => {
          
              </label>
       
-             <div onClick={handleUpload}className="bg-blue-500 hover:bg-blue-600 p-3 w-120 text-white text-center rounded-lg"> Update profile </div>
-        </div>
-}
+            
+       </div>
+}   {!upload && <div onClick={handleUpload}className="bg-blue-500 hover:bg-blue-600 p-3 w-120 text-white text-center rounded-lg"> Update profile </div> }
     </div> );
 }
  
