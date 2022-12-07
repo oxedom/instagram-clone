@@ -136,6 +136,19 @@ export function UserService() {
     return url;
   };
 
+  const getAllFollowersByUsername = async (username) => {
+    const userData = await getUserByUsername(username)
+    const {followers} = userData;
+    return followers
+  }
+
+  const getAllFollowingByUsername = async (username) => {
+
+    const userData = await getUserByUsername(username)
+    const {following} = userData;
+
+    return following
+  }
 
   const updateProfilePicutre = async(selectedImage) => 
   {
@@ -205,9 +218,11 @@ export function UserService() {
     getAllUsers,
     getSuggestions,
     getUserByUsername,
+    getAllFollowersByUsername,
     toogleFollow,
     getCurrentUser,
     updateProfilePicutre,
+    getAllFollowingByUsername,
     searchUser,
   };
 }

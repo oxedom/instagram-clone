@@ -21,6 +21,10 @@ const ProfileInfo = (props) => {
     userAPI.toogleFollow(uid);
   };
 
+
+
+
+
   return (
     <>
       {!loading && (
@@ -85,7 +89,7 @@ const ProfileInfo = (props) => {
               <span className="text-sm font-semibold"> {posts.length} </span>
               <span className="text-sm"> posts </span>
             </div>
-
+                <Link to={`/profile/followers/${username}`} >
             <div className="flex flex-col justify-center items-center">
               <span className="text-sm font-semibold">
                 {" "}
@@ -93,14 +97,18 @@ const ProfileInfo = (props) => {
               </span>
               <span className="text-sm"> followers </span>
             </div>
+            </Link>
 
-            <div className="flex flex-col justify-center items-center ">
+            <Link to={`/profile/following/${username}`}>
+      
+            <div   className="flex flex-col justify-center items-center ">
               <span className="text-sm font-semibold">
                 {" "}
                 {following.length}{" "}
               </span>
               <span className="text-sm"> following </span>
             </div>
+            </Link>
           </div>
         </div>
       )}

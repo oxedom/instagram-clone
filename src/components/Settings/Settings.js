@@ -24,7 +24,7 @@ const Settings = () => {
  return (<div className=" mt-10  shadow-md rounded-2xl">
     {!upload && 
  
-        <div className="bg-white p-3 rounded-2xl">
+        <div className="bg-white p-3 ">
         <label className="btn w-[250px]  bg-white p-10   flex flex-col items-center justify-center gap-5">
             <img src={imageGallery} 
             alt='upload'  width={200}
