@@ -11,7 +11,6 @@ const UploadButton = (props) => {
   return (
     <div>
       <input
-      
         id="files"
         type="file"
         title="Upload Photo"

@@ -23,7 +23,7 @@ const Profile = () => {
   const fetchData = useCallback(async () => {
     setMyAccount(false);
     setIsFollowing(false);
-  
+
     setLoading(true);
     const user = await getUserByUsername(username);
 
@@ -36,21 +36,16 @@ const Profile = () => {
     setUserInfo(userData);
     setUserPosts(postData);
 
-    onAuthStateChanged(auth,(u) => {
-
+    onAuthStateChanged(auth, (u) => {
       if (u.uid === user.uid) {
-        setUserInfo({ ...userData, ...u.uid});
+        setUserInfo({ ...userData, ...u.uid });
         setMyAccount(true);
       }
 
       if (userData.followers.includes(u.uid)) {
         setIsFollowing(true);
       }
-
-
-    })
- 
-
+    });
 
     setLoading(false);
     //  eslint-disable-next-line
@@ -60,12 +55,9 @@ const Profile = () => {
     fetchData();
   }, [fetchData]);
 
-
-
   return (
     <div className="flex flex-col  ">
-      {loading && <ProfileSkeleton></ProfileSkeleton> }
-
+      {loading && <ProfileSkeleton></ProfileSkeleton>}
 
       {!loading && (
         <div className="justify-self-center w-[350px] sm:w-[600px] md:w-[700px] lg:w-[1000px]">
@@ -82,7 +74,6 @@ const Profile = () => {
           </div>
         </div>
       )}
-      
     </div>
   );
 };

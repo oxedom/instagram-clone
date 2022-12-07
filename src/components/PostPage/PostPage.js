@@ -11,8 +11,6 @@ const PostPage = () => {
   const { getPostByID } = PostService();
   const { getUserbyId } = UserService();
 
-
-
   const fetchPostData = useCallback(async () => {
     const postData = await getPostByID(params.post_id);
     const userData = await getUserbyId(postData.uid);
@@ -26,8 +24,12 @@ const PostPage = () => {
 
   return (
     <div className="flex-grow gap-3 flex justify-center flex-col items-center">
-      {!post &&  <PostSkeleton></PostSkeleton>}
-      {post && <Post postPage={true} postData={post}> </Post>}
+      {!post && <PostSkeleton></PostSkeleton>}
+      {post && (
+        <Post postPage={true} postData={post}>
+          {" "}
+        </Post>
+      )}
     </div>
   );
 };

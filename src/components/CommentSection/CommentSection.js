@@ -5,9 +5,8 @@ import { useEffect, useState } from "react";
 import { auth } from "../../firebase";
 
 const CommentSection = (props) => {
-  const {  date, id, comments } = props.postData;
-  const commentRef = props.commentRef
-
+  const { date, id, comments } = props.postData;
+  const commentRef = props.commentRef;
 
   const postApi = PostService();
   const [commentText, setComment] = useState("");
@@ -18,14 +17,13 @@ const CommentSection = (props) => {
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
-    
 
-      postApi.addComment(id, commentText);
-      setAllComments((prev) => [
-        ...prev,
-        { text: commentText, username: auth.currentUser.displayName },
-      ]);
- 
+    postApi.addComment(id, commentText);
+    setAllComments((prev) => [
+      ...prev,
+      { text: commentText, username: auth.currentUser.displayName },
+    ]);
+
     setComment("");
   };
 

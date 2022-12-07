@@ -24,8 +24,6 @@ const ProfileInfo = (props) => {
   return (
     <>
       {!loading && (
-
-      
         <div className="mt-5 flex flex-col">
           <div className="m-4 grid grid-cols-2  items-center   ">
             {/* profile Pictutre */}
@@ -36,7 +34,6 @@ const ProfileInfo = (props) => {
                 alt="profile"
               />
             )}
-     
 
             {/* Username and follow button */}
             <div className="grid grid-rows-2 gap-2 flex-col flex-grow-1   justify-center items-center">
@@ -76,12 +73,6 @@ const ProfileInfo = (props) => {
               )}
             </div>
           </div>
-
-
-
-
-
-
 
           <p className="m-4 font-semibold" alt="bio">
             {" "}

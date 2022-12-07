@@ -1,28 +1,20 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import img from "../../assests/sam-logo.png";
-import { useNavigate } from "react-router-dom";
+import img from "../../assests/pet-logo.png";
+
 import { SignupService } from "../../services/SignupService";
 import UploadButton from "../UploadButton/UploadButton";
 
-
-
-
 const Signup = () => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
-  const [imgError, setImgError] = useState(false)
+  const [imgError, setImgError] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [buttonState, setButtonState] = useState();
-  //eslint-disable-next-line
+
   const { signup, error, isLoading } = SignupService();
-  const navigate = useNavigate();
-
-
-
 
 
   useEffect(() => {
@@ -31,21 +23,23 @@ const Signup = () => {
     } else {
       setButtonState("bg-blue-500");
     }
-
   }, [email, password]);
 
   async function handleSubmit(e) {
-    setImgError(false)
+    setImgError(false);
     e.preventDefault();
     try {
-      if(selectedImage === null) {
-        setImgError(true)
+      if (selectedImage === null) {
+        setImgError(true);
+      } else {
+        await signup(
+          email.toLowerCase(),
+          password,
+          username.toLowerCase(),
+          selectedImage,
+          bio
+        );
       }
-      else 
-      {
-        await signup(email.toLowerCase(), password, username.toLowerCase(), selectedImage, bio)
-      }
-
     } catch (err) {
       console.error(err);
     }
@@ -72,7 +66,12 @@ const Signup = () => {
               </h2>
             </div>
 
-           {imgError &&  <p className="text-red-700 text-center"> A profile picture is required</p> }
+            {imgError && (
+              <p className="text-red-700 text-center">
+                {" "}
+                A profile picture is required
+              </p>
+            )}
             <form className="flex flex-col gap-2 p-2" onSubmit={handleSubmit}>
               <input
                 className="bg-slate-50 p-2 border-2 border-gray-100"
@@ -144,7 +143,6 @@ const Signup = () => {
                 </div>
               )}
             </form>
-        
           </div>
 
           <div className=" flex mx-auto p-10 max-w-lg items-center justify-center gap-5 mt-10 border bg-white">

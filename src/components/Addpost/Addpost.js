@@ -12,10 +12,9 @@ const Addpost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if(selectedImage) {
-       await postApi.postPost(selectedImage, postText);
+    if (selectedImage) {
+      await postApi.postPost(selectedImage, postText);
     }
-
   };
 
   const handleRemove = (e) => {
@@ -51,24 +50,23 @@ const Addpost = () => {
                   />
                 </div>
               )}
-            <div>
-            {!selectedImage && <div className="flex flex-col gap-3 hover:cursor-pointer">
-        
-                <img
-                  width={150}
-                  src={imageGallery}
-                  alt="upload button"
-                  className="w-[150px]  "
-                />
-                
-     
+              <div>
+                {!selectedImage && (
+                  <div className="flex flex-col gap-3 hover:cursor-pointer">
+                    <img
+                      width={150}
+                      src={imageGallery}
+                      alt="upload button"
+                      className="w-[150px]  "
+                    />
 
-
-             <div className="w-50 bg-blue-500 rounded-md  text-white text-center p-1 "> Select from device </div>
-            </div> }
-              
-            </div>  
-
+                    <div className="w-50 bg-blue-500 rounded-md  text-white text-center p-1 ">
+                      {" "}
+                      Select from device{" "}
+                    </div>
+                  </div>
+                )}
+              </div>
             </label>
             <div className="hidden">
               <UploadButton
@@ -77,23 +75,27 @@ const Addpost = () => {
               ></UploadButton>
             </div>
 
-            {selectedImage &&<  textarea
-              className="bg-slate-50 p-2 border-2 border-gray-100"
-              maxLength={250}
-              placeholder="Post description "
-              value={postText}
-              type="text"
-              onChange={(e) => {
-                setPostText(e.target.value);
-              }}
-            ></textarea> }
-              {selectedImage && <button
-              className="btn bg-blue-400 rounded p-2 text-white  hover:bg-blue-500"
-              type="submit"
-            >
-              {" "}
-              Post Post!{" "}
-            </button> }
+            {selectedImage && (
+              <textarea
+                className="bg-slate-50 p-2 border-2 border-gray-100"
+                maxLength={250}
+                placeholder="Post description "
+                value={postText}
+                type="text"
+                onChange={(e) => {
+                  setPostText(e.target.value);
+                }}
+              ></textarea>
+            )}
+            {selectedImage && (
+              <button
+                className="btn bg-blue-400 rounded p-2 text-white  hover:bg-blue-500"
+                type="submit"
+              >
+                {" "}
+                Post Post!{" "}
+              </button>
+            )}
           </form>
         </div>
       )}

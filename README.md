@@ -1,11 +1,14 @@
 # LIVE LINK:
+
 https://instagram-backend-79d91.web.app/feed
 
 # instagram-clone
+
 Instagram Clone by Sam.
 
 # Features:
-Create an account with  Auth
+
+Create an account with Auth
 Custom Skeleton components
 Create a user profile
 Upload Images that get saved in a bucket!
@@ -18,11 +21,9 @@ Auto-complete searchbar
 comment on a post
 Built for mobile
 
+# Tech stack
 
- # Tech stack
- React
- Google Firebase
- Tailwind
- Firebase
-
-
+React
+Google Firebase
+Tailwind
+Firebase

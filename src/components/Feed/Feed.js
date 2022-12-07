@@ -10,7 +10,7 @@ import PostSkeleton from "../Skeletons/PostSkeleton";
 const Feed = () => {
   //eslint-disable-next-line
 
-  const [noPost, setNoPost] = useState(false)
+  const [noPost, setNoPost] = useState(false);
   const [posts, setPosts] = useState([]);
   //Functions from useEffect that allow the client to interact with the database through BL;
   const { getUserbyId } = UserService();
@@ -21,7 +21,7 @@ const Feed = () => {
   const fetchData = useCallback(async () => {
     //Resets Posts array so no stale data or rerenders duplicate the amount of posts
     setPosts([]);
-  
+
     onAuthStateChanged(auth, async (userData) => {
       try {
         if (userData) {
@@ -30,22 +30,21 @@ const Feed = () => {
           if (user.following.length === 0) {
             setNoPost(true);
           }
-          
 
           await user.following.forEach(async (f) => {
             //Query the person he is followings data to get his username and profile picture;
-      
+
             const followerData = await getUserbyId(f);
             const { username, photoURL } = followerData;
-
 
             const posts = await getAllUserPosts(f);
 
             //Update all of the users posts with his username and profile img URL
-            setTimeout(() => 
-            {
-              if(posts.length === 0) { setNoPost(true)}
-            }, 3000)
+            setTimeout(() => {
+              if (posts.length === 0) {
+                setNoPost(true);
+              }
+            }, 3000);
             const updatedPosts = posts.map((obj) => ({
               ...obj,
               username,
@@ -55,49 +54,43 @@ const Feed = () => {
             //Setting the posts state to the newly fetched posts whilst keeping the previous kept posts
             setPosts((prev) => {
               return [...prev, ...updatedPosts];
-       
-            })
+            });
             setPosts((prev) => {
-
-               //Sort all posts by date
-               return prev.sort(function (a, b) {
-                return b.date - a.date;})
-
-
-            })
-          })
-          
-          ;
+              //Sort all posts by date
+              return prev.sort(function (a, b) {
+                return b.date - a.date;
+              });
+            });
+          });
         }
       } catch (error) {
         console.error(error);
       }
-
     });
   }, []);
-
-
 
   useEffect(() => {
     //Init for fetch data function;
 
-    fetchData()
+    fetchData();
   }, []);
 
   return (
-
     <div>
-      
       <div className="flex flex-col gap-2 items-center">
-      <Suggestions></Suggestions>
-        {(posts.length <=0 && !noPost) && [1,2,3].map((s) => { return <PostSkeleton key={s}></PostSkeleton>})}
+        <Suggestions></Suggestions>
+        {posts.length <= 0 &&
+          !noPost &&
+          [1, 2, 3].map((s) => {
+            return <PostSkeleton key={s}></PostSkeleton>;
+          })}
         {posts.map((p) => (
           <Post postPage={false} key={p.id} postData={p}>
             {" "}
           </Post>
         ))}
         <div className="mt-16 "> </div>
-        {noPost  && (
+        {noPost && (
           <div className=" text-xl flex flex-col justify-start items-center w-max h-96">
             <h1 className=""> There are posts available </h1>
             <p> Follow People to see their posts!</p>

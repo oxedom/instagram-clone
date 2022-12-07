@@ -10,7 +10,6 @@ import PostPage from "./components/PostPage/PostPage";
 import Addpost from "./components/Addpost/Addpost";
 import NotFound from "./components/NotFound/NotFound";
 
-
 const RouteSwitch = () => {
   return (
     <BrowserRouter basename="/">
@@ -68,13 +67,9 @@ const RouteSwitch = () => {
           }
         ></Route>
 
-
-
         <Route path="*" element={<NotFound> </NotFound>}></Route>
       </Routes>
-
     </BrowserRouter>
-
   );
 };
 

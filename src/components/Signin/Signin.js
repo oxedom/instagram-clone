@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import img from "../../assests/sam-logo.png";
+import img from "../../assests/pet-logo.png";
 import { useNavigate } from "react-router-dom";
 import { SignInService } from "../../services/SignInService";
 import { LogoutService } from "../../services/LogoutService";
 
-
 const Signin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState(false);
   const [buttonState, setButtonState] = useState();
 
   const { signIn } = SignInService();
@@ -17,8 +15,7 @@ const Signin = (props) => {
 
   const navigate = useNavigate();
 
-  const handleLogin = async () => 
-  {
+  const handleLogin = async () => {
     try {
       await logout();
       await signIn(email, password);
@@ -26,12 +23,9 @@ const Signin = (props) => {
     } catch (err) {
       console.error(err);
     }
+  };
 
-  }
-
-
-
-  const handleTestUser =  () => {
+  const handleTestUser = () => {
     setEmail("test_jest@gmail.com");
     setPassword("jest9999");
   };
@@ -45,12 +39,9 @@ const Signin = (props) => {
     }
   }, [email, password]);
 
-
-
-
-  async function handleSubmit(e ) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    handleLogin()
+    handleLogin();
 
     setEmail("");
     setPassword("");
@@ -103,13 +94,7 @@ const Signin = (props) => {
             Login with test user{" "}
           </div>
         </form>
-        {loginError && (
-          <p className="text-center text-red-500">
-            {" "}
-            Sorry, your password was incorrect. Please double-check your
-            password
-          </p>
-        )}
+
       </div>
 
       <div className=" flex mx-auto p-10 max-w-lg items-center justify-center gap-5 mt-10 border bg-white">

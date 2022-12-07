@@ -7,12 +7,10 @@ import {
   updateDoc,
   doc,
   arrayUnion,
-
   limit,
 } from "firebase/firestore";
 
 import { auth, firestore } from "../firebase";
-
 
 export function UserService() {
   const getUserbyId = async (id) => {
@@ -31,38 +29,39 @@ export function UserService() {
     }
   };
 
-
-
-
-
   const searchUser = async (text) => {
-
     let queryUsers = [];
-    if (text !== '') {
-
+    if (text !== "") {
       try {
         const usersRef = collection(firestore, "users");
-        const q = query(usersRef,where('username', ">=", text.toLowerCase(), where('username', '=<', text.toLowerCase())),limit(6))
+        const q = query(
+          usersRef,
+          where(
+            "username",
+            ">=",
+            text.toLowerCase(),
+            where("username", "=<", text.toLowerCase())
+          ),
+          limit(6)
+        );
         // const q = query(usersRef, orderBy("username"),startAt(text.toLowerCase()),limit(5))
-        
-        const querySnapshot = await getDocs(q)
-  
+
+        const querySnapshot = await getDocs(q);
+
         querySnapshot.forEach((doc) => {
-          queryUsers.push(doc.data())
-  
-        })
+          queryUsers.push(doc.data());
+        });
       } catch (error) {
         console.error(error);
       }
-
     }
-    
-    queryUsers = queryUsers.filter(u => u.username !== auth.currentUser.displayName)
-  
-  return queryUsers;
+
+    queryUsers = queryUsers.filter(
+      (u) => u.username !== auth.currentUser.displayName
+    );
+
+    return queryUsers;
   };
-
-
 
   const getAllUsers = async () => {
     try {
@@ -81,31 +80,26 @@ export function UserService() {
     }
   };
 
-
   const getSuggestions = async () => {
     try {
       let users = [];
-      
-
-
 
       const usersRef = collection(firestore, "users");
-      const q = query(usersRef, limit(50))
-      const querySnapshot = await getDocs(q)
-      
+      const q = query(usersRef, limit(50));
+      const querySnapshot = await getDocs(q);
+
       querySnapshot.forEach((doc) => {
         users.push(doc.data());
       });
-      
 
-      users = users.map((value) => ({ value, sort: Math.random() }))
-      .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => value);
+      users = users
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
 
-      const sliced = []
+      const sliced = [];
       for (let index = 0; index < 5; index++) {
-        sliced.push(users[index])
-        
+        sliced.push(users[index]);
       }
       return sliced;
     } catch (error) {
@@ -113,14 +107,9 @@ export function UserService() {
     }
   };
 
-
-
-
   const getCurrentUser = async () => {
     return auth.currentUser;
   };
-
-
 
   const getUserByUsername = async (username) => {
     try {
@@ -153,7 +142,6 @@ export function UserService() {
 
       //GET USER DATA FOR Followers Array
       const currentFollowingData = await getUserbyId(userToFollowID);
-
 
       //Doc ID for doc Refs
       const userFollowing_ID = currentUserData.id;
@@ -198,6 +186,6 @@ export function UserService() {
     getUserByUsername,
     toogleFollow,
     getCurrentUser,
-    searchUser
+    searchUser,
   };
 }

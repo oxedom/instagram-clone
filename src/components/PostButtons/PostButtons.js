@@ -8,11 +8,10 @@ import CommentSection from "../CommentSection/CommentSection.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 
-
 const PostButtons = (props) => {
   const { text, likes, username, date, id, comments } = props.postData;
   const [amountOfLikes, setAmountOfLikes] = useState([]);
-  const commentRef = useRef(null)
+  const commentRef = useRef(null);
   const postApi = PostService();
   const [likedState, setLikedState] = useState(false);
 
@@ -28,8 +27,8 @@ const PostButtons = (props) => {
   };
 
   const handleCommentClick = () => {
-    commentRef.current.focus()
-  }
+    commentRef.current.focus();
+  };
 
   useEffect(() => {
     setAmountOfLikes([...likes]);
