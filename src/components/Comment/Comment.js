@@ -1,7 +1,7 @@
 import ShowMoreText from "react-show-more-text";
 
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+
 const Comment = (props) => {
 
   const { text, username } = props.commentData;
