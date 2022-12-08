@@ -97,7 +97,9 @@ export function UserService() {
         .sort((a, b) => a.sort - b.sort)
         .map(({ value }) => value);
 
-      return users;
+      users = users.filter(u => u !== auth.currentUser.uid)
+    
+      return [users[0], users[1],users[2], users[3], users[4]] ;
     } catch (error) {
       console.error(error);
     }
