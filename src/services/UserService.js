@@ -145,6 +145,35 @@ export function UserService() {
     return followers
   }
 
+  // const getUserLikesById = async (uid) => {
+
+  //   let likesWithData = [];
+  //   //Querying all of the users posts
+  //   const q = query(collection(firestore, "posts"), where("uid", "==",  auth.currentUser.uid));
+  //   //Looping over each post and extracting the like array if it has a length bigger than 0
+  //   const querySnapshot = await getDocs(q);
+  //   querySnapshot.forEach((doc) => {  
+  //     //Taking the IMG URL from the post and likes Array
+  //     const {likes,imgUrl} = doc.data()
+  //     const postLikes = {likes, imgUrl }
+
+  //     if(postLikes.likes.length > 0) 
+  //     {
+  //       likesWithData.push(postLikes)
+  //     }
+
+  //   });
+
+  //   const  populatedLikes = await Promise.all(likesWithData.likes.map((l => (getUserbyId(l.uid)))))
+    
+  //   populatedLikes = populatedLikes.sort(function (a, b) {
+  //     return b.date - a.date;
+  //   });
+
+  //   return populatedLikes;
+
+  // }
+
   const getAllFollowingByUsername = async (username) => {
 
     const userData = await getUserByUsername(username)
@@ -172,7 +201,7 @@ export function UserService() {
       //Gets Data of current user logged in
       const currentUserLoggedIn = getAuth();
 
-      //Get USER DATA for following array
+      //Get USER DATA for following arrayim
       const currentUserData = await getUserbyId(
         currentUserLoggedIn.currentUser.uid
       );
@@ -226,6 +255,7 @@ export function UserService() {
     getCurrentUser,
     updateProfilePicutre,
     getAllFollowingByUsername,
+    // getUserLikesById,
     searchUser,
   };
 }

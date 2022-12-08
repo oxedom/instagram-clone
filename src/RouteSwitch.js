@@ -10,7 +10,7 @@ import PostPage from "./components/PostPage/PostPage";
 import Addpost from "./components/Addpost/Addpost";
 import NotFound from "./components/NotFound/NotFound";
 import Settings from "./components/Settings/Settings";
-
+import Likes from "./components/Likes/Likes";
 import Following from "./components/Following/Following";
 
 import Followers from "./components/Followers/Followers";
@@ -95,12 +95,25 @@ const RouteSwitch = () => {
         ></Route>
 
 
-<Route
+          <Route
           path="/profile/followers/:username"
           element={
             <Protected>
               <Navbar>
               <Followers></Followers>
+              </Navbar>
+            </Protected>
+          }
+        ></Route>
+
+
+
+<Route
+          path="likes"
+          element={
+            <Protected>
+              <Navbar>
+              <Likes></Likes>
               </Navbar>
             </Protected>
           }

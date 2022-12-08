@@ -31,12 +31,14 @@ const Profile = () => {
     if (user === undefined) {
       navigate("/");
     }
+    
     const userData = await getUserbyId(user.uid);
     const postData = await getAllUserPosts(user.uid);
     setUserInfo(userData);
     setUserPosts(postData);
 
     onAuthStateChanged(auth, (u) => {
+
       if (u.uid === user.uid) {
         setUserInfo({ ...userData, ...u.uid });
         setMyAccount(true);
@@ -52,6 +54,7 @@ const Profile = () => {
   }, [username]);
 
   useEffect(() => {
+
     fetchData();
   }, [fetchData]);
 
