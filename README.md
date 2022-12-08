@@ -10,9 +10,9 @@ Instagram Clone by Sam.
 
 # Features:
 
-Create an account with Auth
-Custom Skeleton components
-Create a user profile
+* Create an account with Auth
+* Custom Skeleton components
+* Create a user profile
 Upload Images that get saved in a bucket!
 Follow other people!
 Get followed by other people!
