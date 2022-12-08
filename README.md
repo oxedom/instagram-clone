@@ -1,4 +1,4 @@
-![project banner](https://i.imgur.com/izgK19W.png)])
+![project banner](https://i.imgur.com/izgK19W.png)
 
 # LIVE LINK:
 
