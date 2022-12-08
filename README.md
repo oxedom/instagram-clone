@@ -10,22 +10,23 @@ Instagram Clone by Sam.
 
 # Features:
 
-* Create an account with Auth
+* Authentication 
 * Custom Skeleton components
-* Create a user profile
-Upload Images that get saved in a bucket!
-Follow other people!
-Get followed by other people!
-Browse a feed of photos
-Get suggestions to follow users
-Like a post
-Auto-complete searchbar
-comment on a post
-Built for mobile
+* Personal pet profiles
+* fully responsive 
+* Upload Images 
+* Follow other pet!
+* Get followed by other pets!
+* Browse a feed of pet photos
+* Get suggestions to follow pets
+* Like a post
+* Auto-complete searchbar
+* comment on a post
+
 
 # Tech stack
+* React
+* Google Firebase
+* Tailwind
+* Firebase
 
-React
-Google Firebase
-Tailwind
-Firebase
