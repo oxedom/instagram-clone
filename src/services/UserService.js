@@ -99,7 +99,7 @@ export function UserService() {
 
       users = users.filter(u => u !== auth.currentUser.uid)
     
-      return [users[0], users[1],users[2], users[3], users[4]] ;
+      return [users[0], users[1],users[2], users[3]] ;
     } catch (error) {
       console.error(error);
     }
