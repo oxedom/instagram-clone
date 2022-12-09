@@ -64,7 +64,7 @@ const Signup = () => {
                 Sign up to see photos and videos from your friends{" "}
               </h2>
             </div>
-
+            
             {imgError && (
               <p className="text-red-700 text-center">
                 {" "}
@@ -97,7 +97,7 @@ const Signup = () => {
                 }}
                 name="username"
               ></input>
-
+              <h1 className="text center text-bold text-red-500"> Please upload pet photos only! </h1>
               <UploadButton
                 selectedImage={selectedImage}
                 setSelectedImage={setSelectedImage}
@@ -152,7 +152,8 @@ const Signup = () => {
           </div>
         </div>
       )}
-    </>
+      {isLoading && <h1 className="flex text-4xl sm:text-5xl md:text-7xl  mt-28 sm:mt-48 md:mt-96 justify-center items-center font-bold animate-pulse ease-in"> Siging you up  </h1>}
+    </> 
   );
 };
 
