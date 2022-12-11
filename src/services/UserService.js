@@ -92,13 +92,14 @@ export function UserService() {
         users.push(doc.data());
       });
 
+      users = users.filter(u => u.uid !== auth.currentUser.uid)
       users = users
         .map((value) => ({ value, sort: Math.random() }))
         .sort((a, b) => a.sort - b.sort)
         .map(({ value }) => value);
 
-      users = users.filter(u => u !== auth.currentUser.uid)
-    
+
+
       return [users[0], users[1],users[2], users[3]] ;
     } catch (error) {
       console.error(error);
